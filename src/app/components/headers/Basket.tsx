@@ -15,6 +15,7 @@ import {
 } from "../../../lib/sweetAlert";
 import { useGlobals } from "../../hooks/useGlobals";
 import OrderService from "../../services/OrderSerivce";
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
 interface BasketProps {
   cartItems: CartItem[];
@@ -64,8 +65,9 @@ export default function Basket(props: BasketProps) {
   };
 
   return (
-    <Box className={"hover-line"}>
+    <Box className={"cart-bag"}>
       <IconButton
+        className="icon-button"
         aria-label="cart"
         id="basic-button"
         aria-controls={open ? "basic-menu" : undefined}
@@ -73,9 +75,7 @@ export default function Basket(props: BasketProps) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Badge badgeContent={cartItems.length} color="secondary">
-          <img src={"/icons/shopping-cart.svg"} />
-        </Badge>
+        <ShoppingBagIcon className="icon-button" />
       </IconButton>
       <Menu
         anchorEl={anchorEl}

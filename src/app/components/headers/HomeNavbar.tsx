@@ -46,43 +46,50 @@ export default function HomeNavbar(props: HomeNavbarProps) {
     <div className="home-navbar">
       <Container className="navbar-container">
         <Stack className="menu" data-aos="fade-up">
-          <Box>
-            <NavLink to={"/"}>
-              <img className="brand-logo" src="/icons/burak.svg" />
-            </NavLink>
-          </Box>
           <Stack className="links">
-            <Box className={"hover-line"}>
-              <NavLink to={"/"} activeClassName={"underline"}>
-                Home
+            <Stack className={"left-navbar"}>
+              <NavLink className={"main-logo"} to={"/"}>
+                FreshNest
               </NavLink>
-            </Box>
-            <Box className={"hover-line"}>
-              <NavLink to={"/products"} activeClassName={"underline"}>
-                Products
-              </NavLink>
-            </Box>
 
-            {authMember ? (
-              <Box className={"hover-line"}>
-                <NavLink to={"/orders"} activeClassName={"underline"}>
-                  Orders
+              <Stack className={"middle-navbar"}>
+                <NavLink to={"/"} activeClassName={"underline"}>
+                  Home
                 </NavLink>
-              </Box>
-            ) : null}
-            {authMember ? (
-              <Box className={"hover-line"}>
-                <NavLink to={"/member-page"} activeClassName={"underline"}>
-                  My Page
-                </NavLink>
-              </Box>
-            ) : null}
-            <Box className={"hover-line"}>
-              <NavLink to={"/help"} activeClassName={"underline"}>
-                Help
-              </NavLink>
-            </Box>
+                <Box className={"hover-line"}>
+                  <NavLink to={"/products"} activeClassName={"underline"}>
+                    Products
+                  </NavLink>
+                </Box>
+                <Box className={"hover-line"}>
+                  <NavLink to={"/product-detail"} activeClassName={"underline"}>
+                    Product Detail
+                  </NavLink>
+                </Box>
+                {authMember ? (
+                  <Box className={"hover-line"}>
+                    <NavLink to={"/member-page"} activeClassName={"underline"}>
+                      My Page
+                    </NavLink>
+                  </Box>
+                ) : null}
+                {authMember ? (
+                  <Box className={"hover-line"}>
+                    <NavLink to={"/orders"} activeClassName={"underline"}>
+                      Orders
+                    </NavLink>
+                  </Box>
+                ) : null}
 
+                <Box className={"hover-line"}>
+                  <NavLink to={"/help"} activeClassName={"underline"}>
+                    Help
+                  </NavLink>
+                </Box>
+              </Stack>
+            </Stack>
+          </Stack>
+          <Stack className={"right-side"}>
             <Basket
               cartItems={cartItems}
               onAdd={onAdd}
@@ -90,6 +97,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
               onDelete={onDelete}
               onDeleteAll={onDeleteAll}
             />
+
             {!authMember ? (
               <Box>
                 <Button
