@@ -1,5 +1,6 @@
 /* HomeNavbar */
 .home-navbar {
+  position: relative;
   width: 100%;
   height: auto;
   display: flex;
@@ -7,7 +8,6 @@
   background-size: cover; /* Ensure the image covers the entire area */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
-  opacity: 60%;
 }
 
 .home-navbar .navbar-container .menu {
@@ -19,7 +19,12 @@
   justify-content: space-between;
   align-items: center;
 }
-
+.home-navbar .background-white {
+  height: 85px;
+  width: 100%;
+  background-color: #fff;
+  position: absolute;
+}
 .home-navbar .navbar-container .menu .main-logo {
   font-size: 2.4rem;
   font-weight: 700;
@@ -41,13 +46,6 @@
   align-items: center;
   margin-left: 20px;
   gap: 35px;
-}
-.home-navbar .navbar-container .header-frame {
-  height: 462px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  /* Replace with the actual image path */
 }
 
 .home-navbar .navbar-container .menu .links {
@@ -109,23 +107,177 @@
   color: #81c408;
   font-size: 35px;
 }
-
+.home-navbar .navbar-container .header-frame {
+  height: 462px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* Replace with the actual image path */
+}
 .home-navbar .navbar-container .header-frame .detail {
   width: 510px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 
 .home-navbar .navbar-container .header-frame .detail .head-main-txt {
-  width: 450px;
-  height: 150px;
-  font-family: "Roboto Serif";
-  font-size: 50px;
+  font-family: sans-serif;
+  font-size: 1.8rem;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
+
   line-height: normal;
   letter-spacing: -0.75px;
-  color: #f8f8ff;
+  color: #ffb524;
+}
+.home-navbar .navbar-container .header-frame .detail .wel-txt {
+  font-family: sans-serif;
+  font-size: 3.5rem;
+  font-style: normal;
+  font-weight: 1000;
+  margin-top: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.75px;
+  color: #8ab935;
+}
+.home-navbar .navbar-container .header-frame .detail .service-txt {
+  font-family: sans-serif;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 1000;
+  margin-top: 15px;
+  line-height: normal;
+
+  color: #141d1d;
+}
+.home-navbar .navbar-container .header-frame .detail .booking {
+  margin-top: 25px;
+  position: relative;
+  display: inline-block;
+  background-color: #2c2d3f;
+  color: white;
+  font-size: 16px;
+  padding: 10px 60px;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 5px;
+  transition: background-color 0.5s ease;
+}
+
+.booking::before,
+.booking::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: #1a76d1;
+  transition: width 0.5s ease;
+}
+
+.booking span {
+  position: relative;
+  z-index: 1;
+  color: #fff;
+
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.booking::before {
+  left: 0;
+}
+
+.booking::after {
+  right: 0;
+}
+
+.booking:hover::after {
+  width: 0%;
+}
+
+.booking:hover::before {
+  width: 0%;
+}
+
+@keyframes drop-anim {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.home-navbar .booking2 {
+  position: relative;
+  display: inline-block;
+  background-color: #2c2d3f;
+  color: white;
+  font-size: 16px;
+  padding: 5px 20px;
+  text-decoration: none;
+  overflow: hidden;
+  border-radius: 5px; /* Border-radius applied here */
+  transition: background-color 0.5s ease;
+}
+
+.booking2::before,
+.booking2::after {
+  position: absolute;
+  content: "";
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-color: #1a76d1;
+  transition: width 0.5s ease;
+  /* Add border-radius to pseudo-elements */
+  z-index: 0; /* Ensure pseudo-elements stay behind the text */
+}
+
+.booking2 span {
+  position: relative;
+  z-index: 1; /* Ensure text is above the pseudo-elements */
+  color: #fff;
+  font-size: 14px;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif;
+}
+
+.booking2::before {
+  left: 0;
+}
+
+.booking2::after {
+  right: 0;
+}
+
+.booking2:hover::after {
+  width: 0%;
+}
+
+.booking2:hover::before {
+  width: 0%;
+}
+
+@keyframes drop-anim {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* djsfjksdjfjldsjfljlsdjflklkjs */

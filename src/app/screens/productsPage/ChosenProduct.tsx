@@ -5,11 +5,7 @@ import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Divider from "../../components/divider";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
-import "swiper/css";
-import "swiper/css/free-mode";
-import "swiper/css/navigation";
-import "swiper/css/thumbs";
-import { FreeMode, Navigation, Thumbs } from "swiper";
+
 import { createSelector } from "@reduxjs/toolkit";
 import { Dispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
@@ -71,22 +67,14 @@ export default function ChosenProduct(props: ChosenProducteProps) {
       <Box className={"title"}>Product Detail</Box>
       <Container className={"product-container"}>
         <Stack className={"chosen-product-slider"}>
-          <Swiper
-            loop={true}
-            spaceBetween={10}
-            navigation={true}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="swiper-area"
-          >
-            {chosenProduct?.productImages.map((ele: string, index: number) => {
-              const imagePath = `${serverApi}/${ele}`;
-              return (
-                <SwiperSlide key={index}>
-                  <img className="slider-image" src={imagePath} />
-                </SwiperSlide>
-              );
-            })}
-          </Swiper>
+          {chosenProduct?.productImages.map((ele: string, index: number) => {
+            const imagePath = `${serverApi}/${ele}`;
+            return (
+              <SwiperSlide key={index}>
+                <img className="slider-image" src={imagePath} />
+              </SwiperSlide>
+            );
+          })}
         </Stack>
         <Stack className={"chosen-product-info"}>
           <Box className={"info-box"}>

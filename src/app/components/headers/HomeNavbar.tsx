@@ -8,7 +8,10 @@ import { CartItem } from "../../../lib/types/search";
 import { useGlobals } from "../../hooks/useGlobals";
 import { serverApi } from "../../../lib/config";
 import { Logout } from "@mui/icons-material";
-// Import AOS and its styles
+import React from "react";
+import Carousel from "../../../carousel";
+
+// Swipper
 
 interface HomeNavbarProps {
   cartItems: CartItem[];
@@ -44,6 +47,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
 
   return (
     <div className="home-navbar">
+      <div className="background-white"></div>
       <Container className="navbar-container">
         <Stack className="menu" data-aos="fade-up">
           <Stack className="links">
@@ -101,11 +105,11 @@ export default function HomeNavbar(props: HomeNavbarProps) {
             {!authMember ? (
               <Box>
                 <Button
-                  onClick={() => setLoginOpen(true)}
-                  className="login-button"
                   variant="contained"
+                  className="booking2"
+                  onClick={() => setLoginOpen(true)}
                 >
-                  Login
+                  <span>LOGIN</span>
                 </Button>
               </Box>
             ) : (
@@ -167,25 +171,29 @@ export default function HomeNavbar(props: HomeNavbarProps) {
         </Stack>
         <Stack data-aos="fade-up" className="header-frame">
           <Stack className="detail">
-            <Box className="head-main-txt">World's Most Delicious Cousine</Box>
-            <Box className="wel-txt">The Choice, not just a choice</Box>
+            <Box className="head-main-txt">100% Natural Foods</Box>
+            <Box className="wel-txt">Organic Veggies & Fruits Foods</Box>
             <Box className="service-txt">24 hours service</Box>
-            <Box className="signup">
-              {" "}
-              {!authMember ? (
-                <Button
-                  variant="contained"
-                  className="signup-btn"
-                  onClick={() => setSignupOpen(true)}
-                >
-                  SIGN UP
-                </Button>
-              ) : null}
-            </Box>
+            {
+              <Box className="">
+                {" "}
+                {!authMember ? (
+                  <Button
+                    variant="contained"
+                    className="booking"
+                    onClick={() => setSignupOpen(true)}
+                  >
+                    <span> SIGN UP</span>
+                  </Button>
+                ) : null}
+              </Box>
+            }
           </Stack>
-          <Box className="logo-frame">
-            <div className="logo-img"></div>
-          </Box>
+          <Stack className={"right-swiper"}>
+            <div>
+              <Carousel autoPlayInterval={5000} />
+            </div>
+          </Stack>
         </Stack>
       </Container>
     </div>

@@ -17,10 +17,10 @@ import { useGlobals } from "./hooks/useGlobals";
 import "../css/app.css";
 import "../css/navbar.css";
 import "../css/footer.css";
-
-// Import AOS and its styles
 import AOS from "aos";
 import "aos/dist/aos.css";
+
+// Import AOS and its styles
 
 function App() {
   const location = useLocation();
