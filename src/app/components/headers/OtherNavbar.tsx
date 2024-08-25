@@ -1,42 +1,41 @@
-import { Logout } from "@mui/icons-material";
-import {
-  Box,
-  Button,
-  Container,
-  ListItemIcon,
-  Menu,
-  MenuItem,
-  Stack,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import { Box, ListItemIcon, Menu, MenuItem } from "@mui/material";
+import { Container, Stack } from "@mui/system";
 import { NavLink } from "react-router-dom";
-import { serverApi } from "../../../lib/config";
+import Basket from "./Basket";
+import { useEffect, useState } from "react";
 import { CartItem } from "../../../lib/types/search";
 import { useGlobals } from "../../hooks/useGlobals";
-import Basket from "./Basket";
+import { serverApi } from "../../../lib/config";
+import { Logout } from "@mui/icons-material";
+import React from "react";
+import Carousel from "../../../carousel";
 
-interface OtherNavbarProps {
+// Swipper
+
+interface HomeNavbarProps {
   cartItems: CartItem[];
   onAdd: (item: CartItem) => void;
   onRemove: (item: CartItem) => void;
   onDelete: (item: CartItem) => void;
   onDeleteAll: () => void;
-  setLoginOpen: (isOpen: boolean) => void;
   setSignupOpen: (isOpen: boolean) => void;
+  setLoginOpen: (isOpen: boolean) => void;
   anchorEl: HTMLElement | null;
   handleLogoutClick: (e: React.MouseEvent<HTMLElement>) => void;
   handleCloseLogout: () => void;
   handleLogoutRequest: () => void;
 }
 
-export default function OtherNavbar(props: OtherNavbarProps) {
+export default function HomeNavbar(props: HomeNavbarProps) {
   const {
     cartItems,
     onAdd,
     onRemove,
     onDelete,
     onDeleteAll,
-    setLoginOpen,
     setSignupOpen,
+    setLoginOpen,
     anchorEl,
     handleLogoutClick,
     handleCloseLogout,
@@ -44,45 +43,59 @@ export default function OtherNavbar(props: OtherNavbarProps) {
   } = props;
   const { authMember } = useGlobals();
 
+  // HANDLERS
+
   return (
     <div className="other-navbar">
+      <div className="background-white"></div>
       <Container className="navbar-container">
-        <Stack className="menu">
-          <Box>
-            <NavLink to={"/"}>
-              <img className="brand-logo" src="/icons/burak.svg" />
-            </NavLink>
-          </Box>
+        <Stack className="menu" data-aos="fade-up">
           <Stack className="links">
-            <Box className={"hover-line"}>
-              <NavLink to={"/"}>Home</NavLink>
-            </Box>
-            <Box className={"hover-line"}>
-              <NavLink to={"/products"} activeClassName={"underline"}>
-                Products
+            <Stack className={"left-navbar"}>
+              <NavLink className={"main-logo"} to={"/"}>
+                FreshNest
               </NavLink>
-            </Box>
 
-            {authMember ? (
-              <Box className={"hover-line"}>
-                <NavLink to={"/orders"} activeClassName={"underline"}>
-                  Orders
-                </NavLink>
-              </Box>
-            ) : null}
-            {authMember ? (
-              <Box className={"hover-line"}>
-                <NavLink to={"/member-page"} activeClassName={"underline"}>
-                  My Page
-                </NavLink>
-              </Box>
-            ) : null}
-            <Box className={"hover-line"}>
-              <NavLink to={"/help"} activeClassName={"underline"}>
-                Help
-              </NavLink>
-            </Box>
+              <Stack className={"middle-navbar"}>
+                <Box className={"hover-line"}>
+                  <NavLink to={"/"} activeClassName={"underline"}>
+                    Home
+                  </NavLink>
+                </Box>
+                <Box className={"hover-line"}>
+                  <NavLink to={"/products"} activeClassName={"underline"}>
+                    Products
+                  </NavLink>
+                </Box>
+                <Box className={"hover-line"}>
+                  <NavLink to={"/product-detail"} activeClassName={"underline"}>
+                    Product Detail
+                  </NavLink>
+                </Box>
+                {authMember ? (
+                  <Box className={"hover-line"}>
+                    <NavLink to={"/member-page"} activeClassName={"underline"}>
+                      My Page
+                    </NavLink>
+                  </Box>
+                ) : null}
+                {authMember ? (
+                  <Box className={"hover-line"}>
+                    <NavLink to={"/orders"} activeClassName={"underline"}>
+                      Orders
+                    </NavLink>
+                  </Box>
+                ) : null}
 
+                <Box className={"hover-line"}>
+                  <NavLink to={"/help"} activeClassName={"underline"}>
+                    Help
+                  </NavLink>
+                </Box>
+              </Stack>
+            </Stack>
+          </Stack>
+          <Stack className={"right-side"}>
             <Basket
               cartItems={cartItems}
               onAdd={onAdd}
@@ -90,14 +103,15 @@ export default function OtherNavbar(props: OtherNavbarProps) {
               onDelete={onDelete}
               onDeleteAll={onDeleteAll}
             />
+
             {!authMember ? (
               <Box>
                 <Button
-                  className="login-button"
                   variant="contained"
+                  className="booking2"
                   onClick={() => setLoginOpen(true)}
                 >
-                  Login
+                  <span>LOGIN</span>
                 </Button>
               </Box>
             ) : (
@@ -112,6 +126,7 @@ export default function OtherNavbar(props: OtherNavbarProps) {
                 onClick={handleLogoutClick}
               />
             )}
+
             <Menu
               anchorEl={anchorEl}
               id="account-menu"
@@ -156,6 +171,7 @@ export default function OtherNavbar(props: OtherNavbarProps) {
             </Menu>
           </Stack>
         </Stack>
+        <Stack className={"other-frame"}></Stack>
       </Container>
     </div>
   );

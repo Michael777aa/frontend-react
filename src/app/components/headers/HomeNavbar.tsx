@@ -57,9 +57,12 @@ export default function HomeNavbar(props: HomeNavbarProps) {
               </NavLink>
 
               <Stack className={"middle-navbar"}>
-                <NavLink to={"/"} activeClassName={"underline"}>
-                  Home
-                </NavLink>
+                <Box className={"hover-line"}>
+                  <NavLink to={"/"} activeClassName={"underline"}>
+                    Home
+                  </NavLink>
+                </Box>
+
                 <Box className={"hover-line"}>
                   <NavLink to={"/products"} activeClassName={"underline"}>
                     Products
@@ -169,14 +172,13 @@ export default function HomeNavbar(props: HomeNavbarProps) {
             </Menu>
           </Stack>
         </Stack>
-        <Stack data-aos="fade-up" className="header-frame">
+        <Stack data-aos="" className="header-frame">
           <Stack className="detail">
             <Box className="head-main-txt">100% Natural Foods</Box>
             <Box className="wel-txt">Organic Veggies & Fruits Foods</Box>
             <Box className="service-txt">24 hours service</Box>
             {
               <Box className="">
-                {" "}
                 {!authMember ? (
                   <Button
                     variant="contained"
