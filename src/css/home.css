@@ -7,8 +7,8 @@
 
 .homepage .static-frame {
   width: 100%;
-  height: 236px;
-  background-color: #343434;
+  height: 550px;
+  background-color: #fff;
 }
 .homepage .static-frame .info {
   height: 100%;
@@ -16,36 +16,60 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 24px;
 }
 .homepage .static-frame .info .static-box {
-  height: 200px;
-  height: 116px;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 272px;
+  width: 306px;
+  background-color: #f4f6f8;
+  border-radius: 10px;
 }
+.homepage .static-frame .info .static-box .round {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-.homepage .static-frame .info .static-box .static-num {
-  text-align: center;
-  font-family: "Poppins";
-  font-size: 54px;
-  font-style: normal;
+  background-color: #ffb524;
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  margin-top: 22px;
+}
+.homepage .static-frame .info .static-box .round .icon {
+  width: 60px;
+  height: 60px;
+  color: #fff;
+}
+.homepage .static-frame .info .static-box .shipping {
+  position: relative;
+  top: 30px;
+  font-family: "Raleway", sans-serif;
   font-weight: 600;
-  line-height: 80px;
-  color: #d7b686;
+  line-height: 1.2;
+  color: #45595b;
 }
-
-.homepage .static-frame .info .static-box .static-text {
-  text-align: center;
-  font-family: "Poppins";
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 30px;
-  color: #d7b686;
+.homepage .static-frame .info .static-box .order {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #747d88;
 }
-
+.homepage .static-frame .info .static-box .round::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  background-color: #ffb524;
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  transform: rotate(45deg);
+}
 /* POPULAR DISHES */
 
 .homepage .popular-dishes-frame {
