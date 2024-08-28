@@ -5,6 +5,9 @@ const initialState: HomePageState = {
   popularDishes: [],
   newDishes: [],
   topUsers: [],
+  products: [],
+  restaurant: null,
+  chosenProduct: null,
 };
 
 const homePageSlice = createSlice({
@@ -20,11 +23,26 @@ const homePageSlice = createSlice({
     setTopUsers: (state, action) => {
       state.topUsers = action.payload;
     },
+    setProducts: (state, action) => {
+      state.products = action.payload;
+    },
+    setRestaurant: (state, action) => {
+      state.restaurant = action.payload;
+    },
+    setChosenProduct: (state, action) => {
+      state.chosenProduct = action.payload;
+    },
   },
 });
 
-export const { setPopularDishes, setNewDishes, setTopUsers } =
-  homePageSlice.actions;
+export const {
+  setPopularDishes,
+  setNewDishes,
+  setTopUsers,
+  setRestaurant,
+  setProducts,
+  setChosenProduct,
+} = homePageSlice.actions;
 
 const HomePageReducer = homePageSlice.reducer;
 export default HomePageReducer;

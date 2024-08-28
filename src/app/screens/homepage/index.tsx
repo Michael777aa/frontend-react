@@ -14,6 +14,13 @@ import { ProductCollection } from "../../../lib/enums/product.enum";
 import MemberService from "../../services/MemberService";
 import "../../../css/home.css";
 import { Member } from "../../../lib/types/member";
+import { CartItem } from "../../../lib/types/search";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
+import ChosenProduct from "../productsPage/ChosenProduct";
+import Products from "../productsPage/Products";
+interface ProductsPageProps {
+  onAdd: (item: CartItem) => void;
+}
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -22,10 +29,12 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
 
-export default function HomePage() {
+export default function HomePage(props: ProductsPageProps) {
   const { setPopularDishes, setNewDishes, setTopUsers } = actionDispatch(
     useDispatch()
   );
+  const { onAdd } = props;
+  const product = useRouteMatch();
 
   useEffect(() => {
     // Data fetch
@@ -74,8 +83,18 @@ export default function HomePage() {
   return (
     <div className={"homepage"}>
       <Statistics />
+
+      <Switch>
+        <Route path={`${product.path}/:productId`}>
+          <ChosenProduct onAdd={onAdd} />
+        </Route>
+        <Route path={`${product.path}`}>
+          <Products onAdd={onAdd} />
+        </Route>
+      </Switch>
       <PopularDishes />
       <NewDishes />
+
       <Advertisement />
       <ActiveUsers />
       <Events />

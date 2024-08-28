@@ -138,14 +138,21 @@ export default function Products(props: ProductsProps) {
         <Stack className="products">
           <Stack className="title">
             <Typography className="title-text" fontSize={"36px"}>
-              Our Organic Products
+              Burak Restaurant
             </Typography>
-            <Box className={"search-box"}>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                borderRadius: "50px",
+                overflow: "hidden",
+                boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
+              }}
+            >
               <StyledInput
-                className="search-input"
                 type="search"
-                placeholder="Search"
                 value={searchText}
+                sx={{ width: "300px" }}
                 onChange={(e) => {
                   setSearchText(e.target.value);
                 }}
@@ -153,12 +160,9 @@ export default function Products(props: ProductsProps) {
                   if (e.key === "Enter") searchProductHandler();
                 }}
               />
-              <StyledButton
-                className="search-icon"
-                onClick={searchProductHandler}
-              >
+              <StyledButton onClick={searchProductHandler}>
                 SEARCH
-                <SearchIcon />
+                <SearchIcon sx={{ marginLeft: "5px" }} />
               </StyledButton>
             </Box>
           </Stack>
