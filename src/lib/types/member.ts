@@ -4,6 +4,9 @@ export interface Member {
   _id: string;
   memberType: MemberType;
   memberStatus: MemberStatus;
+  memberFirstName?: string;
+  memberLastName?: string;
+  memberEmail?: string;
   memberNick: string;
   memberPhone: string;
   memberPassword?: string;
@@ -18,6 +21,9 @@ export interface Member {
 export interface MemberInput {
   memberType?: MemberType;
   memberStatus?: MemberStatus;
+  memberFirstName?: string;
+  memberLastName?: string;
+  memberEmail?: string;
   memberNick: string;
   memberPhone: string;
   memberPassword: string;

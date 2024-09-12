@@ -27,16 +27,25 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.background.paper,
     border: "2px solid #000",
     boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 2, 2),
+    padding: theme.spacing(0, 2, 2),
   },
 }));
 
 const ModalImg = styled.img`
+  width:330px;
+  height: 388px;
+  border-radius: 10px;
+  background: #000;
+  margin-top: 74px;
+  margin-left:-280px;
+`;
+
+const ModalImgLogin = styled.img`
   width: 62%;
   height: 100%;
   border-radius: 10px;
   background: #000;
-  margin-top: 9px;
+  margin-top: 23px;
   margin-left: 10px;
 `;
 
@@ -53,6 +62,10 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   const [memberNick, setMemberNick] = useState<string>("");
   const [memberPhone, setMemberPhone] = useState<string>("");
   const [memberPassword, setMemberPassword] = useState<string>("");
+  const [memberFirstName, setMemberFirstName] = useState<string>("");
+  const [memberLastName, setMemberLastName] = useState<string>("");
+  const [memberEmail, setMemberEmail] = useState<string>("");
+
   const { setAuthMember } = useGlobals();
 
   /**HANDLERS */
@@ -64,6 +77,15 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   };
   const handlePassword = (e: T) => {
     setMemberPassword(e.target.value);
+  };
+  const handleFirstName = (e: T) => {
+    setMemberFirstName(e.target.value);
+  };
+  const handleLastName = (e: T) => {
+    setMemberLastName(e.target.value);
+  };
+  const handleEmail = (e: T) => {
+    setMemberEmail(e.target.value);
   };
 
   const handlePasswordKeyDown = (e: T) => {
@@ -77,13 +99,21 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
   const handleSignupRequest = async () => {
     try {
       const isFullfill =
-        memberNick !== "" && memberPhone !== "" && memberPassword !== "";
+        memberNick !== "" &&
+        memberPhone !== "" &&
+        memberPassword !== "" &&
+        memberFirstName !== "" &&
+        memberLastName !== "" &&
+        memberEmail !== "";
       if (!isFullfill) throw new Error(Messages.error3);
 
       const signupInput: MemberInput = {
         memberNick: memberNick,
         memberPhone: memberPhone,
         memberPassword: memberPassword,
+        memberFirstName: memberFirstName,
+        memberLastName: memberLastName,
+        memberEmail: memberEmail,
       };
 
       const member = new MemberService();
@@ -99,8 +129,8 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
 
   const handleLoginRequest = async () => {
     try {
-      const isFullfill = memberNick !== "" && memberPassword !== "";
-      if (!isFullfill) throw new Error(Messages.error3);
+      if (memberNick === "" && memberPassword === "")
+        throw new Error(Messages.error3);
 
       const loginInput: LoginInput = {
         memberNick: memberNick,
@@ -138,32 +168,59 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
             direction={"row"}
             sx={{ width: "800px" }}
           >
-            <ModalImg src={"/img/auth.webp"} alt="camera" />
-            <Stack sx={{ marginLeft: "69px", alignItems: "center" }}>
+            <Stack sx={{ marginLeft: "10px", alignItems: "start" }}>
               <h2>Signup Form</h2>
               <TextField
-                sx={{ marginTop: "7px" }}
+                sx={{ width: "400px" }}
                 id="outlined-basic"
-                label="username"
+                label="First Name"
+                variant="outlined"
+                onChange={handleFirstName}
+              />
+              <TextField
+                sx={{ marginTop: "10px", width: "400px" }}
+                id="outlined-basic"
+                label="Last Name"
+                variant="outlined"
+                onChange={handleLastName}
+              />
+              <TextField
+                sx={{ marginTop: "10px", width: "400px" }}
+                id="outlined-basic"
+                label="Username"
                 variant="outlined"
                 onChange={handleUsername}
               />
               <TextField
-                sx={{ my: "17px" }}
+                sx={{ marginTop: "10px", width: "400px" }}
                 id="outlined-basic"
-                label="phone number"
+                label="Phone"
                 variant="outlined"
                 onChange={handlePhone}
               />
               <TextField
+                sx={{ marginTop: "10px", width: "400px" }}
                 id="outlined-basic"
-                label="password"
+                label="Password"
                 variant="outlined"
                 onChange={handlePassword}
                 onKeyDown={handlePasswordKeyDown}
               />
+
+              <TextField
+                sx={{ marginTop: "10px", width: "400px", textAlign: "center" }}
+                id="outlined-basic"
+                label="Email"
+                variant="outlined"
+                onChange={handleEmail}
+              />
               <Fab
-                sx={{ marginTop: "30px", width: "120px" }}
+                sx={{
+                  marginTop: "15px",
+                  width: "700px",
+                  position: "relative",
+                  left: "20px",
+                }}
                 variant="extended"
                 color="primary"
                 onClick={handleSignupRequest}
@@ -172,6 +229,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 Signup
               </Fab>
             </Stack>
+            <ModalImg src={"img/image.jpg"} alt="camera" />
           </Stack>
         </Fade>
       </Modal>
@@ -194,11 +252,11 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
             direction={"row"}
             sx={{ width: "700px" }}
           >
-            <ModalImg src={"/img/auth.webp"} alt="camera" />
+            <ModalImgLogin src={"img/image.png"} alt="camera" />
             <Stack
               sx={{
-                marginLeft: "65px",
-                marginTop: "25px",
+                marginLeft: "15px",
+                marginTop: "15px",
                 alignItems: "center",
               }}
             >
@@ -207,19 +265,20 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 id="outlined-basic"
                 label="username"
                 variant="outlined"
-                sx={{ my: "10px" }}
+                sx={{ my: "10px", width: "220px" }}
                 onChange={handleUsername}
               />
               <TextField
                 id={"outlined-basic"}
                 label={"password"}
                 variant={"outlined"}
+                sx={{ width: "220px" }}
                 type={"password"}
                 onChange={handlePassword}
                 onKeyDown={handlePasswordKeyDown}
               />
               <Fab
-                sx={{ marginTop: "27px", width: "120px" }}
+                sx={{ marginTop: "27px", width: "220px" }}
                 variant={"extended"}
                 color={"primary"}
                 onClick={handleLoginRequest}
