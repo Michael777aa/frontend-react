@@ -30,7 +30,7 @@ import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
-
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "20px",
   backgroundColor: "#343434",
@@ -77,7 +77,13 @@ export default function Products(props: ProductsProps) {
     page: 1,
     limit: 8,
     order: "createdAt",
-    productCollection: ProductCollection.DISH,
+    productCollections: [
+      ProductCollection.DISH,
+      ProductCollection.SALAD,
+      ProductCollection.DESSERT,
+      ProductCollection.DRINK,
+      ProductCollection.OTHER,
+    ],
     search: "",
   });
 
@@ -136,23 +142,181 @@ export default function Products(props: ProductsProps) {
     <>
       <Container>
         <Stack className="products">
-          <Stack className="title">
-            <Typography className="title-text" fontSize={"36px"}>
-              Burak Restaurant
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                borderRadius: "50px",
-                overflow: "hidden",
-                boxShadow: "0 0 5px rgba(0, 0, 0, 0.2)",
-              }}
-            >
+          <Stack className="dishes-filter-section">
+            <Stack className="title">
+              <Typography className="title-text" fontSize={"36px"}>
+                Our Organic Products
+              </Typography>
+
+              <Stack className="product-category">
+                <Button
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection === ProductCollection.DISH
+                        ? "#ffb524" // Active button color
+                        : "#f4f6f8", // Inactive button color
+                    color:
+                      productSearch.productCollection === ProductCollection.DISH
+                        ? "#ffffff" // Text color for the active button
+                        : "#000000", // Text color for the inactive button
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.DISH
+                          ? "#e6a11f" // Darker shade on hover for active button
+                          : "#e0e3e6", // Slightly darker shade on hover for inactive button
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  variant="contained"
+                  className={"order"}
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.DISH)
+                  }
+                >
+                  All Products
+                </Button>
+
+                <Button
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection ===
+                      ProductCollection.SALAD
+                        ? "#ffb524"
+                        : "#f4f6f8",
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.SALAD
+                        ? "#ffffff"
+                        : "#000000",
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.SALAD
+                          ? "#e6a11f"
+                          : "#e0e3e6",
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  variant="contained"
+                  className={"order"}
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.SALAD)
+                  }
+                >
+                  Vegetables
+                </Button>
+
+                <Button
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection ===
+                      ProductCollection.DRINK
+                        ? "#ffb524"
+                        : "#f4f6f8",
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.DRINK
+                        ? "#ffffff"
+                        : "#000000",
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.DRINK
+                          ? "#e6a11f"
+                          : "#e0e3e6",
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  className={"order"}
+                  variant="contained"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.DRINK)
+                  }
+                >
+                  Fruits
+                </Button>
+
+                <Button
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection ===
+                      ProductCollection.DESSERT
+                        ? "#ffb524"
+                        : "#f4f6f8",
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.DESSERT
+                        ? "#ffffff"
+                        : "#000000",
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.DESSERT
+                          ? "#e6a11f"
+                          : "#e0e3e6",
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  variant="contained"
+                  className={"order"}
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.DESSERT)
+                  }
+                >
+                  Bread
+                </Button>
+
+                <Button
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection ===
+                      ProductCollection.OTHER
+                        ? "#ffb524"
+                        : "#f4f6f8",
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.OTHER
+                        ? "#ffffff"
+                        : "#000000",
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.OTHER
+                          ? "#e6a11f"
+                          : "#e0e3e6",
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  variant="contained"
+                  className={"order"}
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.OTHER)
+                  }
+                >
+                  Meat
+                </Button>
+              </Stack>
+            </Stack>
+          </Stack>
+
+          <Stack className="search-box-main">
+            <Box className={"search-box"}>
               <StyledInput
+                className="search-input"
                 type="search"
+                placeholder="Search"
                 value={searchText}
-                sx={{ width: "300px" }}
                 onChange={(e) => {
                   setSearchText(e.target.value);
                 }}
@@ -160,137 +324,41 @@ export default function Products(props: ProductsProps) {
                   if (e.key === "Enter") searchProductHandler();
                 }}
               />
-              <StyledButton onClick={searchProductHandler}>
+              <StyledButton
+                className="search-icon"
+                onClick={searchProductHandler}
+              >
                 SEARCH
-                <SearchIcon sx={{ marginLeft: "5px" }} />
+                <SearchIcon />
               </StyledButton>
             </Box>
           </Stack>
 
-          <Stack className="dishes-filter-section">
-            <Stack className="dishes-filter-box">
-              <Button
-                color={
-                  productSearch.order === "createdAt" ? "primary" : "secondary"
-                }
-                className={"order"}
-                variant={"contained"}
-                onClick={() => searchOrderHandler("createdAt")}
-              >
-                New
-              </Button>
-              <Button
-                color={
-                  productSearch.order === "productPrice"
-                    ? "primary"
-                    : "secondary"
-                }
-                className={"order"}
-                variant={"contained"}
-                onClick={() => searchOrderHandler("productPrice")}
-              >
-                Price
-              </Button>
-              <Button
-                color={
-                  productSearch.order === "productViews"
-                    ? "primary"
-                    : "secondary"
-                }
-                className={"order"}
-                variant={"contained"}
-                onClick={() => searchOrderHandler("productViews")}
-              >
-                Views
-              </Button>
-            </Stack>
-          </Stack>
+          {/* PRODUCTS */}
 
-          <Stack className="list-category-section">
-            <Stack className="product-category">
-              <Button
-                color={
-                  productSearch.productCollection === ProductCollection.DISH
-                    ? "primary"
-                    : "secondary"
-                }
-                className={"order"}
-                variant={"contained"}
-                onClick={() => searchCollectionHandler(ProductCollection.DISH)}
-              >
-                Dish
-              </Button>
-              <Button
-                color={
-                  productSearch.productCollection === ProductCollection.SALAD
-                    ? "primary"
-                    : "secondary"
-                }
-                className={"order"}
-                variant={"contained"}
-                onClick={() => searchCollectionHandler(ProductCollection.SALAD)}
-              >
-                Salad
-              </Button>
-              <Button
-                color={
-                  productSearch.productCollection === ProductCollection.DRINK
-                    ? "primary"
-                    : "secondary"
-                }
-                className={"order"}
-                variant={"contained"}
-                onClick={() => searchCollectionHandler(ProductCollection.DRINK)}
-              >
-                Drink
-              </Button>
-              <Button
-                color={
-                  productSearch.productCollection === ProductCollection.DESSERT
-                    ? "primary"
-                    : "secondary"
-                }
-                className={"order"}
-                variant={"contained"}
-                onClick={() =>
-                  searchCollectionHandler(ProductCollection.DESSERT)
-                }
-              >
-                Dessert
-              </Button>
-              <Button
-                color={
-                  productSearch.productCollection === ProductCollection.OTHER
-                    ? "primary"
-                    : "secondary"
-                }
-                className={"order"}
-                variant={"contained"}
-                onClick={() => searchCollectionHandler(ProductCollection.OTHER)}
-              >
-                Other
-              </Button>
-            </Stack>
-
-            <Stack className="product-wrapper">
-              {products.length !== 0 ? (
-                products.map((product: Product) => {
-                  const imagePath = `${serverApi}/${product.productImages[0]}`;
-                  const sizeVolume =
-                    product.productCollection === ProductCollection.DRINK
-                      ? product.productVolume + "litre"
-                      : product.productSize + "size";
-                  return (
+          <Stack className="product-wrapper">
+            {products.length !== 0 ? (
+              products.map((product: Product) => {
+                const imagePath = `${serverApi}/${product.productImages[0]}`;
+                const sizeVolume =
+                  product.productCollection === ProductCollection.DRINK
+                    ? product.productVolume + ""
+                    : product.productSize + "";
+                return (
+                  <Stack
+                    onClick={() => chooseDishHandler(product._id)}
+                    key={product._id}
+                    className="product-card"
+                  >
                     <Stack
-                      onClick={() => chooseDishHandler(product._id)}
-                      key={product._id}
-                      className="product-card"
+                      className="product-img"
+                      sx={{ backgroundImage: `url(${imagePath})` }}
                     >
-                      <Stack
-                        className="product-img"
-                        sx={{ backgroundImage: `url(${imagePath})` }}
-                      >
-                        <div className="product-sale">{sizeVolume}</div>
+                      <div className="product-size">{sizeVolume}</div>
+                      <Stack className={"bottom-side"}>
+                        <div className={"product-price"}>
+                          ${product.productPrice}/kg
+                        </div>
                         <Button
                           className="shop-btn"
                           onClick={(e) => {
@@ -304,42 +372,27 @@ export default function Products(props: ProductsProps) {
                             });
                           }}
                         >
-                          <img
-                            src="/icons/shopping-cart.svg"
-                            style={{ display: "flex" }}
-                          />
-                        </Button>
-                        <Button className="view-btn" sx={{ right: "36px" }}>
-                          <Badge
-                            badgeContent={product.productViews}
-                            color={"secondary"}
-                          >
-                            <RemoveRedEye
-                              sx={{
-                                color:
-                                  product.productViews === 0 ? "grey" : "white",
-                              }}
-                            ></RemoveRedEye>
-                          </Badge>
+                          <ShoppingBagIcon className="icon-button" />
+                          Add to cart
                         </Button>
                       </Stack>
-                      <Box className={"product-desc"}>
-                        <span className={"product-title"}>
-                          {product.productName}
-                        </span>
-                        <div className={"product-price"}>
-                          <MonetizationOn />
-                          {product.productPrice}
-                        </div>
-                      </Box>
                     </Stack>
-                  );
-                })
-              ) : (
-                <Box className="no-data">Products are not available!</Box>
-              )}
-            </Stack>
+                    <Box className={"product-desc"}>
+                      <span className={"product-title"}>
+                        {product.productName}
+                      </span>
+                      <span className={"product-title1"}>
+                        {product.productDesc}
+                      </span>
+                    </Box>
+                  </Stack>
+                );
+              })
+            ) : (
+              <Box className="no-data">Products are not available!</Box>
+            )}
           </Stack>
+
           <Stack className="pagination-section">
             <Pagination
               count={

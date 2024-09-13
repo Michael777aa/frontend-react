@@ -16,8 +16,9 @@ import "../../../css/home.css";
 import { Member } from "../../../lib/types/member";
 import { CartItem } from "../../../lib/types/search";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import ChosenProduct from "../productsPage/ChosenProduct";
-import Products from "../productsPage/Products";
+import ChosenProduct from "./ChosenProduct";
+import Products from "./Products";
+
 interface ProductsPageProps {
   onAdd: (item: CartItem) => void;
 }

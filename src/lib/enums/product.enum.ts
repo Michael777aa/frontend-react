@@ -1,8 +1,7 @@
 export enum ProductSize {
-  SMALL = "SMALL",
-  NORMAL = "NORMAL",
-  LARGE = "LARGE",
-  SET = "SET",
+  SMALL = "Premium",
+  NORMAL = "Best",
+  LARGE = "Normal",
 }
 
 export enum ProductVolume {
