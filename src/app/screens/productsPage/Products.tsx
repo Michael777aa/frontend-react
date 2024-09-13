@@ -30,7 +30,7 @@ import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
-
+import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "20px",
   backgroundColor: "#343434",
@@ -77,7 +77,13 @@ export default function Products(props: ProductsProps) {
     page: 1,
     limit: 8,
     order: "createdAt",
-    productCollection: ProductCollection.DISH,
+    productCollections: [
+      ProductCollection.DISH,
+      ProductCollection.SALAD,
+      ProductCollection.DESSERT,
+      ProductCollection.DRINK,
+      ProductCollection.OTHER,
+    ],
     search: "",
   });
 
@@ -328,25 +334,33 @@ export default function Products(props: ProductsProps) {
             </Box>
           </Stack>
 
+          {/* PRODUCTS */}
+
           <Stack className="product-wrapper">
             {products.length !== 0 ? (
               products.map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`;
                 const sizeVolume =
                   product.productCollection === ProductCollection.DRINK
-                    ? product.productVolume + "litre"
-                    : product.productSize + "size";
+                    ? product.productVolume + ""
+                    : product.productSize + "";
                 return (
                   <Stack
                     onClick={() => chooseDishHandler(product._id)}
                     key={product._id}
                     className="product-card"
                   >
-                    <Stack
-                      className="product-img"
-                      sx={{ backgroundImage: `url(${imagePath})` }}
-                    >
-                      <div className="product-sale">{sizeVolume}</div>
+                    <Stack className={"product-img-container"}>
+                      <Stack
+                        className="product-img"
+                        sx={{ backgroundImage: `url(${imagePath})` }}
+                      ></Stack>
+                    </Stack>
+                    <div className="product-size">{sizeVolume}</div>
+                    <Stack className={"bottom-side"}>
+                      <div className={"product-price"}>
+                        ${product.productPrice}/kg
+                      </div>
                       <Button
                         className="shop-btn"
                         onClick={(e) => {
@@ -360,33 +374,17 @@ export default function Products(props: ProductsProps) {
                           });
                         }}
                       >
-                        <img
-                          src="/icons/shopping-cart.svg"
-                          style={{ display: "flex" }}
-                        />
-                      </Button>
-                      <Button className="view-btn" sx={{ right: "36px" }}>
-                        <Badge
-                          badgeContent={product.productViews}
-                          color={"secondary"}
-                        >
-                          <RemoveRedEye
-                            sx={{
-                              color:
-                                product.productViews === 0 ? "grey" : "white",
-                            }}
-                          ></RemoveRedEye>
-                        </Badge>
+                        <ShoppingBagIcon className="icon-button" />
+                        Add to cart
                       </Button>
                     </Stack>
                     <Box className={"product-desc"}>
                       <span className={"product-title"}>
                         {product.productName}
                       </span>
-                      <div className={"product-price"}>
-                        <MonetizationOn />
-                        {product.productPrice}
-                      </div>
+                      <span className={"product-title1"}>
+                        {product.productDesc}
+                      </span>
                     </Box>
                   </Stack>
                 );
