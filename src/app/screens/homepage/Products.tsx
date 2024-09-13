@@ -350,32 +350,33 @@ export default function Products(props: ProductsProps) {
                     key={product._id}
                     className="product-card"
                   >
-                    <Stack
-                      className="product-img"
-                      sx={{ backgroundImage: `url(${imagePath})` }}
-                    >
-                      <div className="product-size">{sizeVolume}</div>
-                      <Stack className={"bottom-side"}>
-                        <div className={"product-price"}>
-                          ${product.productPrice}/kg
-                        </div>
-                        <Button
-                          className="shop-btn"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            onAdd({
-                              _id: product._id,
-                              quantity: 1,
-                              price: product.productPrice,
-                              name: product.productName,
-                              image: product.productImages[0],
-                            });
-                          }}
-                        >
-                          <ShoppingBagIcon className="icon-button" />
-                          Add to cart
-                        </Button>
-                      </Stack>
+                    <Stack className={"product-img-container"}>
+                      <Stack
+                        className="product-img"
+                        sx={{ backgroundImage: `url(${imagePath})` }}
+                      ></Stack>
+                    </Stack>
+                    <div className="product-size">{sizeVolume}</div>
+                    <Stack className={"bottom-side"}>
+                      <div className={"product-price"}>
+                        ${product.productPrice}/kg
+                      </div>
+                      <Button
+                        className="shop-btn"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          onAdd({
+                            _id: product._id,
+                            quantity: 1,
+                            price: product.productPrice,
+                            name: product.productName,
+                            image: product.productImages[0],
+                          });
+                        }}
+                      >
+                        <ShoppingBagIcon className="icon-button" />
+                        Add to cart
+                      </Button>
                     </Stack>
                     <Box className={"product-desc"}>
                       <span className={"product-title"}>
