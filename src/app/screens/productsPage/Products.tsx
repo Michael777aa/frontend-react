@@ -144,70 +144,156 @@ export default function Products(props: ProductsProps) {
 
               <Stack className="product-category">
                 <Button
-                  color={
-                    productSearch.productCollection === ProductCollection.DISH
-                      ? "primary"
-                      : "secondary"
-                  }
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection === ProductCollection.DISH
+                        ? "#ffb524" // Active button color
+                        : "#f4f6f8", // Inactive button color
+                    color:
+                      productSearch.productCollection === ProductCollection.DISH
+                        ? "#ffffff" // Text color for the active button
+                        : "#000000", // Text color for the inactive button
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.DISH
+                          ? "#e6a11f" // Darker shade on hover for active button
+                          : "#e0e3e6", // Slightly darker shade on hover for inactive button
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  variant="contained"
                   className={"order"}
-                  variant={"contained"}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.DISH)
                   }
                 >
                   All Products
                 </Button>
+
                 <Button
-                  color={
-                    productSearch.productCollection === ProductCollection.SALAD
-                      ? "primary"
-                      : "secondary"
-                  }
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection ===
+                      ProductCollection.SALAD
+                        ? "#ffb524"
+                        : "#f4f6f8",
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.SALAD
+                        ? "#ffffff"
+                        : "#000000",
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.SALAD
+                          ? "#e6a11f"
+                          : "#e0e3e6",
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  variant="contained"
                   className={"order"}
-                  variant={"contained"}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.SALAD)
                   }
                 >
                   Vegetables
                 </Button>
+
                 <Button
-                  color={
-                    productSearch.productCollection === ProductCollection.DRINK
-                      ? "primary"
-                      : "secondary"
-                  }
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection ===
+                      ProductCollection.DRINK
+                        ? "#ffb524"
+                        : "#f4f6f8",
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.DRINK
+                        ? "#ffffff"
+                        : "#000000",
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.DRINK
+                          ? "#e6a11f"
+                          : "#e0e3e6",
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
                   className={"order"}
-                  variant={"contained"}
+                  variant="contained"
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.DRINK)
                   }
                 >
                   Fruits
                 </Button>
+
                 <Button
-                  color={
-                    productSearch.productCollection ===
-                    ProductCollection.DESSERT
-                      ? "primary"
-                      : "secondary"
-                  }
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection ===
+                      ProductCollection.DESSERT
+                        ? "#ffb524"
+                        : "#f4f6f8",
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.DESSERT
+                        ? "#ffffff"
+                        : "#000000",
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.DESSERT
+                          ? "#e6a11f"
+                          : "#e0e3e6",
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  variant="contained"
                   className={"order"}
-                  variant={"contained"}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.DESSERT)
                   }
                 >
                   Bread
                 </Button>
+
                 <Button
-                  color={
-                    productSearch.productCollection === ProductCollection.OTHER
-                      ? "primary"
-                      : "secondary"
-                  }
+                  sx={{
+                    backgroundColor:
+                      productSearch.productCollection ===
+                      ProductCollection.OTHER
+                        ? "#ffb524"
+                        : "#f4f6f8",
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.OTHER
+                        ? "#ffffff"
+                        : "#000000",
+                    "&:hover": {
+                      backgroundColor:
+                        productSearch.productCollection ===
+                        ProductCollection.OTHER
+                          ? "#e6a11f"
+                          : "#e0e3e6",
+                    },
+                    borderRadius: "8px",
+                    padding: "10px 20px",
+                    transition: "background-color 0.3s ease",
+                  }}
+                  variant="contained"
                   className={"order"}
-                  variant={"contained"}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.OTHER)
                   }
