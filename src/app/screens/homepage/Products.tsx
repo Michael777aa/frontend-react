@@ -78,12 +78,7 @@ export default function Products(props: ProductsProps) {
     page: 1,
     limit: 8,
     order: "createdAt",
-    productCollections: [
-      ProductCollection.SALAD,
-      ProductCollection.DESSERT,
-      ProductCollection.DRINK,
-      ProductCollection.OTHER,
-    ],
+    productCollection: ProductCollection.DISH,
     search: "",
   });
 
@@ -170,7 +165,7 @@ export default function Products(props: ProductsProps) {
                     searchCollectionHandler(ProductCollection.DISH)
                   }
                 >
-                  All Products
+                  Fruits
                 </Button>
 
                 <Button
@@ -234,7 +229,7 @@ export default function Products(props: ProductsProps) {
                     searchCollectionHandler(ProductCollection.DRINK)
                   }
                 >
-                  Fruits
+                  Sweets
                 </Button>
 
                 <Button
