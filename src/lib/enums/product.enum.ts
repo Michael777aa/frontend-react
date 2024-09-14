@@ -17,6 +17,7 @@ export enum ProductStatus {
   PROCESS = "PROCESS",
   DELETE = "DELETE",
   ACTIVE = "ACTIVE",
+  ONSALE = "ONSALE",
 }
 
 export enum ProductCollection {

@@ -15,6 +15,9 @@ export interface Product {
   productSize: ProductSize;
   productVolume: ProductVolume;
   productDesc?: string;
+  productSale?: number;
+  productSalePrice?: number;
+  productSold?: number;
   productImages: string[];
   productViews: number;
   createdAt: Date;

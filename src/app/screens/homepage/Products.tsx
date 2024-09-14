@@ -31,6 +31,7 @@ import { ProductCollection } from "../../../lib/enums/product.enum";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import moment from "moment";
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "20px",
   backgroundColor: "#343434",
@@ -78,7 +79,6 @@ export default function Products(props: ProductsProps) {
     limit: 8,
     order: "createdAt",
     productCollections: [
-      ProductCollection.DISH,
       ProductCollection.SALAD,
       ProductCollection.DESSERT,
       ProductCollection.DRINK,
@@ -115,12 +115,6 @@ export default function Products(props: ProductsProps) {
   const searchCollectionHandler = (collection: ProductCollection) => {
     productSearch.page = 1;
     productSearch.productCollection = collection;
-    setProductSearch({ ...productSearch });
-  };
-
-  const searchOrderHandler = (order: string) => {
-    productSearch.page = 1;
-    productSearch.order = order;
     setProductSearch({ ...productSearch });
   };
 
@@ -344,6 +338,10 @@ export default function Products(props: ProductsProps) {
                   product.productCollection === ProductCollection.DRINK
                     ? product.productVolume + ""
                     : product.productSize + "";
+                const producedDate = moment(product.createdAt).format(
+                  "DD MM YYYY"
+                );
+
                 return (
                   <Stack
                     onClick={() => chooseDishHandler(product._id)}
@@ -378,13 +376,30 @@ export default function Products(props: ProductsProps) {
                         Add to cart
                       </Button>
                     </Stack>
+
                     <Box className={"product-desc"}>
+                      <span className={"product-salee1"}>
+                        {product.productLeftCount}kg left
+                      </span>
+                      <span className={"product-soldd1"}>
+                        {product.productSold}kg sold
+                      </span>{" "}
                       <span className={"product-title"}>
                         {product.productName}
                       </span>
                       <span className={"product-title1"}>
                         {product.productDesc}
                       </span>
+                      <span className={"product-produced-date"}>
+                        Prod:{producedDate}
+                      </span>
+                      {/* <span className={"product-salee1"}>
+                        {product.productSale}
+                      </span>
+                      <span className={"product-salee1"}>
+                        {product.productSalePrice}
+                      </span>
+                      */}
                     </Box>
                   </Stack>
                 );
