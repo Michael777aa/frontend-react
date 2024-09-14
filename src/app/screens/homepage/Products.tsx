@@ -266,7 +266,7 @@ export default function Products(props: ProductsProps) {
                     searchCollectionHandler(ProductCollection.DESSERT)
                   }
                 >
-                  Bread
+                  Meat
                 </Button>
 
                 <Button
@@ -298,7 +298,7 @@ export default function Products(props: ProductsProps) {
                     searchCollectionHandler(ProductCollection.OTHER)
                   }
                 >
-                  Meat
+                  Others
                 </Button>
               </Stack>
             </Stack>
