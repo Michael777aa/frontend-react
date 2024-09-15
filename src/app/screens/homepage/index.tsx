@@ -4,9 +4,9 @@ import Advertisement from "./Advertisement";
 import Events from "./Events";
 import NewDishes from "./NewDishes";
 import Statistics from "./Statistics";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setNewDishes, setPopularDishes, setTopUsers } from "./slice";
+import { setNewDishes, setTopUsers } from "./slice";
 import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
 import { ProductCollection } from "../../../lib/enums/product.enum";
@@ -24,15 +24,12 @@ interface ProductsPageProps {
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
-  setPopularDishes: (data: Product[]) => dispatch(setPopularDishes(data)),
   setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
   setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
 });
 
 export default function HomePage(props: ProductsPageProps) {
-  const { setPopularDishes, setNewDishes, setTopUsers } = actionDispatch(
-    useDispatch()
-  );
+  const { setNewDishes, setTopUsers } = actionDispatch(useDispatch());
   const { onAdd } = props;
   const product = useRouteMatch();
 
@@ -40,20 +37,6 @@ export default function HomePage(props: ProductsPageProps) {
     // Data fetch
     const product = new ProductService();
     const member = new MemberService();
-    product
-      .getProducts({
-        page: 1,
-        limit: 4,
-        order: "productViews",
-        productCollection: ProductCollection.DISH,
-      })
-      .then((data) => {
-        console.log("data: ", data);
-        setPopularDishes(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
 
     product
       .getProducts({

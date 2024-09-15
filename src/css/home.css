@@ -70,76 +70,6 @@
   left: 45%;
   transform: rotate(45deg);
 }
-/* POPULAR DISHES */
-
-.homepage .popular-dishes-frame {
-  width: 100%;
-  height: auto;
-  display: flex;
-  background: #f8f8ff;
-}
-
-.homepage .popular-dishes-frame .popular-section {
-  margin-top: 45px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.homepage .popular-dishes-frame .popular-section .category-title {
-  text-align: center;
-  font-family: "Roboto Serif";
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  letter-spacing: 1.44px;
-  color: #000;
-}
-
-.homepage .popular-dishes-frame .popular-section .cards-frame {
-  width: 100%;
-  margin-top: 43px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  gap: 15px;
-}
-
-.homepage .popular-dishes-frame .popular-section .cards-frame .card {
-  min-height: 430px;
-  min-width: 300px;
-  margin-bottom: 35px;
-  cursor: pointer;
-}
-.homepage
-  .popular-dishes-frame
-  .popular-section
-  .cards-frame
-  .card
-  .card-cover {
-  background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0) 200px
-    ),
-    linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0) 300px);
-}
-
-.homepage .popular-dishes-frame .no-data {
-  width: 100%;
-  height: 300px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-transform: capitalize;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 30px;
-  line-height: 34px;
-  color: #e3c08d;
-}
 
 /* NEW DISHES */
 
@@ -870,6 +800,44 @@
   font-size: 24px;
 
   color: #45595b;
+}
+/* Sale Percentage Styling */
+.products .product-sale2 {
+  position: absolute;
+  color: red; /* Highlight the sale percentage in red */
+  font-size: 24px; /* Larger font size for prominence */
+  font-weight: 300; /* Make it bold to draw attention */
+  top: -8px; /* Adjust top for better alignment */
+  left: 10px; /* Position it slightly left */
+}
+
+/* Sale Price Styling */
+.products .product-sale-price {
+  position: absolute;
+  color: #45595b; /* Subtle dark color for sale price */
+  font-size: 20px; /* Slightly larger font size than original price */
+  font-weight: 500; /* Medium bold for emphasis */
+  top: -7px; /* Adjust top to align with sale percentage */
+  left: 73px; /* Distance it from sale percentage */
+}
+
+/* Original Price Styling (Strikethrough) */
+.products .product-sale-original-price {
+  position: absolute;
+  color: #7a7a7a; /* Gray color for de-emphasis */
+  font-size: 14px; /* Smaller font size for original price */
+  text-decoration: line-through; /* Strikethrough effect */
+  font-weight: 400; /* Regular font weight */
+  margin-left: 3px;
+}
+.products .product-sale-original-price2 {
+  position: absolute;
+  color: #7a7a7a; /* Gray color for de-emphasis */
+  font-size: 14px; /* Smaller font size for original price */
+
+  font-weight: 400; /* Regular font weight */
+  top: 20px; /* Lower the original price slightly */
+  left: 10px; /* Align it under the sale price */
 }
 
 .homepage {

@@ -351,9 +351,32 @@ export default function Products(props: ProductsProps) {
                     </Stack>
                     <div className="product-size">{sizeVolume}</div>
                     <Stack className={"bottom-side"}>
-                      <div className={"product-price"}>
-                        ${product.productPrice}/kg
+                      <div>
+                        {product.productSale && product.productSale > 0 ? (
+                          <>
+                            <span className={"product-sale2"}>
+                              -{product.productSale}%{" "}
+                            </span>
+                            <span className={"product-sale-price"}>
+                              ${product.productSalePrice}
+                            </span>
+                            <span className={"product-sale-original-price2"}>
+                              List:
+                              <span className={"product-sale-original-price"}>
+                                ${product.productPrice}
+                              </span>
+                            </span>
+                          </>
+                        ) : (
+                          <span className="product-price">
+                            ${product.productPrice}
+                          </span>
+                        )}
                       </div>
+
+                      {/* <div className={"product-price"}>
+                        ${product.productPrice}/kg
+                      </div> */}
                       <Button
                         className="shop-btn"
                         onClick={(e) => {
@@ -374,10 +397,10 @@ export default function Products(props: ProductsProps) {
 
                     <Box className={"product-desc"}>
                       <span className={"product-salee1"}>
-                        {product.productLeftCount}kg left
+                        {product.productLeftCount} left
                       </span>
                       <span className={"product-soldd1"}>
-                        {product.productSold}kg sold
+                        {product.productSold} sold
                       </span>{" "}
                       <span className={"product-title"}>
                         {product.productName}
