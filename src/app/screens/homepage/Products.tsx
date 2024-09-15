@@ -384,7 +384,10 @@ export default function Products(props: ProductsProps) {
                           onAdd({
                             _id: product._id,
                             quantity: 1,
-                            price: product.productPrice,
+                            // Use the sale price if available, otherwise fall back to the regular price
+                            price: product.productSalePrice
+                              ? product.productSalePrice
+                              : product.productPrice,
                             name: product.productName,
                             image: product.productImages[0],
                           });
