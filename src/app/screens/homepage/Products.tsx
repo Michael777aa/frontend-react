@@ -12,13 +12,7 @@ import {
 } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
-import {
-  AddBox,
-  ArrowBack,
-  ArrowForward,
-  MonetizationOn,
-  RemoveRedEye,
-} from "@mui/icons-material";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import { retrieveProducts } from "./selector";
 import { createSelector } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
@@ -36,12 +30,12 @@ const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "20px",
   backgroundColor: "#343434",
   color: "#D7B586",
-  padding: "0 20px", // Adjust padding to fit text
-  minWidth: "auto", // Adjust to fit content
-  height: "40px", // Match the height of the Stack
+  padding: "0 20px",
+  minWidth: "auto",
+  height: "40px",
   "&:hover": {
-    backgroundColor: "#343434", // Darker orange color
-    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Box shadow on hover
+    backgroundColor: "#343434",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
   },
   display: "flex",
   alignItems: "center",
@@ -355,7 +349,7 @@ export default function Products(props: ProductsProps) {
                         {product.productSale && product.productSale > 0 ? (
                           <>
                             <span className={"product-sale2"}>
-                              -{product.productSale}%{" "}
+                              -{product.productSale}%
                             </span>
                             <span className={"product-sale-price"}>
                               ${product.productSalePrice}

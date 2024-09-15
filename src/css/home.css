@@ -818,7 +818,7 @@
   font-size: 20px; /* Slightly larger font size than original price */
   font-weight: 500; /* Medium bold for emphasis */
   top: -7px; /* Adjust top to align with sale percentage */
-  left: 73px; /* Distance it from sale percentage */
+  left: 80px; /* Distance it from sale percentage */
 }
 
 /* Original Price Styling (Strikethrough) */
