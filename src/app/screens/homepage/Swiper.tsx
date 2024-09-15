@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
-import { Container, Stack, Button, Box } from "@mui/material";
+import {
+  Container,
+  Stack,
+  Button,
+  Box,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import { ShoppingBag as ShoppingBagIcon } from "@mui/icons-material";
+import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import moment from "moment";
 import { Product } from "../../../lib/types/product";
-
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import "../../../css/home.css";
 interface SwiperProps {
   products: Product[];
   serverApi: string;
@@ -21,15 +31,27 @@ export default function ProductSwiper({
   chooseDishHandler,
   onAdd,
 }: SwiperProps) {
+  const prevRef = useRef<HTMLButtonElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
+
   return (
-    <Container>
+    <Container disableGutters>
+      <h1 className="hot-sales"> HOT sales</h1>
       <Stack className="product-wrapper">
+        {/* Custom navigation buttons */}
+        <Box ref={prevRef} className="prev-button">
+          <ArrowBackIcon className="icon" />
+        </Box>
+        <Box ref={nextRef} className="next-button">
+          <ArrowForwardIcon className="icon" />
+        </Box>
+
         <Swiper
-          style={{
-            width: "100%",
-            height: "500px",
+          className={"swiper-main"}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
           }}
-          navigation={true}
           modules={[Navigation, Autoplay]}
           spaceBetween={10}
           slidesPerView={4}
