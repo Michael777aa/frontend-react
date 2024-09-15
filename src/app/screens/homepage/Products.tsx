@@ -76,7 +76,7 @@ export default function Products(props: ProductsProps) {
   const { products } = useSelector(productsRetriever);
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
-    limit: 8,
+    limit: 12,
     order: "createdAt",
     productCollection: ProductCollection.DISH,
     search: "",
@@ -424,69 +424,6 @@ export default function Products(props: ProductsProps) {
           </Stack>
         </Stack>
       </Container>
-
-      <div className="brands-logo">
-        <Container>
-          <Stack
-            flexDirection={"column"}
-            alignItems="center"
-            justifyContent={"center"}
-            gap={"59px"}
-          >
-            <Box className="brands-title">Our Family Brands</Box>
-            <Stack className="cards-holder">
-              <Box className="brand-card">
-                <img
-                  src="/img/gurme.webp"
-                  alt="/img/gurme.webp"
-                  width={"250px"}
-                  height={"330px"}
-                />
-              </Box>
-              <Box className="brand-card">
-                <img
-                  src="/img/seafood.webp"
-                  alt="/img/seafood.webp"
-                  width={"250px"}
-                  height={"330px"}
-                />
-              </Box>
-              <Box className="brand-card">
-                <img
-                  src="/img/sweets.webp"
-                  alt="/img/sweets.webp"
-                  width={"250px"}
-                  height={"330px"}
-                />
-              </Box>
-              <Box className="brand-card">
-                <img
-                  src="/img/doner.webp"
-                  alt="/img/doner.webp"
-                  width={"250px"}
-                  height={"330px"}
-                />
-              </Box>
-            </Stack>
-          </Stack>
-        </Container>
-      </div>
-
-      <div className="address">
-        <Container>
-          <Stack className="address-area">
-            <Box className="category-title">Our address</Box>
-            <iframe
-              className="iframe"
-              style={{ marginTop: "60px" }}
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2998.058020369046!2d69.20311957628236!3d41.28584170228747!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38ae8a31ca66d417%3A0x5755ff29b7bf33a!2sRayhon%20National%20Meals%20Restaurant!5e0!3m2!1sen!2s!4v1720933891847!5m2!1sen!2s"
-              width={"1204"}
-              height={"504"}
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </Stack>
-        </Container>
-      </div>
     </>
   );
 }

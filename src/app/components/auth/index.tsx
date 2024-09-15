@@ -194,17 +194,17 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
               <TextField
                 sx={{ marginTop: "10px", width: "400px" }}
                 id="outlined-basic"
-                label="Phone"
-                variant="outlined"
-                onChange={handlePhone}
-              />
-              <TextField
-                sx={{ marginTop: "10px", width: "400px" }}
-                id="outlined-basic"
                 label="Password"
                 variant="outlined"
                 onChange={handlePassword}
                 onKeyDown={handlePasswordKeyDown}
+              />
+              <TextField
+                sx={{ marginTop: "10px", width: "400px" }}
+                id="outlined-basic"
+                label="Phone"
+                variant="outlined"
+                onChange={handlePhone}
               />
 
               <TextField
