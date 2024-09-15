@@ -15,8 +15,9 @@ import "../../../css/home.css";
 import { Member } from "../../../lib/types/member";
 import { CartItem } from "../../../lib/types/search";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import ChosenProduct from "./ChosenProduct";
+
 import Products from "./Products";
+import ChosenProduct from "../productsPage/ChosenProduct";
 
 interface ProductsPageProps {
   onAdd: (item: CartItem) => void;
@@ -76,7 +77,7 @@ export default function HomePage(props: ProductsPageProps) {
         </Route>
       </Switch>
 
-      <NewDishes />
+      <NewDishes onAdd={onAdd} />
 
       <Advertisement />
       <ActiveUsers />

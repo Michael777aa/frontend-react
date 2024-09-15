@@ -804,40 +804,40 @@
 /* Sale Percentage Styling */
 .products .product-sale2 {
   position: absolute;
-  color: red; /* Highlight the sale percentage in red */
-  font-size: 24px; /* Larger font size for prominence */
-  font-weight: 300; /* Make it bold to draw attention */
-  top: -8px; /* Adjust top for better alignment */
-  left: 10px; /* Position it slightly left */
+  color: red;
+  font-size: 24px;
+  font-weight: 300;
+  top: -8px;
+  left: 10px;
 }
 
 /* Sale Price Styling */
 .products .product-sale-price {
   position: absolute;
-  color: #45595b; /* Subtle dark color for sale price */
-  font-size: 20px; /* Slightly larger font size than original price */
-  font-weight: 500; /* Medium bold for emphasis */
-  top: -7px; /* Adjust top to align with sale percentage */
-  left: 80px; /* Distance it from sale percentage */
+  color: #45595b;
+  font-size: 20px;
+  font-weight: 500;
+  top: -7px;
+  left: 80px;
 }
 
-/* Original Price Styling (Strikethrough) */
+/* Original Price Styling */
 .products .product-sale-original-price {
   position: absolute;
-  color: #7a7a7a; /* Gray color for de-emphasis */
-  font-size: 14px; /* Smaller font size for original price */
-  text-decoration: line-through; /* Strikethrough effect */
-  font-weight: 400; /* Regular font weight */
+  color: #7a7a7a;
+  font-size: 14px;
+  text-decoration: line-through;
+  font-weight: 400;
   margin-left: 3px;
 }
 .products .product-sale-original-price2 {
   position: absolute;
-  color: #7a7a7a; /* Gray color for de-emphasis */
-  font-size: 14px; /* Smaller font size for original price */
+  color: #7a7a7a;
+  font-size: 14px;
 
-  font-weight: 400; /* Regular font weight */
-  top: 20px; /* Lower the original price slightly */
-  left: 10px; /* Align it under the sale price */
+  font-weight: 400;
+  top: 20px;
+  left: 10px;
 }
 
 .homepage {
@@ -860,6 +860,8 @@
     }
   }
 }
+
+/* SWIPER */
 
 /* PAGINATION */
 

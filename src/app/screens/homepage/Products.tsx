@@ -26,6 +26,8 @@ import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import moment from "moment";
+import ProductSwiper from "./Swiper";
+
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "20px",
   backgroundColor: "#343434",
@@ -71,7 +73,7 @@ export default function Products(props: ProductsProps) {
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
     limit: 12,
-    order: "createdAt",
+    order: "updatedAt",
     productCollection: ProductCollection.DISH,
     search: "",
   });
@@ -292,7 +294,6 @@ export default function Products(props: ProductsProps) {
               </Stack>
             </Stack>
           </Stack>
-
           <Stack className="search-box-main">
             <Box className={"search-box"}>
               <StyledInput
@@ -316,9 +317,7 @@ export default function Products(props: ProductsProps) {
               </StyledButton>
             </Box>
           </Stack>
-
           {/* PRODUCTS */}
-
           <Stack className="product-wrapper">
             {products.length !== 0 ? (
               products.map((product: Product) => {
@@ -368,9 +367,6 @@ export default function Products(props: ProductsProps) {
                         )}
                       </div>
 
-                      {/* <div className={"product-price"}>
-                        ${product.productPrice}/kg
-                      </div> */}
                       <Button
                         className="shop-btn"
                         onClick={(e) => {
@@ -378,7 +374,7 @@ export default function Products(props: ProductsProps) {
                           onAdd({
                             _id: product._id,
                             quantity: 1,
-                            // Use the sale price if available, otherwise fall back to the regular price
+
                             price: product.productSalePrice
                               ? product.productSalePrice
                               : product.productPrice,
@@ -408,13 +404,6 @@ export default function Products(props: ProductsProps) {
                       <span className={"product-produced-date"}>
                         Prod:{producedDate}
                       </span>
-                      {/* <span className={"product-salee1"}>
-                        {product.productSale}
-                      </span>
-                      <span className={"product-salee1"}>
-                        {product.productSalePrice}
-                      </span>
-                      */}
                     </Box>
                   </Stack>
                 );
@@ -423,7 +412,6 @@ export default function Products(props: ProductsProps) {
               <Box className="no-data">Products are not available!</Box>
             )}
           </Stack>
-
           <Stack className="pagination-section">
             <Pagination
               count={
@@ -442,6 +430,14 @@ export default function Products(props: ProductsProps) {
               onChange={paginationHandler}
             />
           </Stack>
+          <div>
+            <ProductSwiper
+              products={products}
+              serverApi={serverApi}
+              chooseDishHandler={chooseDishHandler}
+              onAdd={onAdd}
+            />
+          </div>
         </Stack>
       </Container>
     </>
