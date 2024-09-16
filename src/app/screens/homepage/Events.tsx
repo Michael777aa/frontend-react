@@ -53,83 +53,86 @@ export default function Events() {
         </Box>
 
         {filteredEvents.length !== 0 ? (
-          <Swiper
-            className={"events-info swiper-wrapper"}
-            slidesPerView={"auto"}
-            centeredSlides={true}
-            spaceBetween={30}
-            navigation={{
-              nextEl: ".swiper-button-next",
-              prevEl: ".swiper-button-prev",
-            }}
-            pagination={{
-              el: ".swiper-pagination",
-              clickable: true,
-            }}
-            autoplay={{
-              delay: 2000,
-              disableOnInteraction: true,
-            }}
-          >
-            {filteredEvents.map((event: Event) => (
-              <SwiperSlide key={event._id} className={"events-info-frame"}>
-                <div className={"events-img"}>
-                  <img
-                    src={`${serverApi}/${event.eventImages[0]}`} // Assuming serverApi is defined and holds the base URL
-                    className={"events-img"}
-                    alt={event.eventName}
-                  />
-                </div>
-                <Box className={"events-desc"}>
-                  <Box className={"events-bott"}>
-                    <Box className={"bott-left"}>
-                      <div className={"event-title-speaker"}>
-                        <strong>{event.eventName}</strong>
-                        <div className={"event-organizator"}>
-                          <img src={"/icons/speaker.svg"} alt="speaker" />
-                          <p className={"spec-text-author"}>
-                            {event.eventTopic}
-                          </p>
+          <>
+            <Swiper
+              className={"events-info swiper-wrapper"}
+              slidesPerView={"auto"}
+              centeredSlides={true}
+              spaceBetween={30}
+              navigation={{
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+              }}
+              pagination={{
+                el: ".swiper-pagination",
+                clickable: true,
+              }}
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: true,
+              }}
+            >
+              {filteredEvents.map((event: Event) => (
+                <SwiperSlide key={event._id} className={"events-info-frame"}>
+                  <div className={"events-img"}>
+                    <img
+                      src={`${serverApi}/${event.eventImages[0]}`} // Assuming serverApi is defined and holds the base URL
+                      className={"events-img"}
+                      alt={event.eventName}
+                    />
+                  </div>
+                  <Box className={"events-desc"}>
+                    <Box className={"events-bott"}>
+                      <Box className={"bott-left"}>
+                        <div className={"event-title-speaker"}>
+                          <strong>{event.eventName}</strong>
+                          <div className={"event-organizator"}>
+                            <img src={"/icons/speaker.svg"} alt="speaker" />
+                            <p className={"spec-text-author"}>
+                              {event.eventTopic}
+                            </p>
+                          </div>
                         </div>
-                      </div>
 
-                      <p className={"text-desc"}>{event.eventDesc}</p>
+                        <p className={"text-desc"}>{event.eventDesc}</p>
 
-                      <div className={"bott-info"}>
-                        <div className={"bott-info-main"}>
-                          <img src={"/icons/calendar.svg"} alt="calendar" />
-                          {new Date(event.createdAt).toLocaleDateString()}{" "}
-                          {/* Format date as needed */}
+                        <div className={"bott-info"}>
+                          <div className={"bott-info-main"}>
+                            <img src={"/icons/calendar.svg"} alt="calendar" />
+                            {new Date(
+                              event.createdAt
+                            ).toLocaleDateString()}{" "}
+                            {/* Format date as needed */}
+                          </div>
+                          <div className={"bott-info-main"}>
+                            <img src={"/icons/location.svg"} alt="location" />
+                            {event.eventLocation}
+                          </div>
                         </div>
-                        <div className={"bott-info-main"}>
-                          <img src={"/icons/location.svg"} alt="location" />
-                          {event.eventLocation}
-                        </div>
-                      </div>
+                      </Box>
                     </Box>
                   </Box>
-                </Box>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+            <Box className={"prev-next-frame"}>
+              <img
+                src={"/icons/arrow-right.svg"}
+                className={"swiper-button-prev"}
+                alt="previous"
+              />
+              <div className={"dot-frame-pagination swiper-pagination"}></div>
+              <img
+                src={"/icons/arrow-right.svg"}
+                className={"swiper-button-next"}
+                style={{ transform: "rotate(-180deg)" }}
+                alt="next"
+              />
+            </Box>
+          </>
         ) : (
           <Box className="no-data">Events are not available currently!</Box>
         )}
-
-        <Box className={"prev-next-frame"}>
-          <img
-            src={"/icons/arrow-right.svg"}
-            className={"swiper-button-prev"}
-            alt="previous"
-          />
-          <div className={"dot-frame-pagination swiper-pagination"}></div>
-          <img
-            src={"/icons/arrow-right.svg"}
-            className={"swiper-button-next"}
-            style={{ transform: "rotate(-180deg)" }}
-            alt="next"
-          />
-        </Box>
       </Stack>
     </div>
   );

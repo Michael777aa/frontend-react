@@ -923,7 +923,9 @@
   line-height: 1.2;
   color: #ff4d4d;
 }
-
+.events-frame {
+  padding-top: 50px;
+}
 /* PAGINATION */
 
 .products .pagination-section {

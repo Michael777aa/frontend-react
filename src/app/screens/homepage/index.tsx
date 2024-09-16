@@ -61,9 +61,8 @@ export default function HomePage(props: ProductsPageProps) {
           <Products onAdd={onAdd} />
         </Route>
       </Switch>
-      <Events />
-
       <Advertisement />
+      <Events />
     </div>
   );
 }
