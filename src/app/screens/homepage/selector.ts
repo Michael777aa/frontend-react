@@ -8,9 +8,9 @@ export const retrieveNewDishes = createSelector(
   (HomePage) => HomePage.newDishes
 );
 
-export const retrieveTopUsers = createSelector(
+export const retrieveEvents = createSelector(
   selectHomePage,
-  (HomePage) => HomePage.topUsers
+  (HomePage) => HomePage.events
 );
 export const retrieveProducts = createSelector(
   selectHomePage,

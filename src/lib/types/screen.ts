@@ -1,6 +1,7 @@
 import { Member } from "./member";
 import { Order } from "./order";
 import { Product } from "./product";
+import { Event } from "./event";
 
 // REACT APP STATE
 export interface AppRootState {
@@ -13,8 +14,8 @@ export interface AppRootState {
 export interface HomePageState {
   popularDishes: Product[];
   newDishes: Product[];
-  topUsers: Member[];
   products: Product[];
+  events: Event[];
   restaurant: Member | null;
   chosenProduct: Product | null;
 }

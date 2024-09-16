@@ -4,8 +4,8 @@ import { HomePageState } from "../../../lib/types/screen";
 const initialState: HomePageState = {
   popularDishes: [],
   newDishes: [],
-  topUsers: [],
   products: [],
+  events: [],
   restaurant: null,
   chosenProduct: null,
 };
@@ -17,8 +17,8 @@ const homePageSlice = createSlice({
     setNewDishes: (state, action) => {
       state.newDishes = action.payload;
     },
-    setTopUsers: (state, action) => {
-      state.topUsers = action.payload;
+    setEvents: (state, action) => {
+      state.events = action.payload;
     },
     setProducts: (state, action) => {
       state.products = action.payload;
@@ -34,7 +34,7 @@ const homePageSlice = createSlice({
 
 export const {
   setNewDishes,
-  setTopUsers,
+  setEvents,
   setRestaurant,
   setProducts,
   setChosenProduct,

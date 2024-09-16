@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay, Navigation } from "swiper";
 import {
   Container,
   Stack,
@@ -12,7 +12,6 @@ import {
   Typography,
 } from "@mui/material";
 import { ShoppingBag as ShoppingBagIcon } from "@mui/icons-material";
-import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import moment from "moment";
 import { Product } from "../../../lib/types/product";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";

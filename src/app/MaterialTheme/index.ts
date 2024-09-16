@@ -11,21 +11,21 @@ const light = {
   palette: {
     type: "light",
     background: {
-      default: "#f8f8ff",
-      paper: common.white,
+      default: "#f0f4f8", // Softer and more modern light grey for background
+      paper: "#ffffff", // Keep paper background clean and white
     },
     primary: {
-      contrastText: "#d7b586",
-      main: "#343434",
+      contrastText: "#ffffff", // White text for better readability on primary color
+      main: "#1f3b4d", // A deep, elegant blue as primary color
     },
     secondary: {
-      contrastText: "#343434",
-      main: "#d7b586",
+      contrastText: "#1f3b4d", // Dark blue for contrast on secondary color
+      main: "#f5a623", // A vibrant, warm orange for accents and secondary actions
     },
     text: {
-      primary: "#343434",
-      secondary: "#d7b586",
-      dark: common.black,
+      primary: "#1f3b4d", // Dark blue for better readability in primary text
+      secondary: "#f5a623", // Secondary text with an eye-catching color
+      dark: "#000000", // Standard black for extra dark text
     },
   },
   components: {

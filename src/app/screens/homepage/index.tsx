@@ -1,23 +1,18 @@
 import React, { useEffect } from "react";
-import ActiveUsers from "./ActiveUsers";
 import Advertisement from "./Advertisement";
 import Events from "./Events";
-import NewDishes from "./NewDishes";
 import Statistics from "./Statistics";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
-import { setNewDishes, setTopUsers } from "./slice";
+import { setNewDishes, setEvents } from "./slice";
 import { Product } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
-import { ProductCollection } from "../../../lib/enums/product.enum";
-import MemberService from "../../services/MemberService";
 import "../../../css/home.css";
-import { Member } from "../../../lib/types/member";
 import { CartItem } from "../../../lib/types/search";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-
 import Products from "./Products";
 import ChosenProduct from "../productsPage/ChosenProduct";
+import EventService from "../../services/EventService";
 
 interface ProductsPageProps {
   onAdd: (item: CartItem) => void;
@@ -26,18 +21,19 @@ interface ProductsPageProps {
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
   setNewDishes: (data: Product[]) => dispatch(setNewDishes(data)),
-  setTopUsers: (data: Member[]) => dispatch(setTopUsers(data)),
+  setEvents: (data: Event[]) => dispatch(setEvents(data)),
 });
 
 export default function HomePage(props: ProductsPageProps) {
-  const { setNewDishes, setTopUsers } = actionDispatch(useDispatch());
+  const { setNewDishes, setEvents } = actionDispatch(useDispatch());
   const { onAdd } = props;
   const product = useRouteMatch();
 
   useEffect(() => {
     // Data fetch
     const product = new ProductService();
-    const member = new MemberService();
+
+    const event = new EventService();
 
     product
       .getProducts({
@@ -52,22 +48,11 @@ export default function HomePage(props: ProductsPageProps) {
       .catch((err) => {
         console.log(err);
       });
-
-    member
-      .getTopUsers()
-      .then((data) => {
-        console.log("data: ", data);
-        setTopUsers(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   }, []);
 
   return (
     <div className={"homepage"}>
       <Statistics />
-
       <Switch>
         <Route path={`${product.path}/:productId`}>
           <ChosenProduct onAdd={onAdd} />
@@ -76,12 +61,9 @@ export default function HomePage(props: ProductsPageProps) {
           <Products onAdd={onAdd} />
         </Route>
       </Switch>
-
-      <NewDishes onAdd={onAdd} />
+      <Events />
 
       <Advertisement />
-      <ActiveUsers />
-      <Events />
     </div>
   );
 }
