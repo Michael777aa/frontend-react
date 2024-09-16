@@ -73,7 +73,7 @@ export default function Products(props: ProductsProps) {
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
     limit: 12,
-    order: "updatedAt",
+    order: "createdAt",
     productCollection: ProductCollection.DISH,
     search: "",
   });

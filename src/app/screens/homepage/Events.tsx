@@ -131,7 +131,9 @@ export default function Events() {
             </Box>
           </>
         ) : (
-          <Box className="no-data">Events are not available currently!</Box>
+          <Box className="no-events-now">
+            Events are not available currently!
+          </Box>
         )}
       </Stack>
     </div>
