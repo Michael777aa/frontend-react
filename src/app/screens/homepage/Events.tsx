@@ -38,7 +38,7 @@ export default function Events() {
       .catch((err) => {
         console.log(err);
       });
-  }, [setEvents]);
+  }, []);
 
   // Filter events to only include those with PROCESS status
   const filteredEvents = events.filter(

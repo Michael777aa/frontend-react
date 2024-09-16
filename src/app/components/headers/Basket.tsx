@@ -66,6 +66,16 @@ export default function Basket(props: BasketProps) {
 
   return (
     <Box className={"cart-bag"}>
+      <Badge
+        badgeContent={cartItems.length}
+        style={{
+          position: "absolute",
+          textAlign: "end",
+          left: "1220px",
+          top: "30px",
+        }}
+        color="secondary"
+      ></Badge>
       <IconButton
         className="icon-button"
         aria-label="cart"
