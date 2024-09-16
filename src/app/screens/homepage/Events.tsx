@@ -7,7 +7,7 @@ import EventService from "../../services/EventService";
 import { useEffect } from "react";
 import { setEvents } from "./slice";
 import { retrieveEvents } from "./selector";
-import { Event } from "../../../lib/types/event";
+import { Event, EventStatus } from "../../../lib/types/event"; // Ensure EventStatus is imported
 import { serverApi } from "../../../lib/config";
 
 SwiperCore.use([Autoplay, Navigation, Pagination]);
@@ -40,6 +40,11 @@ export default function Events() {
       });
   }, [setEvents]);
 
+  // Filter events to only include those with PROCESS status
+  const filteredEvents = events.filter(
+    (event: Event) => event.eventStatus === EventStatus.PROCESS
+  );
+
   return (
     <div className={"events-frame"}>
       <Stack data-aos="fade-up" className={"events-main"}>
@@ -47,26 +52,26 @@ export default function Events() {
           <span className={"category-title"}>Events</span>
         </Box>
 
-        <Swiper
-          className={"events-info swiper-wrapper"}
-          slidesPerView={"auto"}
-          centeredSlides={true}
-          spaceBetween={30}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-          }}
-          pagination={{
-            el: ".swiper-pagination",
-            clickable: true,
-          }}
-          autoplay={{
-            delay: 2000,
-            disableOnInteraction: true,
-          }}
-        >
-          {events.length !== 0 ? (
-            events.map((event: Event) => (
+        {filteredEvents.length !== 0 ? (
+          <Swiper
+            className={"events-info swiper-wrapper"}
+            slidesPerView={"auto"}
+            centeredSlides={true}
+            spaceBetween={30}
+            navigation={{
+              nextEl: ".swiper-button-next",
+              prevEl: ".swiper-button-prev",
+            }}
+            pagination={{
+              el: ".swiper-pagination",
+              clickable: true,
+            }}
+            autoplay={{
+              delay: 2000,
+              disableOnInteraction: true,
+            }}
+          >
+            {filteredEvents.map((event: Event) => (
               <SwiperSlide key={event._id} className={"events-info-frame"}>
                 <div className={"events-img"}>
                   <img
@@ -105,11 +110,12 @@ export default function Events() {
                   </Box>
                 </Box>
               </SwiperSlide>
-            ))
-          ) : (
-            <Box className="no-data">Events are not available!</Box>
-          )}
-        </Swiper>
+            ))}
+          </Swiper>
+        ) : (
+          <Box className="no-data">Events are not available currently!</Box>
+        )}
+
         <Box className={"prev-next-frame"}>
           <img
             src={"/icons/arrow-right.svg"}

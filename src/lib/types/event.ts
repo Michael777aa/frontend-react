@@ -18,3 +18,4 @@ export interface EventInquiry {
   limit: number;
   search?: string;
 }
+export { EventStatus };
