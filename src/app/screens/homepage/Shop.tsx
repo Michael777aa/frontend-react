@@ -66,7 +66,7 @@ interface ProductsProps {
   onAdd: (item: CartItem) => void;
 }
 
-export default function Products(props: ProductsProps) {
+export default function Shop(props: ProductsProps) {
   const { onAdd } = props;
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriever);

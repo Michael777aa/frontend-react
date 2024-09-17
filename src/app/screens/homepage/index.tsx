@@ -10,13 +10,13 @@ import ProductService from "../../services/ProductService";
 import "../../../css/home.css";
 import { CartItem } from "../../../lib/types/search";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
-import Products from "./Products";
 import ChosenProduct from "../productsPage/ChosenProduct";
 import EventService from "../../services/EventService";
 import { Member } from "../../../lib/types/member";
 import MemberService from "../../services/MemberService";
 import ActiveUsers from "./ActiveUsers";
 import Satisfaction from "./Satisfaction";
+import Shop from "./Shop";
 
 interface ProductsPageProps {
   onAdd: (item: CartItem) => void;
@@ -35,23 +35,8 @@ export default function HomePage(props: ProductsPageProps) {
 
   useEffect(() => {
     // Data fetch
-    const product = new ProductService();
     const member = new MemberService();
-    const event = new EventService();
 
-    product
-      .getProducts({
-        page: 1,
-        limit: 4,
-        order: "createdAt",
-      })
-      .then((data) => {
-        console.log("data: ", data);
-        setNewDishes(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
     member
       .getTopUsers()
       .then((data) => {
@@ -71,7 +56,7 @@ export default function HomePage(props: ProductsPageProps) {
           <ChosenProduct onAdd={onAdd} />
         </Route>
         <Route path={`${product.path}`}>
-          <Products onAdd={onAdd} />
+          <Shop onAdd={onAdd} />
         </Route>
       </Switch>
       <Advertisement />

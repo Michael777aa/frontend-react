@@ -1,7 +1,6 @@
 import { Box, Container, Stack } from "@mui/material";
 import Card from "@mui/joy/Card";
 import CardOverflow from "@mui/joy/CardOverflow";
-
 import { AspectRatio, CssVarsProvider, Typography } from "@mui/joy";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
