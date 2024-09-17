@@ -96,13 +96,15 @@ export default function HomeNavbar(props: HomeNavbarProps) {
             </Stack>
           </Stack>
           <Stack className={"right-side"}>
-            <Basket
-              cartItems={cartItems}
-              onAdd={onAdd}
-              onRemove={onRemove}
-              onDelete={onDelete}
-              onDeleteAll={onDeleteAll}
-            />
+            <Box className={"nbaket"}>
+              <Basket
+                cartItems={cartItems}
+                onAdd={onAdd}
+                onRemove={onRemove}
+                onDelete={onDelete}
+                onDeleteAll={onDeleteAll}
+              />
+            </Box>
 
             {!authMember ? (
               <Box>

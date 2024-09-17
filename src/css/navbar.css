@@ -59,13 +59,12 @@
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-right: 10px;
 }
 .home-navbar .navbar-container .menu .links .login-button {
   background-color: #3776cc;
   color: #f8f8ff;
 }
-.home-navbar .navbar-container .menu .links .user-avatar {
+.home-navbar .user-avatar {
   width: 50px;
   height: 50px;
   border-radius: 24px;
@@ -331,24 +330,26 @@
   gap: 35px;
 }
 
-.other-navbar .navbar-container .menu .links {
+.other-navbar .links {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
+}
+.other-navbar .right-side .nbaket {
+  margin-right: 12px;
 }
 .other-navbar .right-side {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-right: 10px;
 }
 .other-navbar .navbar-container .menu .links .login-button {
   background-color: #3776cc;
   color: #f8f8ff;
 }
-.other-navbar .navbar-container .menu .links .user-avatar {
+.other-navbar .user-avatar {
   width: 50px;
   height: 50px;
   border-radius: 24px;

@@ -71,7 +71,7 @@ export default function Basket(props: BasketProps) {
         style={{
           position: "absolute",
           textAlign: "end",
-          left: "1220px",
+          left: "1180px",
           top: "30px",
         }}
         color="secondary"
