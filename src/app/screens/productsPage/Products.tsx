@@ -8,6 +8,8 @@ import {
   PaginationItem,
   Pagination,
   Slider,
+  TextField,
+  styled,
 } from "@mui/material";
 import CakeIcon from "@mui/icons-material/Cake";
 
@@ -28,9 +30,33 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
-
+import SearchIcon from "@mui/icons-material/Search";
 import moment from "moment";
+const StyledButton = styled(Button)(({ theme }) => ({
+  borderRadius: "50px",
+  backgroundColor: "#81c408",
+  color: "#fff",
+  padding: "0 25px", // Adjust padding to fit text
+  minWidth: "auto", // Adjust to fit content
+  height: "48px", // Match the height of the Stack
+  "&:hover": {
+    backgroundColor: "#ffb524", // Darker orange color
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Box shadow on hover
+  },
+  display: "flex",
+  alignItems: "center",
+}));
 
+const StyledInput = styled(TextField)(({ theme }) => ({
+  "& .MuiOutlinedInput-root": {
+    borderRadius: "20px",
+    height: "40px",
+    "& fieldset": {
+      borderRadius: "20px",
+      border: "none",
+    },
+  },
+}));
 const actionDispatch = (dispatch: Dispatch) => ({
   setProducts: (data: Product[]) => dispatch(setProducts(data)),
 });
@@ -49,7 +75,7 @@ export default function Products(props: ProductsProps) {
   const { products } = useSelector(productsRetriever);
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
-    limit: 7,
+    limit: 9,
     order: "createdAt",
     productCollections: [
       ProductCollection.DISH,
@@ -115,6 +141,40 @@ export default function Products(props: ProductsProps) {
     <>
       <div>
         <Container>
+          <Stack
+            className="titlee3"
+            display={"flex"}
+            justifyContent={"flex-start"}
+            alignItems={"center"}
+            flexDirection={"row"}
+          >
+            <Typography className="title-text22" fontSize={"36px"}>
+              Fresh Products
+            </Typography>
+            <Stack className="search-box-main22">
+              <Box className={"search-box22"}>
+                <StyledInput
+                  className="search-input22"
+                  type="search"
+                  placeholder="Search"
+                  value={searchText}
+                  onChange={(e) => {
+                    setSearchText(e.target.value);
+                  }}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") searchProductHandler();
+                  }}
+                />
+                <StyledButton
+                  className="search-icon22"
+                  onClick={searchProductHandler}
+                >
+                  SEARCH
+                  <SearchIcon />
+                </StyledButton>
+              </Box>
+            </Stack>
+          </Stack>
           <div className="main-container2">
             <div className="left-container2">
               <h1 className="categories-name">Categories</h1>
