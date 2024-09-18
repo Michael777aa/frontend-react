@@ -266,30 +266,28 @@ export default function Products(props: ProductsProps) {
                 <h2>Additional</h2>
                 <RadioGroup>
                   <FormControlLabel
-                    className="slidder"
-                    value="All"
-                    control={<Radio />}
-                    label="All"
-                  />
-                  <FormControlLabel
+                    onClick={() => searchOrderHandler("createdAt")}
                     className="slidder"
                     value="New"
                     control={<Radio />}
                     label="New"
                   />
                   <FormControlLabel
+                    onClick={() => searchOrderHandler("productPrice")}
                     className="slidder"
                     value="Price"
                     control={<Radio />}
                     label="Price"
                   />
                   <FormControlLabel
+                    onClick={() => searchOrderHandler("productSalePrice")}
                     className="slidder"
                     value="Discount"
                     control={<Radio />}
                     label="Discount"
                   />
                   <FormControlLabel
+                    onClick={() => searchOrderHandler("productSold")}
                     className="slidder"
                     value="Popular"
                     control={<Radio />}
@@ -306,34 +304,34 @@ export default function Products(props: ProductsProps) {
                       <img src="/img/featur-1.jpg" alt="" />
                     </div>
                     <div className="right-sale">
-                      <h3>Big Banana</h3>
+                      <h3>Apple</h3>
                       <div className="right-pricing">
-                        <h4>123$</h4>
-                        <h4 className="sale-color">1231$</h4>
+                        <h4>25$</h4>
+                        <h4 className="sale-color">12$</h4>
                       </div>
                     </div>
                   </div>
                   <div className="main-featured">
                     <div className="left-image">
-                      <img src="/img/featur-1.jpg" alt="" />
+                      <img src="/img/best-product-1.jpg" alt="" />
                     </div>
                     <div className="right-sale">
-                      <h3>Big Banana</h3>
+                      <h3>Orange</h3>
                       <div className="right-pricing">
-                        <h4>123$</h4>
-                        <h4 className="sale-color">1231$</h4>
+                        <h4>35$</h4>
+                        <h4 className="sale-color">20$</h4>
                       </div>
                     </div>
                   </div>
                   <div className="main-featured">
                     <div className="left-image">
-                      <img src="/img/featur-1.jpg" alt="" />
+                      <img src="/img/image.jpg" alt="" />
                     </div>
                     <div className="right-sale">
-                      <h3>Big Banana</h3>
+                      <h3>Lemon</h3>
                       <div className="right-pricing">
                         <h4>123$</h4>
-                        <h4 className="sale-color">1231$</h4>
+                        <h4 className="sale-color">45$</h4>
                       </div>
                     </div>
                   </div>
