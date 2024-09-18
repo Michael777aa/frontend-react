@@ -18,13 +18,15 @@
 /* Left Container */
 .left-container2 {
   width: 330px;
+
   padding: 15px; /* Added padding for better spacing */
 }
 
 /* Right Container */
 .right-container2 {
   flex: 1; /* Allows this container to take remaining space */
-  padding: 15px; /* Added padding for better spacing */
+
+  /* Added padding for better spacing */
 }
 
 /* Category Styling */
@@ -59,8 +61,7 @@
   margin-top: 25px;
 }
 
-.price2 {
-  /* Corrected class name */
+.pricw2 {
   margin-top: 12px;
   color: #45595b;
 }
@@ -70,24 +71,19 @@
   position: relative;
   top: 50px;
 }
-
 .selecting h2 {
   color: #45595b;
 }
-
 /* Featured Products */
 .featured-products {
   margin-top: 80px;
   color: #45595b;
 }
-
 .featured-products h1 {
   font-size: 25px;
   color: #45595b;
 }
-
-.slider {
-  /* Corrected typo from 'slidder' */
+.slidder {
   color: #747d88;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
@@ -97,7 +93,7 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.main-feature {
+.main-feauture {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -132,8 +128,7 @@
   text-decoration: line-through;
 }
 
-.button {
-  /* Corrected class name from 'buttot' */
+.buttot {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -148,18 +143,15 @@
   border: 1px solid #ff9200;
   transition: all 0.5s ease;
 }
-
-.button:hover {
+.buttot:hover {
   color: #fff;
   background-color: #ff9200;
 }
-
 .down-image img {
   width: 306px;
   height: 300px;
   margin-top: 50px;
 }
-
 /* Product Cards */
 .product-wrapper2 {
   display: flex;
@@ -340,7 +332,7 @@
 /* Pagination */
 .pagination-section2 {
   position: relative;
-  top: 20px;
+  top: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
