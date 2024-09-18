@@ -88,6 +88,7 @@ export default function Products(props: ProductsProps) {
   });
 
   const [searchText, setSearchText] = useState<string>("");
+  const [priceRange, setPriceRange] = useState<number[]>([0, 1000]);
   const history = useHistory();
 
   useEffect(() => {
@@ -97,7 +98,12 @@ export default function Products(props: ProductsProps) {
       .getProducts(productSearch)
       .then((data) => {
         console.log("data: ", data);
-        setProducts(data);
+        const filteredProducts = data.filter(
+          (product: Product) =>
+            product.productPrice >= priceRange[0] &&
+            product.productPrice <= priceRange[1]
+        );
+        setProducts(filteredProducts);
       })
       .catch((err) => {
         console.log(err);
@@ -132,6 +138,9 @@ export default function Products(props: ProductsProps) {
   const paginationHandler = (e: ChangeEvent<any>, value: number) => {
     productSearch.page = value;
     setProductSearch({ ...productSearch });
+  };
+  const handlePriceChange = (event: Event, newValue: number | number[]) => {
+    setPriceRange(newValue as number[]);
   };
   const chooseDishHandler = (id: string) => {
     history.push(`/products/${id}`);
@@ -238,11 +247,11 @@ export default function Products(props: ProductsProps) {
               <Box sx={{ width: 250 }} className="price">
                 <h1 className="pricw2">Price</h1>
                 <Slider
+                  value={priceRange}
+                  max={1000}
                   step={10}
-                  valueLabelDisplay="auto"
                   valueLabelFormat={(value) => `$${value}`}
-                  aria-labelledby="range-slider"
-                  sx={{ mt: 2 }}
+                  onChange={handlePriceChange}
                 />
 
                 <Typography
@@ -250,7 +259,7 @@ export default function Products(props: ProductsProps) {
                   style={{ color: "#747d88" }}
                   justifyContent={"flex-start"}
                 >
-                  Price$ {/* {priceRange[0]} - ${priceRange[1]} */}
+                  Price: ${priceRange[0]} - ${priceRange[1]}
                 </Typography>
               </Box>
               <FormControl className="selecting">
