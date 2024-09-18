@@ -179,31 +179,56 @@ export default function Products(props: ProductsProps) {
             <div className="left-container2">
               <h1 className="categories-name">Categories</h1>
               <div className="category-container2">
-                <div className="category-item">
+                <div
+                  className="category-item"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.DISH)
+                  }
+                >
                   <h3>
                     <CakeIcon />
                   </h3>
                   <h2>Fruits</h2>
                 </div>
-                <div className="category-item">
+                <div
+                  className="category-item"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.SALAD)
+                  }
+                >
                   <h3>
                     <CakeIcon />
                   </h3>
                   <h2>Vegetables</h2>
                 </div>
-                <div className="category-item">
+                <div
+                  className="category-item"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.DRINK)
+                  }
+                >
                   <h3>
                     <CakeIcon />
                   </h3>
                   <h2>Sweets</h2>
                 </div>
-                <div className="category-item">
+                <div
+                  className="category-item"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.DESSERT)
+                  }
+                >
                   <h3>
                     <CakeIcon />
                   </h3>
                   <h2>Meat</h2>
                 </div>
-                <div className="category-item">
+                <div
+                  className="category-item"
+                  onClick={() =>
+                    searchCollectionHandler(ProductCollection.OTHER)
+                  }
+                >
                   <h3>
                     <CakeIcon />
                   </h3>
@@ -211,7 +236,7 @@ export default function Products(props: ProductsProps) {
                 </div>
               </div>
               <Box sx={{ width: 250 }} className="price">
-                <h2 className="pricw2">Price</h2>
+                <h1 className="pricw2">Price</h1>
                 <Slider
                   step={10}
                   valueLabelDisplay="auto"
@@ -411,7 +436,7 @@ export default function Products(props: ProductsProps) {
                     );
                   })
                 ) : (
-                  <Box className="no-data">Products are not available!</Box>
+                  <Box className="no-dataaaaa">Products are not available!</Box>
                 )}
               </Stack>
               <Stack
