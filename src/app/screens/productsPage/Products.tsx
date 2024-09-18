@@ -58,7 +58,7 @@ export default function Products(props: ProductsProps) {
   const { products } = useSelector(productsRetriever);
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
-    limit: 8,
+    limit: 9,
     order: "createdAt",
     productCollections: [
       ProductCollection.DISH,
@@ -124,10 +124,10 @@ export default function Products(props: ProductsProps) {
     <>
       <div>
         <Container>
-          <div className="main-container">
-            <div className="left-container">
+          <div className="main-container2">
+            <div className="left-container2">
               <h1 className="categories-name">Categories</h1>
-              <div className="category-container">
+              <div className="category-container2">
                 <div className="category-item">
                   <h3>
                     <CakeIcon />
@@ -169,34 +169,43 @@ export default function Products(props: ProductsProps) {
                   sx={{ mt: 2 }}
                 />
 
-                <Typography variant="h3" justifyContent={"flex-start"}>
+                <Typography
+                  variant="h4"
+                  style={{ color: "#747d88" }}
+                  justifyContent={"flex-start"}
+                >
                   Price$ {/* {priceRange[0]} - ${priceRange[1]} */}
                 </Typography>
               </Box>
               <FormControl className="selecting">
-                <h1>Additional</h1>
+                <h2>Additional</h2>
                 <RadioGroup>
                   <FormControlLabel
+                    className="slidder"
                     value="All"
                     control={<Radio />}
                     label="All"
                   />
                   <FormControlLabel
+                    className="slidder"
                     value="New"
                     control={<Radio />}
                     label="New"
                   />
                   <FormControlLabel
+                    className="slidder"
                     value="Price"
                     control={<Radio />}
                     label="Price"
                   />
                   <FormControlLabel
+                    className="slidder"
                     value="Discount"
                     control={<Radio />}
                     label="Discount"
                   />
                   <FormControlLabel
+                    className="slidder"
                     value="Popular"
                     control={<Radio />}
                     label="Popular"
@@ -204,7 +213,7 @@ export default function Products(props: ProductsProps) {
                 </RadioGroup>
               </FormControl>
               <div className="featured-products">
-                <h1>Featured Products</h1>
+                <h1>Featured products</h1>
 
                 <div className="main-feauture">
                   <div className="main-featured">
@@ -250,9 +259,14 @@ export default function Products(props: ProductsProps) {
                 </div>
               </div>
             </div>
-            <div className="right-container">
-              {" "}
-              <Stack className="product-wrapper">
+            <div className="right-container2">
+              <Stack
+                className="product-wrapper2"
+                display={"flex"}
+                flexDirection={"row"}
+                justifyContent={"flex-start"}
+                alignItems={"center"}
+              >
                 {products.length !== 0 ? (
                   products.map((product: Product) => {
                     const imagePath = `${serverApi}/${product.productImages[0]}`;
@@ -268,27 +282,27 @@ export default function Products(props: ProductsProps) {
                       <Stack
                         onClick={() => chooseDishHandler(product._id)}
                         key={product._id}
-                        className="product-card"
+                        className="product-card2"
                       >
-                        <Stack className={"product-img-container"}>
+                        <Stack className={"product-img-container22"}>
                           <Stack
-                            className="product-img"
+                            className="product-img2"
                             sx={{ backgroundImage: `url(${imagePath})` }}
                           ></Stack>
                         </Stack>
-                        <div className="product-size">{sizeVolume}</div>
-                        <Stack className={"bottom-side"}>
+                        <div className="product-size2">{sizeVolume}</div>
+                        <Stack className={"bottom-side2"} flexDirection={"row"}>
                           <div>
                             {product.productSale && product.productSale > 0 ? (
                               <>
-                                <span className={"product-sale2"}>
+                                <span className={"product-sale22"}>
                                   -{product.productSale}%
                                 </span>
-                                <span className={"product-sale-price"}>
+                                <span className={"product-sale-price2"}>
                                   ${product.productSalePrice}
                                 </span>
                                 <span
-                                  className={"product-sale-original-price2"}
+                                  className={"product-sale-original-price222"}
                                 >
                                   List:
                                   <span
@@ -299,14 +313,14 @@ export default function Products(props: ProductsProps) {
                                 </span>
                               </>
                             ) : (
-                              <span className="product-price">
+                              <span className="product-price2">
                                 ${product.productPrice}
                               </span>
                             )}
                           </div>
 
                           <Button
-                            className="shop-btn"
+                            className="shop-btn22"
                             onClick={(e) => {
                               e.stopPropagation();
                               onAdd({
@@ -321,25 +335,25 @@ export default function Products(props: ProductsProps) {
                               });
                             }}
                           >
-                            <ShoppingBagIcon className="icon-button" />
+                            <ShoppingBagIcon className="icon-button22" />
                             Add to cart
                           </Button>
                         </Stack>
 
-                        <Box className={"product-desc"}>
-                          <span className={"product-salee1"}>
+                        <Box className={"product-desc2"}>
+                          <span className={"product-salee12"}>
                             {product.productLeftCount} left
                           </span>
-                          <span className={"product-soldd1"}>
+                          <span className={"product-soldd12"}>
                             {product.productSold} sold
-                          </span>{" "}
-                          <span className={"product-title"}>
+                          </span>
+                          <span className={"product-title2"}>
                             {product.productName}
                           </span>
-                          <span className={"product-title1"}>
+                          <span className={"product-title12"}>
                             {product.productDesc}
                           </span>
-                          <span className={"product-produced-date"}>
+                          <span className={"product-produced-date2"}>
                             Prod:{producedDate}
                           </span>
                         </Box>
@@ -350,8 +364,15 @@ export default function Products(props: ProductsProps) {
                   <Box className="no-data">Products are not available!</Box>
                 )}
               </Stack>
-              <Stack className="pagination-section">
+              <Stack
+                className="pagination-section2"
+                display={"flex"}
+                flexDirection={"row"}
+                justifyContent={"center"}
+                alignItems={"center"}
+              >
                 <Pagination
+                  className="pagination-one2"
                   count={
                     products.length !== 0
                       ? productSearch.page + 1
@@ -360,9 +381,9 @@ export default function Products(props: ProductsProps) {
                   page={productSearch.page}
                   renderItem={(item) => (
                     <PaginationItem
+                      className="pagination-one"
                       components={{ previous: ArrowBack, next: ArrowForward }}
                       {...item}
-                      color={"secondary"}
                     />
                   )}
                   onChange={paginationHandler}
