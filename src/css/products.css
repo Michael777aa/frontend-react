@@ -18,15 +18,13 @@
 /* Left Container */
 .left-container2 {
   width: 330px;
-
   padding: 15px; /* Added padding for better spacing */
 }
 
 /* Right Container */
 .right-container2 {
   flex: 1; /* Allows this container to take remaining space */
-
-  /* Added padding for better spacing */
+  padding: 15px; /* Added padding for better spacing */
 }
 
 /* Category Styling */
@@ -61,7 +59,8 @@
   margin-top: 25px;
 }
 
-.pricw2 {
+.price2 {
+  /* Corrected class name */
   margin-top: 12px;
   color: #45595b;
 }
@@ -71,19 +70,24 @@
   position: relative;
   top: 50px;
 }
+
 .selecting h2 {
   color: #45595b;
 }
+
 /* Featured Products */
 .featured-products {
   margin-top: 80px;
   color: #45595b;
 }
+
 .featured-products h1 {
   font-size: 25px;
   color: #45595b;
 }
-.slidder {
+
+.slider {
+  /* Corrected typo from 'slidder' */
   color: #747d88;
   font-family: "Open Sans", sans-serif;
   font-size: 1rem;
@@ -93,7 +97,7 @@
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 
-.main-feauture {
+.main-feature {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -128,7 +132,8 @@
   text-decoration: line-through;
 }
 
-.buttot {
+.button {
+  /* Corrected class name from 'buttot' */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,10 +148,12 @@
   border: 1px solid #ff9200;
   transition: all 0.5s ease;
 }
-.buttot:hover {
+
+.button:hover {
   color: #fff;
   background-color: #ff9200;
 }
+
 .down-image img {
   width: 306px;
   height: 300px;
@@ -157,16 +164,15 @@
 .product-wrapper2 {
   display: flex;
   flex-wrap: wrap;
-
-  gap: 25px; /* Added gap between cards */
+  gap: 10px; /* Added gap between cards */
 }
 
 .product-card2 {
   width: 290px;
-  overflow: hidden;
   height: 448px;
   border: 1px solid #d7b686;
   border-radius: 15px; /* Ensures content stays within borders */
+  overflow: hidden;
   transition: box-shadow 0.3s ease-in-out;
 }
 
@@ -184,7 +190,6 @@
 .product-img2 {
   width: 100%;
   height: 100%;
-
   background-size: cover;
   background-position: center;
   transition: transform 0.3s ease-in-out;
@@ -193,7 +198,7 @@
 .product-img-container22:hover .product-img2 {
   transform: scale(1.2);
 }
-/* fsdfjhfjhskjfhkdjfhshfs */
+
 .product-size2 {
   position: relative;
   top: -205px;
@@ -258,77 +263,64 @@
 }
 
 .product-desc2 {
-  display: flex;
-
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  margin-top: 10px;
-}
-.product-salee12 {
-  position: relative;
-
-  top: -78px;
-  left: 5px;
-  display: block;
-  width: 100%;
-  text-align: start;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  overflow: hidden;
-  font-size: 15px;
-  font-weight: 500;
-  color: #45595b;
-}
-
-.product-soldd12 {
   position: relative;
   top: -100px;
-  left: 118px;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-  font-size: 15px;
+.product-card2 .product-salee12 {
+  position: relative;
+  top: -68px;
+  left: 5px;
   font-weight: 500;
+  font-size: 15px;
   color: #45595b;
 }
-.product-produced-date2 {
+.product-soldd12 {
   position: relative;
-  top: 28px;
-  left: 15px;
-  display: block;
-  width: 100%;
-  text-align: start;
+  top: -92px;
+  left: 240px;
+  /* Corrected class name */
+  position: relative;
+  font-weight: 500;
+  font-size: 15px;
+  color: #45595b;
+}
+
+.product-produced-date2 {
+  position: absolute;
+  top: 198px;
+  right: 165px;
   font-family: "Raleway", sans-serif;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.4;
   color: #707070;
 }
+
 .product-title2 {
-  position: relative;
-  top: -90px;
-
-  text-align: center;
   font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  font-size: 22px;
+  font-weight: 400;
+  font-size: 20px;
   color: #45595b;
+  text-align: center;
+  word-break: break-word;
 }
-
 .product-title12 {
-  position: relative;
-  top: -90px;
-
   font-family: "Raleway", sans-serif;
   font-weight: 400;
   font-size: 18px;
-  color: #45595b;
-  text-align: start;
-  overflow-wrap: break-word;
-}
 
+  width: 240px;
+  height: 80px;
+  overflow: hidden;
+  color: #45595b;
+  text-align: center;
+}
+/* Button styling inside the product cards */
 .bottom-side2 .shop-btn22 {
   color: #81c408;
   font-weight: 700;
@@ -337,32 +329,22 @@
   border-radius: 100px;
   border: 1px solid #ffb524;
   transition: all 0.3s ease;
-  gap: 8px;
-  position: relative;
-  top: 5px;
-  z-index: 10;
   padding: 5px 12px;
 }
+
 .bottom-side2 .shop-btn22:hover {
   background-color: #ffb524;
   color: #fff;
 }
-.shop-btn22 .icon-button22 {
-  color: #81c408;
-  font-size: 20px;
-  position: relative;
 
-  top: -3px;
-}
 /* Pagination */
-/* Pagination Container */
 .pagination-section2 {
   position: relative;
-  top: 40px;
+  top: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 20px 0; /* Adds spacing above and below the pagination */
+  margin: 20px 0;
 }
 
 .pagination-one2 {
@@ -371,17 +353,15 @@
   gap: 10px;
 }
 
-.pagination-one {
+.pagination-one2 .pagination-one {
   width: 43px !important;
   height: 47px !important;
   border: 1px solid #ffb524 !important;
   border-radius: 10px !important;
 }
 
-/* Pagination Hover State */
-.pagination-one:hover {
+.pagination-one2 .pagination-one:hover {
   background-color: #81c408;
-
   cursor: pointer;
 }
 
@@ -391,11 +371,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Poppins", sans-serif;
-  font-weight: 500;
-  font-size: 30px;
-  color: #ffb524;
-  background-color: #f9f9f9;
-  border: 1px solid #e0e0e0;
-  border-radius: 6px;
+  font-size: 20px;
+  color: #ff9200;
 }

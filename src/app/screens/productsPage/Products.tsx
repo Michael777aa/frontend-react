@@ -5,22 +5,13 @@ import {
   Container,
   Stack,
   Typography,
-  TextField,
-  Badge,
   PaginationItem,
   Pagination,
   Slider,
 } from "@mui/material";
 import CakeIcon from "@mui/icons-material/Cake";
-import SearchIcon from "@mui/icons-material/Search";
-import { styled } from "@mui/system";
-import {
-  AddBox,
-  ArrowBack,
-  ArrowForward,
-  MonetizationOn,
-  RemoveRedEye,
-} from "@mui/icons-material";
+
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { retrieveProducts } from "./selector";
 import { createSelector } from "@reduxjs/toolkit";
@@ -58,7 +49,7 @@ export default function Products(props: ProductsProps) {
   const { products } = useSelector(productsRetriever);
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
-    limit: 9,
+    limit: 7,
     order: "createdAt",
     productCollections: [
       ProductCollection.DISH,
@@ -339,14 +330,13 @@ export default function Products(props: ProductsProps) {
                             Add to cart
                           </Button>
                         </Stack>
-
+                        <span className={"product-salee12"}>
+                          {product.productLeftCount} left
+                        </span>
+                        <span className={"product-soldd12"}>
+                          {product.productSold} sold
+                        </span>
                         <Box className={"product-desc2"}>
-                          <span className={"product-salee12"}>
-                            {product.productLeftCount} left
-                          </span>
-                          <span className={"product-soldd12"}>
-                            {product.productSold} sold
-                          </span>
                           <span className={"product-title2"}>
                             {product.productName}
                           </span>
