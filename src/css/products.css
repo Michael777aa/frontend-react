@@ -149,7 +149,7 @@
 }
 .down-image img {
   width: 306px;
-  height: 327px;
+  height: 300px;
   margin-top: 50px;
 }
 
@@ -355,19 +355,78 @@
   top: -3px;
 }
 /* Pagination */
+/* Pagination Container */
 .pagination-section2 {
   position: relative;
-  top: 80px;
-}
-.pagination-one {
-  width: 100px;
-  height: 100px;
-  background-color: #81c408;
+  top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0; /* Adds spacing above and below the pagination */
 }
 
 .pagination-one2 {
-  background-color: #81c408;
+  background-color: transparent;
+  display: flex;
+  gap: 10px;
 }
+
+.pagination-one {
+  width: 43px !important;
+  height: 47px !important;
+  border: 1px solid #ffb524 !important;
+  border-radius: 10px !important;
+}
+
+/* Pagination Hover State */
+.pagination-one:hover {
+  background-color: #81c408;
+
+  cursor: pointer;
+}
+
+/* Active Pagination Item */
+.Mui-selected {
+  background-color: #81c408 !important;
+  color: #fff !important;
+  border-radius: 10px !important;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Pagination Arrows */
+.MuiPaginationItem-previous,
+.MuiPaginationItem-next {
+  width: 43px !important;
+  height: 47px !important;
+  background-color: #81c408 !important;
+
+  color: #fff;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MuiPaginationItem-previous:hover,
+.MuiPaginationItem-next:hover {
+  background-color: #67a305; /* Darker hover color */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .pagination-one {
+    width: 40px;
+    height: 40px;
+    font-size: 16px; /* Reduce font size for smaller screens */
+  }
+
+  .MuiPaginationItem-previous,
+  .MuiPaginationItem-next {
+    width: 40px;
+    height: 40px;
+  }
+}
+
 .no-data2 {
   width: 100%;
   height: 300px;
