@@ -169,7 +169,11 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
             sx={{ width: "800px" }}
           >
             <Stack sx={{ marginLeft: "10px", alignItems: "start" }}>
-              <h2>Signup Form</h2>
+              <h2
+                style={{ marginTop: "40px", position: "relative", top: "-5px" }}
+              >
+                Signup Form
+              </h2>
               <TextField
                 sx={{ width: "400px" }}
                 id="outlined-basic"
@@ -256,7 +260,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
             <Stack
               sx={{
                 marginLeft: "15px",
-                marginTop: "15px",
+                marginTop: "45px",
                 alignItems: "center",
               }}
             >
