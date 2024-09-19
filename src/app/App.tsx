@@ -32,7 +32,7 @@ function App() {
 
   useEffect(() => {
     AOS.init({
-      duration: 1,
+      duration: 0,
     });
   }, []);
 

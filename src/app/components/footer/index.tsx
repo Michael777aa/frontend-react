@@ -7,7 +7,6 @@ import {
   TextField,
 } from "@mui/material";
 import styled from "styled-components";
-import SearchIcon from "@mui/icons-material/Search";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
@@ -30,27 +29,6 @@ const FooterInput = styled(TextField)(({ theme }) => ({
     "& fieldset": {
       border: "none",
     },
-  },
-}));
-
-const FooterButton = styled(Button)(({ theme }) => ({
-  backgroundColor: "#81c408",
-  color: "#fff",
-  borderRadius: "25px",
-  padding: "10px 25px",
-  fontWeight: 700,
-  "&:hover": {
-    backgroundColor: "#ffb514",
-  },
-}));
-const FooterButton2 = styled(Button)(({ theme }) => ({
-  backgroundColor: "#81c408",
-  color: "#fff",
-  borderRadius: "25px",
-  padding: "10px 15px",
-  fontWeight: 700,
-  "&:hover": {
-    backgroundColor: "#ffb514",
   },
 }));
 
@@ -173,7 +151,7 @@ export default function Footer() {
               <Typography variant="h2">My Account</Typography>
             </Link>
 
-            <Link to="/product-detail" className="ssss">
+            <Link to="/products" className="ssss">
               <Typography variant="h2">Product details</Typography>
             </Link>
 
@@ -190,19 +168,52 @@ export default function Footer() {
             </Link>
           </Stack>
 
-          {/* Section 4 */}
           <Stack className="right-side2 same">
             <Link to="/help" className="ssss">
               <Typography variant="h1">Contact</Typography>
             </Link>
-            <Typography variant="h2">
+            <Typography
+              variant="h2"
+              component="a"
+              href="https://maps.google.com/?q=1429 Netus Rd, NY 48247"
+              sx={{
+                textDecoration: "none",
+                fontWeight: "600",
+                fontSize: "16px",
+                color: "#ffffff80",
+              }}
+              target="_blank" // Open the link in a new tab
+              rel="noopener noreferrer" // Security measure to prevent access from the new page to your app
+            >
               Address: 1429 Netus Rd, NY 48247
             </Typography>
-            <Typography variant="h2">
+
+            <Typography
+              className="emaillll"
+              component="a"
+              href="mailto:abdullah.just777@gmail.com"
+              sx={{ fontWeight: "600", fontSize: "16px" }}
+            >
               Email: abdullah.just777@gmail.com
             </Typography>
-            <Typography variant="h2">Phone: +82 10 7555 1575</Typography>
-            <Typography variant="h2">Payment Accepted</Typography>
+
+            <Typography
+              className="emaillll22"
+              variant="h2"
+              component="a"
+              href="tel:+821075551575"
+              sx={{
+                textDecoration: "none",
+                fontWeight: "600",
+                fontSize: "16px",
+                color: "#ffffff80",
+              }}
+            >
+              Phone: +82 10 7555 1575
+            </Typography>
+            <Typography variant="h2" mt={2}>
+              Payment Accepted
+            </Typography>
             <Box display="flex" gap={2} mt={4}>
               <img src="/icons/visa-card.svg" alt="Visa" />
               <img src="/icons/western-card.svg" alt="Western Union" />
