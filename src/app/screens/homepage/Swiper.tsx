@@ -17,6 +17,7 @@ import { Product } from "../../../lib/types/product";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "../../../css/home.css";
+
 interface SwiperProps {
   products: Product[];
   serverApi: string;
@@ -35,7 +36,7 @@ export default function ProductSwiper({
 
   return (
     <Container disableGutters>
-      <h1 className="hot-sales"> HOT sales</h1>
+      <h1 className="hot-sales">HOT sales</h1>
       <Stack className="product-wrapper">
         {/* Custom navigation buttons */}
         <Box ref={prevRef} className="prev-button">
@@ -61,88 +62,90 @@ export default function ProductSwiper({
           }}
         >
           {products.length !== 0 ? (
-            products.map((product: Product) => {
-              const imagePath = `${serverApi}/${product.productImages[0]}`;
-              const sizeVolume =
-                product.productCollection === "DRINK"
-                  ? product.productVolume + ""
-                  : product.productSize + "";
-              const producedDate = moment(product.createdAt).format(
-                "DD MM YYYY"
-              );
+            products
+              .filter((product: Product) => (product.productSale ?? 0) >= 1) // Filter products with sale > 1
+              .map((product: Product) => {
+                const imagePath = `${serverApi}/${product.productImages[0]}`;
+                const sizeVolume =
+                  product.productCollection === "DRINK"
+                    ? product.productVolume + ""
+                    : product.productSize + "";
+                const producedDate = moment(product.createdAt).format(
+                  "DD MM YYYY"
+                );
 
-              return (
-                <SwiperSlide key={product._id}>
-                  <Stack
-                    onClick={() => chooseDishHandler(product._id)}
-                    className="product-card"
-                  >
-                    <Stack className="product-img-container">
-                      <Stack
-                        className="product-img"
-                        sx={{ backgroundImage: `url(${imagePath})` }}
-                      ></Stack>
-                    </Stack>
-                    <div className="product-size">{sizeVolume}</div>
-                    <Stack className="bottom-side">
-                      <div>
-                        <>
-                          <span className="product-sale2">
-                            -{product.productSale}%
-                          </span>
-                          <span className="product-sale-price">
-                            ${product.productSalePrice}
-                          </span>
-                          <span className="product-sale-original-price2">
-                            List:
-                            <span className="product-sale-original-price">
-                              ${product.productPrice}
+                return (
+                  <SwiperSlide key={product._id}>
+                    <Stack
+                      onClick={() => chooseDishHandler(product._id)}
+                      className="product-card"
+                    >
+                      <Stack className="product-img-container">
+                        <Stack
+                          className="product-img"
+                          sx={{ backgroundImage: `url(${imagePath})` }}
+                        ></Stack>
+                      </Stack>
+                      <div className="product-size">{sizeVolume}</div>
+                      <Stack className="bottom-side">
+                        <div>
+                          <>
+                            <span className="product-sale2">
+                              -{product.productSale}%
                             </span>
-                          </span>
-                        </>
-                      </div>
+                            <span className="product-sale-price">
+                              ${product.productSalePrice}
+                            </span>
+                            <span className="product-sale-original-price2">
+                              List:
+                              <span className="product-sale-original-price">
+                                ${product.productPrice}
+                              </span>
+                            </span>
+                          </>
+                        </div>
 
-                      <Button
-                        className="shop-btn"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          onAdd({
-                            _id: product._id,
-                            quantity: 1,
-                            price: product.productSalePrice
-                              ? product.productSalePrice
-                              : product.productPrice,
-                            name: product.productName,
-                            image: product.productImages[0],
-                          });
-                        }}
-                      >
-                        <ShoppingBagIcon className="icon-button" />
-                        Add to cart
-                      </Button>
+                        <Button
+                          className="shop-btn"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            onAdd({
+                              _id: product._id,
+                              quantity: 1,
+                              price: product.productSalePrice
+                                ? product.productSalePrice
+                                : product.productPrice,
+                              name: product.productName,
+                              image: product.productImages[0],
+                            });
+                          }}
+                        >
+                          <ShoppingBagIcon className="icon-button" />
+                          Add to cart
+                        </Button>
+                      </Stack>
+
+                      <Box className="product-desc">
+                        <span className="product-salee1">
+                          {product.productLeftCount} left
+                        </span>
+                        <span className="product-soldd1">
+                          {product.productSold} sold
+                        </span>
+                        <span className="product-title">
+                          {product.productName}
+                        </span>
+                        <span className="product-title1">
+                          {product.productDesc}
+                        </span>
+                        <span className="product-produced-date">
+                          Prod:{producedDate}
+                        </span>
+                      </Box>
                     </Stack>
-
-                    <Box className="product-desc">
-                      <span className="product-salee1">
-                        {product.productLeftCount} left
-                      </span>
-                      <span className="product-soldd1">
-                        {product.productSold} sold
-                      </span>
-                      <span className="product-title">
-                        {product.productName}
-                      </span>
-                      <span className="product-title1">
-                        {product.productDesc}
-                      </span>
-                      <span className="product-produced-date">
-                        Prod:{producedDate}
-                      </span>
-                    </Box>
-                  </Stack>
-                </SwiperSlide>
-              );
-            })
+                  </SwiperSlide>
+                );
+              })
           ) : (
             <Box className="no-data">Products are not available!</Box>
           )}
