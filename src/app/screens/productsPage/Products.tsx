@@ -78,10 +78,10 @@ export default function Products(props: ProductsProps) {
     limit: 9,
     order: "createdAt",
     productCollections: [
-      ProductCollection.DISH,
-      ProductCollection.SALAD,
-      ProductCollection.DESSERT,
-      ProductCollection.DRINK,
+      ProductCollection.FRUITS,
+      ProductCollection.VEGETABLES,
+      ProductCollection.SWEETS,
+      ProductCollection.MEAT,
       ProductCollection.OTHER,
     ],
     search: "",
@@ -191,7 +191,7 @@ export default function Products(props: ProductsProps) {
                 <div
                   className="category-item"
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DISH)
+                    searchCollectionHandler(ProductCollection.FRUITS)
                   }
                 >
                   <h3>
@@ -202,7 +202,7 @@ export default function Products(props: ProductsProps) {
                 <div
                   className="category-item"
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.SALAD)
+                    searchCollectionHandler(ProductCollection.VEGETABLES)
                   }
                 >
                   <h3>
@@ -213,7 +213,7 @@ export default function Products(props: ProductsProps) {
                 <div
                   className="category-item"
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DRINK)
+                    searchCollectionHandler(ProductCollection.SWEETS)
                   }
                 >
                   <h3>
@@ -224,7 +224,7 @@ export default function Products(props: ProductsProps) {
                 <div
                   className="category-item"
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DESSERT)
+                    searchCollectionHandler(ProductCollection.MEAT)
                   }
                 >
                   <h3>
@@ -353,10 +353,7 @@ export default function Products(props: ProductsProps) {
                 {products.length !== 0 ? (
                   products.map((product: Product) => {
                     const imagePath = `${serverApi}/${product.productImages[0]}`;
-                    const sizeVolume =
-                      product.productCollection === ProductCollection.DRINK
-                        ? product.productVolume + ""
-                        : product.productSize + "";
+
                     const producedDate = moment(product.createdAt).format(
                       "DD MM YYYY"
                     );
@@ -373,7 +370,9 @@ export default function Products(props: ProductsProps) {
                             sx={{ backgroundImage: `url(${imagePath})` }}
                           ></Stack>
                         </Stack>
-                        <div className="product-size2">{sizeVolume}</div>
+                        <div className="product-size2">
+                          {product.productSize}
+                        </div>
                         <Stack className={"bottom-side2"} flexDirection={"row"}>
                           <div>
                             {product.productSale && product.productSale > 0 ? (

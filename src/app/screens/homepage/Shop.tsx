@@ -74,7 +74,7 @@ export default function Shop(props: ProductsProps) {
     page: 1,
     limit: 12,
     order: "createdAt",
-    productCollection: ProductCollection.DISH,
+    productCollection: ProductCollection.FRUITS,
     search: "",
   });
 
@@ -137,17 +137,19 @@ export default function Shop(props: ProductsProps) {
                 <Button
                   sx={{
                     backgroundColor:
-                      productSearch.productCollection === ProductCollection.DISH
+                      productSearch.productCollection ===
+                      ProductCollection.FRUITS
                         ? "#ffb524" // Active button color
                         : "#f4f6f8", // Inactive button color
                     color:
-                      productSearch.productCollection === ProductCollection.DISH
+                      productSearch.productCollection ===
+                      ProductCollection.FRUITS
                         ? "#ffffff" // Text color for the active button
                         : "#000000", // Text color for the inactive button
                     "&:hover": {
                       backgroundColor:
                         productSearch.productCollection ===
-                        ProductCollection.DISH
+                        ProductCollection.FRUITS
                           ? "#e6a11f" // Darker shade on hover for active button
                           : "#e0e3e6", // Slightly darker shade on hover for inactive button
                     },
@@ -158,7 +160,7 @@ export default function Shop(props: ProductsProps) {
                   variant="contained"
                   className={"order"}
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DISH)
+                    searchCollectionHandler(ProductCollection.FRUITS)
                   }
                 >
                   Fruits
@@ -168,18 +170,18 @@ export default function Shop(props: ProductsProps) {
                   sx={{
                     backgroundColor:
                       productSearch.productCollection ===
-                      ProductCollection.SALAD
+                      ProductCollection.VEGETABLES
                         ? "#ffb524"
                         : "#f4f6f8",
                     color:
                       productSearch.productCollection ===
-                      ProductCollection.SALAD
+                      ProductCollection.VEGETABLES
                         ? "#ffffff"
                         : "#000000",
                     "&:hover": {
                       backgroundColor:
                         productSearch.productCollection ===
-                        ProductCollection.SALAD
+                        ProductCollection.VEGETABLES
                           ? "#e6a11f"
                           : "#e0e3e6",
                     },
@@ -190,7 +192,7 @@ export default function Shop(props: ProductsProps) {
                   variant="contained"
                   className={"order"}
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.SALAD)
+                    searchCollectionHandler(ProductCollection.VEGETABLES)
                   }
                 >
                   Vegetables
@@ -200,18 +202,18 @@ export default function Shop(props: ProductsProps) {
                   sx={{
                     backgroundColor:
                       productSearch.productCollection ===
-                      ProductCollection.DRINK
+                      ProductCollection.SWEETS
                         ? "#ffb524"
                         : "#f4f6f8",
                     color:
                       productSearch.productCollection ===
-                      ProductCollection.DRINK
+                      ProductCollection.SWEETS
                         ? "#ffffff"
                         : "#000000",
                     "&:hover": {
                       backgroundColor:
                         productSearch.productCollection ===
-                        ProductCollection.DRINK
+                        ProductCollection.SWEETS
                           ? "#e6a11f"
                           : "#e0e3e6",
                     },
@@ -222,7 +224,7 @@ export default function Shop(props: ProductsProps) {
                   className={"order"}
                   variant="contained"
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DRINK)
+                    searchCollectionHandler(ProductCollection.SWEETS)
                   }
                 >
                   Sweets
@@ -231,19 +233,17 @@ export default function Shop(props: ProductsProps) {
                 <Button
                   sx={{
                     backgroundColor:
-                      productSearch.productCollection ===
-                      ProductCollection.DESSERT
+                      productSearch.productCollection === ProductCollection.MEAT
                         ? "#ffb524"
                         : "#f4f6f8",
                     color:
-                      productSearch.productCollection ===
-                      ProductCollection.DESSERT
+                      productSearch.productCollection === ProductCollection.MEAT
                         ? "#ffffff"
                         : "#000000",
                     "&:hover": {
                       backgroundColor:
                         productSearch.productCollection ===
-                        ProductCollection.DESSERT
+                        ProductCollection.MEAT
                           ? "#e6a11f"
                           : "#e0e3e6",
                     },
@@ -254,7 +254,7 @@ export default function Shop(props: ProductsProps) {
                   variant="contained"
                   className={"order"}
                   onClick={() =>
-                    searchCollectionHandler(ProductCollection.DESSERT)
+                    searchCollectionHandler(ProductCollection.MEAT)
                   }
                 >
                   Meat
@@ -322,10 +322,7 @@ export default function Shop(props: ProductsProps) {
             {products.length !== 0 ? (
               products.map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`;
-                const sizeVolume =
-                  product.productCollection === ProductCollection.DRINK
-                    ? product.productVolume + ""
-                    : product.productSize + "";
+
                 const producedDate = moment(product.createdAt).format(
                   "DD MM YYYY"
                 );
@@ -342,7 +339,7 @@ export default function Shop(props: ProductsProps) {
                         sx={{ backgroundImage: `url(${imagePath})` }}
                       ></Stack>
                     </Stack>
-                    <div className="product-size">{sizeVolume}</div>
+                    <div className="product-size">{product.productSize}</div>
                     <Stack className={"bottom-side"}>
                       <div>
                         {product.productSale && product.productSale > 0 ? (

@@ -66,10 +66,7 @@ export default function ProductSwiper({
               .filter((product: Product) => (product.productSale ?? 0) >= 1) // Filter products with sale > 1
               .map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`;
-                const sizeVolume =
-                  product.productCollection === "DRINK"
-                    ? product.productVolume + ""
-                    : product.productSize + "";
+
                 const producedDate = moment(product.createdAt).format(
                   "DD MM YYYY"
                 );
@@ -86,7 +83,7 @@ export default function ProductSwiper({
                           sx={{ backgroundImage: `url(${imagePath})` }}
                         ></Stack>
                       </Stack>
-                      <div className="product-size">{sizeVolume}</div>
+                      <div className="product-size">{product.productSize}</div>
                       <Stack className="bottom-side">
                         <div>
                           <>
