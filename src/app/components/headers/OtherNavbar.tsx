@@ -3,13 +3,11 @@ import { Box, ListItemIcon, Menu, MenuItem } from "@mui/material";
 import { Container, Stack } from "@mui/system";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
-import { useEffect, useState } from "react";
 import { CartItem } from "../../../lib/types/search";
 import { useGlobals } from "../../hooks/useGlobals";
 import { serverApi } from "../../../lib/config";
 import { Logout } from "@mui/icons-material";
 import React from "react";
-import Carousel from "../../../carousel";
 
 // Swipper
 
@@ -34,7 +32,6 @@ export default function HomeNavbar(props: HomeNavbarProps) {
     onRemove,
     onDelete,
     onDeleteAll,
-    setSignupOpen,
     setLoginOpen,
     anchorEl,
     handleLogoutClick,
@@ -46,7 +43,7 @@ export default function HomeNavbar(props: HomeNavbarProps) {
   // HANDLERS
 
   return (
-    <div className="other-navbar">
+    <div className="home-navbar other-navbar">
       <div className="background-white"></div>
       <Container className="navbar-container">
         <Stack className="menu" data-aos="fade-up">
@@ -58,10 +55,9 @@ export default function HomeNavbar(props: HomeNavbarProps) {
 
               <Stack className={"middle-navbar"}>
                 <Box className={"hover-line"}>
-                  <NavLink to={"/"} activeClassName={"underline"}>
-                    Home
-                  </NavLink>
+                  <NavLink to={"/"}>Home</NavLink>
                 </Box>
+
                 <Box className={"hover-line"}>
                   <NavLink to={"/products"} activeClassName={"underline"}>
                     Shop
@@ -92,15 +88,13 @@ export default function HomeNavbar(props: HomeNavbarProps) {
             </Stack>
           </Stack>
           <Stack className={"right-side"}>
-            <Box className={"nbaket"}>
-              <Basket
-                cartItems={cartItems}
-                onAdd={onAdd}
-                onRemove={onRemove}
-                onDelete={onDelete}
-                onDeleteAll={onDeleteAll}
-              />
-            </Box>
+            <Basket
+              cartItems={cartItems}
+              onAdd={onAdd}
+              onRemove={onRemove}
+              onDelete={onDelete}
+              onDeleteAll={onDeleteAll}
+            />
 
             {!authMember ? (
               <Box>
@@ -169,7 +163,6 @@ export default function HomeNavbar(props: HomeNavbarProps) {
             </Menu>
           </Stack>
         </Stack>
-        <Stack className={"other-frame"}></Stack>
       </Container>
     </div>
   );

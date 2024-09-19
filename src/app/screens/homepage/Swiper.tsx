@@ -2,21 +2,14 @@ import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import { Autoplay, Navigation } from "swiper";
-import {
-  Container,
-  Stack,
-  Button,
-  Box,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Container, Stack, Button, Box } from "@mui/material";
 import { ShoppingBag as ShoppingBagIcon } from "@mui/icons-material";
 import moment from "moment";
 import { Product } from "../../../lib/types/product";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "../../../css/home.css";
+import { Autoplay, Navigation } from "swiper/modules";
 
 interface SwiperProps {
   products: Product[];

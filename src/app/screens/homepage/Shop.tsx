@@ -6,7 +6,6 @@ import {
   Stack,
   Typography,
   TextField,
-  Badge,
   PaginationItem,
   Pagination,
 } from "@mui/material";
@@ -74,7 +73,13 @@ export default function Shop(props: ProductsProps) {
     page: 1,
     limit: 12,
     order: "createdAt",
-    productCollection: ProductCollection.FRUITS,
+    productCollections: [
+      ProductCollection.FRUITS,
+      ProductCollection.VEGETABLES,
+      ProductCollection.SWEETS,
+      ProductCollection.MEAT,
+      ProductCollection.OTHER,
+    ],
     search: "",
   });
 

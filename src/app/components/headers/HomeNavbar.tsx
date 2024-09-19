@@ -3,7 +3,6 @@ import { Box, ListItemIcon, Menu, MenuItem } from "@mui/material";
 import { Container, Stack } from "@mui/system";
 import { NavLink } from "react-router-dom";
 import Basket from "./Basket";
-import { useEffect, useState } from "react";
 import { CartItem } from "../../../lib/types/search";
 import { useGlobals } from "../../hooks/useGlobals";
 import { serverApi } from "../../../lib/config";

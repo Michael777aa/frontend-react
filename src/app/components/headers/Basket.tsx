@@ -64,17 +64,24 @@ export default function Basket(props: BasketProps) {
     }
   };
 
+  const deleteAllProducts = async () => {
+    try {
+      if (!authMember) throw new Error(Messages.error2);
+      const confirmation = window.confirm(
+        "Do you want to remove all products from the basket?"
+      );
+      if (confirmation) {
+        onDeleteAll();
+      }
+      sweetTopSuccessAlert("All products have been removed from basket");
+    } catch (err) {
+      console.log(err);
+      sweetErrorHandling(err).then();
+    }
+  };
+
   return (
     <Box className={"cart-bag"}>
-      <Badge
-        badgeContent={cartItems.length}
-        style={{
-          position: "relative",
-          top: "-14px",
-          left: "27px",
-        }}
-        color="secondary"
-      ></Badge>
       <IconButton
         className="icon-button"
         aria-label="cart"
@@ -84,6 +91,15 @@ export default function Basket(props: BasketProps) {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
+        <Badge
+          badgeContent={cartItems.length}
+          style={{
+            position: "relative",
+            top: "-14px",
+            left: "27px",
+          }}
+          color="secondary"
+        ></Badge>
         <ShoppingBagIcon className="icon-button" />
       </IconButton>
       <Menu
@@ -129,9 +145,14 @@ export default function Basket(props: BasketProps) {
               <Stack flexDirection={"row"}>
                 <div>Cart Products: </div>
                 <DeleteForeverIcon
-                  sx={{ ml: "5px", cursor: "pointer" }}
+                  sx={{
+                    ml: "5px",
+                    position: "relative",
+                    left: "290px",
+                    cursor: "pointer",
+                  }}
                   color={"primary"}
-                  onClick={() => onDeleteAll()}
+                  onClick={() => deleteAllProducts()}
                 />
               </Stack>
             )}
