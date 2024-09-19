@@ -30,6 +30,7 @@ export default function ProductSwiper({
   return (
     <Container disableGutters>
       <h1 className="hot-sales">HOT sales</h1>
+
       <Stack className="product-wrapper">
         {/* Custom navigation buttons */}
         <Box ref={prevRef} className="prev-button">
@@ -38,7 +39,6 @@ export default function ProductSwiper({
         <Box ref={nextRef} className="next-button">
           <ArrowForwardIcon className="icon" />
         </Box>
-
         <Swiper
           className={"swiper-main"}
           navigation={{

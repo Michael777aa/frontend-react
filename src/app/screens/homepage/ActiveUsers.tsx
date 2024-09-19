@@ -17,7 +17,7 @@ export default function ActiveUsers() {
   return (
     <div className="active-users-frame">
       <Container>
-        <Stack data-aos="fade-up" className="main">
+        <Stack className="main">
           <Box className="category-title">Active Users</Box>
           <Stack className="cards-frame">
             <CssVarsProvider>

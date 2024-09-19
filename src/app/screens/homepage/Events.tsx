@@ -1,5 +1,6 @@
 import { Box, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, createSelector } from "@reduxjs/toolkit";
 import EventService from "../../services/EventService";
@@ -55,6 +56,7 @@ export default function Events() {
               className={"events-info swiper-wrapper"}
               slidesPerView={"auto"}
               centeredSlides={true}
+              modules={[Navigation, Autoplay, Pagination]}
               spaceBetween={30}
               navigation={{
                 nextEl: ".swiper-button-next",
@@ -73,7 +75,7 @@ export default function Events() {
                 <SwiperSlide key={event._id} className={"events-info-frame"}>
                   <div className={"events-img"}>
                     <img
-                      src={`${serverApi}/${event.eventImages[0]}`}
+                      src={`${serverApi}/${event.eventImages[0]}`} // Assuming serverApi is defined and holds the base URL
                       className={"events-img"}
                       alt={event.eventName}
                     />
@@ -96,7 +98,10 @@ export default function Events() {
                         <div className={"bott-info"}>
                           <div className={"bott-info-main"}>
                             <img src={"/icons/calendar.svg"} alt="calendar" />
-                            {new Date(event.createdAt).toLocaleDateString()}
+                            {new Date(
+                              event.createdAt
+                            ).toLocaleDateString()}{" "}
+                            {/* Format date as needed */}
                           </div>
                           <div className={"bott-info-main"}>
                             <img src={"/icons/location.svg"} alt="location" />
