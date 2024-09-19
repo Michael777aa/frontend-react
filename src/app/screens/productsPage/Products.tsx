@@ -73,6 +73,8 @@ export default function Products(props: ProductsProps) {
   const { onAdd } = props;
   const { setProducts } = actionDispatch(useDispatch());
   const { products } = useSelector(productsRetriever);
+  const [saleProducts, setSaleProducts] = useState<Product[]>([]);
+
   const [productSearch, setProductSearch] = useState<ProductInquiry>({
     page: 1,
     limit: 9,
@@ -92,24 +94,37 @@ export default function Products(props: ProductsProps) {
   const history = useHistory();
 
   useEffect(() => {
-    // Data fetch
-    const product = new ProductService();
-    product
-      .getProducts(productSearch)
-      .then((data) => {
-        console.log("data: ", data);
-        const filteredProducts = data.filter(
-          (product: Product) =>
-            product.productPrice >= priceRange[0] &&
-            product.productPrice <= priceRange[1]
+    const fetchProducts = async () => {
+      try {
+        const productService = new ProductService();
+        const allProducts = await productService.getProducts(productSearch);
+        const saleItems = allProducts.filter(
+          (product: Product) => product.productSale && product.productSale > 0
         );
-        setProducts(filteredProducts);
+        setProducts(allProducts);
+        setSaleProducts(saleItems.slice(0, 3));
+      } catch (error) {
+        console.log("Error fetching products:", error);
+      }
+    };
+
+    fetchProducts();
+  }, [productSearch, priceRange]);
+
+  useEffect(() => {
+    const productService = new ProductService();
+    productService
+      .getProducts(productSearch)
+      .then((products: Product[]) => {
+        const filteredProducts = products.filter(
+          (product) => (product as any).productSale > 0
+        );
+        setSaleProducts(filteredProducts.slice(0, 3));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [productSearch]);
-
+  }, []);
   useEffect(() => {
     if (searchText === "") {
       productSearch.search = "";
@@ -296,49 +311,49 @@ export default function Products(props: ProductsProps) {
                 </RadioGroup>
               </FormControl>
               <div className="featured-products">
-                <h1>Featured products</h1>
+                <h1>Featured Products</h1>
 
-                <div className="main-feauture">
-                  <div className="main-featured">
-                    <div className="left-image">
-                      <img src="/img/featur-1.jpg" alt="" />
-                    </div>
-                    <div className="right-sale">
-                      <h3>Apple</h3>
-                      <div className="right-pricing">
-                        <h4>25$</h4>
-                        <h4 className="sale-color">12$</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="main-featured">
-                    <div className="left-image">
-                      <img src="/img/best-product-1.jpg" alt="" />
-                    </div>
-                    <div className="right-sale">
-                      <h3>Orange</h3>
-                      <div className="right-pricing">
-                        <h4>35$</h4>
-                        <h4 className="sale-color">20$</h4>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="main-featured">
-                    <div className="left-image">
-                      <img src="/img/image.jpg" alt="" />
-                    </div>
-                    <div className="right-sale">
-                      <h3>Lemon</h3>
-                      <div className="right-pricing">
-                        <h4>123$</h4>
-                        <h4 className="sale-color">45$</h4>
-                      </div>
-                    </div>
-                  </div>
+                <div className="main-feature">
+                  {saleProducts.length > 0 ? (
+                    saleProducts.map((product: Product) => {
+                      const imagePath = `${serverApi}/${product.productImages[0]}`;
+
+                      return (
+                        <div
+                          key={product._id}
+                          onClick={() => chooseDishHandler(product._id)}
+                          className="main-featured"
+                        >
+                          <div className="left-image">
+                            <img src={imagePath} alt={product.productName} />
+                          </div>
+                          <div className="right-sale">
+                            <h3>{product.productName}</h3>
+                            <div className="right-pricing">
+                              <h4>${product.productPrice}</h4>
+                              <h4 className="sale-color">
+                                ${product.productSalePrice}
+                              </h4>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+                  ) : (
+                    <Typography
+                      style={{
+                        fontSize: "20px",
+                        paddingTop: "30px",
+                        fontWeight: "700",
+                        color: "#45595b",
+                      }}
+                    >
+                      Onsale products not available!
+                    </Typography>
+                  )}
                 </div>
-                <button className="buttot">View More</button>
                 <div className="down-image">
-                  <img src="/img/food-city.webp" alt="" />
+                  <img src="/img/food-city.webp" alt="Food City" />
                 </div>
               </div>
             </div>

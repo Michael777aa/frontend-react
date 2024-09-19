@@ -335,7 +335,7 @@ h2 {
 /* Pagination */
 .pagination-section2 {
   position: relative;
-  top: 30px;
+  top: 15px;
   display: flex;
   justify-content: center;
   align-items: center;

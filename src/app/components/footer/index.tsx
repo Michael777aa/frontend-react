@@ -211,7 +211,7 @@ export default function Footer() {
             >
               Phone: +82 10 7555 1575
             </Typography>
-            <Typography variant="h2" mt={2}>
+            <Typography variant="h2" className="emaillll22234" mt={2}>
               Payment Accepted
             </Typography>
             <Box display="flex" gap={2} mt={4}>

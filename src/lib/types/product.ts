@@ -26,6 +26,7 @@ export interface ProductInquiry {
   order: string;
   page: number;
   limit: number;
+
   productCollection?: ProductCollection;
   productCollections?: ProductCollection[];
   search?: string;
