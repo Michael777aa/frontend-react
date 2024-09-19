@@ -19,7 +19,6 @@ import "../css/navbar.css";
 import "../css/footer.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import ProductDetailPage from "./screens/productDetailPage";
 
 // Import AOS and its styles
 
@@ -93,9 +92,6 @@ function App() {
         <Route path="/products">
           <ProductsPage onAdd={onAdd} />
         </Route>
-        <Route path="/product-detail">
-          <ProductDetailPage />
-        </Route>
         <Route path="/orders">
           <OrdersPage />
         </Route>
@@ -106,7 +102,6 @@ function App() {
           <HelpPage />
         </Route>
         <Route path="/">
-          {/* <Test /> */}
           <HomePage onAdd={onAdd} />
         </Route>
       </Switch>

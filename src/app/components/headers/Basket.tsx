@@ -69,10 +69,9 @@ export default function Basket(props: BasketProps) {
       <Badge
         badgeContent={cartItems.length}
         style={{
-          position: "absolute",
-          textAlign: "end",
-          left: "1180px",
-          top: "30px",
+          position: "relative",
+          top: "-14px",
+          left: "27px",
         }}
         color="secondary"
       ></Badge>

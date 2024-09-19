@@ -74,7 +74,13 @@ export default function Shop(props: ProductsProps) {
     page: 1,
     limit: 12,
     order: "createdAt",
-    productCollection: ProductCollection.DISH,
+    productCollections: [
+      ProductCollection.DISH,
+      ProductCollection.DESSERT,
+      ProductCollection.DRINK,
+      ProductCollection.SALAD,
+      ProductCollection.OTHER,
+    ],
     search: "",
   });
 
@@ -374,7 +380,6 @@ export default function Shop(props: ProductsProps) {
                           onAdd({
                             _id: product._id,
                             quantity: 1,
-
                             price: product.productSalePrice
                               ? product.productSalePrice
                               : product.productPrice,
@@ -394,7 +399,7 @@ export default function Shop(props: ProductsProps) {
                       </span>
                       <span className={"product-soldd1"}>
                         {product.productSold} sold
-                      </span>{" "}
+                      </span>
                       <span className={"product-title"}>
                         {product.productName}
                       </span>
@@ -430,14 +435,6 @@ export default function Shop(props: ProductsProps) {
               onChange={paginationHandler}
             />
           </Stack>
-          <div>
-            <ProductSwiper
-              products={products}
-              serverApi={serverApi}
-              chooseDishHandler={chooseDishHandler}
-              onAdd={onAdd}
-            />
-          </div>
         </Stack>
       </Container>
     </>

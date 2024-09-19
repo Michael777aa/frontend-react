@@ -12,7 +12,6 @@ export interface AppRootState {
 
 // HOMEPAGE
 export interface HomePageState {
-  popularDishes: Product[];
   newDishes: Product[];
   products: Product[];
   topUsers: Member[];

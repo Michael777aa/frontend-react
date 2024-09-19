@@ -95,7 +95,11 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
       handleLoginRequest().then();
     }
   };
-
+  const handleEmailKeyDown = (e: T) => {
+    if (e.key === "Enter" && signupOpen) {
+      handleSignupRequest().then();
+    }
+  };
   const handleSignupRequest = async () => {
     try {
       const isFullfill =
@@ -201,7 +205,6 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 label="Password"
                 variant="outlined"
                 onChange={handlePassword}
-                onKeyDown={handlePasswordKeyDown}
               />
               <TextField
                 sx={{ marginTop: "10px", width: "400px" }}
@@ -217,6 +220,7 @@ export default function AuthenticationModal(props: AuthenticationModalProps) {
                 label="Email"
                 variant="outlined"
                 onChange={handleEmail}
+                onKeyDown={handleEmailKeyDown}
               />
               <Fab
                 sx={{
