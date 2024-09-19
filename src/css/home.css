@@ -312,7 +312,7 @@
 }
 .round2 {
   position: relative;
-  top: 20px;
+
   display: flex;
   align-items: center;
   justify-content: center;
@@ -667,15 +667,6 @@
 }
 /* CARDS */
 
-.swipers .product-card {
-  width: 293px;
-  height: 448px;
-  margin-top: 25px;
-  border: 1px solid #d7b686;
-  border-radius: 15px;
-
-  transition: box-shadow 0.3s ease-in-out;
-}
 .products .product-wrapper {
   width: 100%;
   height: auto;
@@ -686,11 +677,8 @@
   align-items: center;
   flex-wrap: wrap;
 }
-.swipers .no-datasss {
-  font-size: 55px;
-  color: red;
-}
-.product-wrapper .product-card {
+
+.products .product-wrapper .product-card {
   width: 293px;
   height: 448px;
   margin-top: 25px;
@@ -700,11 +688,11 @@
   transition: box-shadow 0.3s ease-in-out; /* Smooth transition for box-shadow */
 }
 
-.product-wrapper .product-card:hover {
+.products .product-wrapper .product-card:hover {
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.product-img-container {
+.products .product-img-container {
   width: 293px;
   height: 224px;
   position: relative;
@@ -714,7 +702,7 @@
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
-.product-img {
+.products .product-img {
   width: 100%;
   height: 100%;
   border-top-left-radius: 10px;
@@ -725,11 +713,11 @@
   transition: transform 0.3s ease-in-out; /* Smooth transition */
 }
 
-.product-img-container:hover .product-img {
+.products .product-img-container:hover .product-img {
   transform: scale(1.2); /* Subtle zoom effect */
 }
 
-.product-size {
+.products .product-size {
   position: absolute;
   margin-top: 10px;
   margin-left: 10px;
@@ -750,14 +738,14 @@
   color: #f8f8ff;
 }
 
-.shop-btn .icon-button {
+.products .shop-btn .icon-button {
   color: #81c408;
   font-size: 20px;
   position: relative;
 
   top: -3px;
 }
-.product-desc {
+.products .product-desc {
   top: -50px;
   position: relative;
   display: flex;
@@ -765,7 +753,7 @@
   justify-content: center;
   align-items: center;
 }
-.product-title {
+.products .product-title {
   font-family: "Raleway", sans-serif;
   font-weight: 400;
   line-height: 1.5;
@@ -774,7 +762,7 @@
   font-weight: 600;
   color: #45595b;
 }
-.product-salee1 {
+.products .product-salee1 {
   position: relative;
 
   top: 8px;
@@ -791,7 +779,7 @@
   color: #45595b;
 }
 
-.product-soldd1 {
+.products .product-soldd1 {
   position: absolute;
 
   top: 8px;
@@ -807,7 +795,7 @@
   font-weight: 500;
   color: #45595b;
 }
-.product-produced-date {
+.products .product-produced-date {
   position: absolute;
 
   top: 210px;
@@ -821,7 +809,7 @@
   line-height: 1.4;
   color: #707070;
 }
-.product-title1 {
+.products .product-title1 {
   width: 230px;
   height: 110px;
   margin-top: 5px;
@@ -853,35 +841,9 @@
   top: 5px;
   padding: 5px 12px;
 }
-.swipers .shop-btn {
-  color: #81c408;
-  font-weight: 700;
-  font-size: 16px;
-  text-transform: none;
-  border-radius: 100px;
-  border: 1px solid #ffb524;
-  transition: all 0.3s ease;
-  gap: 8px;
-  position: relative;
-  top: 5px;
-  padding: 5px 12px;
-}
-.swipers .shop-btn:hover {
-  background-color: #ffb524;
-  color: #fff;
-}
 .products .shop-btn:hover {
   background-color: #ffb524;
   color: #fff;
-}
-.swipers .bottom-side {
-  position: relative;
-  top: 160px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
 }
 
 .products .bottom-side {
@@ -893,15 +855,8 @@
   align-items: center;
   padding: 0 15px;
 }
-.swipers .product-price {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 24px;
 
-  color: #45595b;
-}
-.product-price {
+.products .product-price {
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
@@ -910,7 +865,7 @@
   color: #45595b;
 }
 /* Sale Percentage Styling */
-.product-sale2 {
+.products .product-sale2 {
   position: absolute;
   color: red;
   font-size: 24px;
@@ -920,7 +875,7 @@
 }
 
 /* Sale Price Styling */
-.product-sale-price {
+.products .product-sale-price {
   position: absolute;
   color: #45595b;
   font-size: 20px;
@@ -930,7 +885,7 @@
 }
 
 /* Original Price Styling */
-.product-sale-original-price {
+.products .product-sale-original-price {
   position: absolute;
   color: #7a7a7a;
   font-size: 14px;
@@ -938,7 +893,7 @@
   font-weight: 400;
   margin-left: 3px;
 }
-.product-sale-original-price2 {
+.products .product-sale-original-price2 {
   position: absolute;
   color: #7a7a7a;
   font-size: 14px;
@@ -996,233 +951,6 @@
   border-radius: 6px;
 }
 /* SWIPER */
-.swipers .product-wrapper2 {
-  width: 100%;
-  height: auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  column-gap: 25px;
-  align-items: center;
-  flex-wrap: wrap;
-}
-
-.swipers .product-wrapper2 .product-card2 {
-  width: 293px;
-  height: 448px;
-  margin-top: 25px;
-  border: 1px solid #d7b686;
-  border-radius: 15px;
-
-  transition: box-shadow 0.3s ease-in-out; /* Smooth transition for box-shadow */
-}
-
-.swipers .product-wrapper2 .product-card2 :hover {
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2), 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.swipers .product-img-container2 {
-  width: 293px;
-  height: 224px;
-  position: relative;
-  right: 1px;
-  bottom: 1px; /* Establishes a reference point for the image positioning */
-  overflow: hidden; /* Hides any part of the image that overflows */
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-}
-.swipers .product-img2 {
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  background-size: cover;
-  background-position: center;
-  position: absolute;
-  transition: transform 0.3s ease-in-out; /* Smooth transition */
-}
-
-.swipers .product-img-container2:hover .product-img2 {
-  transform: scale(1.2); /* Subtle zoom effect */
-}
-
-.swipers .product-size2 {
-  position: absolute;
-  margin-top: 10px;
-  margin-left: 10px;
-  z-index: 100;
-  width: 90px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #ff9200;
-
-  border-radius: 10px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 800;
-  font-size: 14px;
-  line-height: 21px;
-  color: #f8f8ff;
-}
-
-.swipers .shop-btn02 .icon-button02 {
-  color: #81c408;
-  font-size: 20px;
-  position: relative;
-
-  top: -3px;
-}
-.swipers .product-desc23 {
-  top: -50px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-.swipers .product-title23 {
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  overflow: hidden;
-  font-size: 22px;
-  font-weight: 600;
-  color: #45595b;
-}
-.swipers .product-salee121 {
-  position: relative;
-
-  top: 8px;
-  left: 5px;
-  display: block;
-  width: 100%;
-  text-align: start;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  overflow: hidden;
-  font-size: 15px;
-  font-weight: 500;
-  color: #45595b;
-}
-
-.swipers .product-soldd132 {
-  position: absolute;
-
-  top: 8px;
-  right: 5px;
-  display: block;
-  width: 100%;
-  text-align: end;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  overflow: hidden;
-  font-size: 15px;
-  font-weight: 500;
-  color: #45595b;
-}
-.swipers .product-produced-date2 {
-  position: absolute;
-
-  top: 210px;
-  right: 170px;
-  display: block;
-  width: 100%;
-  text-align: end;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.4;
-  color: #707070;
-}
-.products .product-title121 {
-  width: 230px;
-  height: 110px;
-  margin-top: 5px;
-  font-family: "Raleway", sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
-  overflow: hidden;
-  font-size: 18px;
-  color: #45595b;
-  width: 230px;
-  text-align: center;
-  /* CSS Grid settings */
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: minmax(0, auto);
-  word-break: break-word; /* Ensures words break as needed */
-  overflow-wrap: break-word; /* Wraps long words */
-}
-.swipers .shop-btn02 {
-  color: #81c408;
-  font-weight: 700;
-  font-size: 16px;
-  text-transform: none;
-  border-radius: 100px;
-  border: 1px solid #ffb524;
-  transition: all 0.3s ease;
-  gap: 8px;
-  position: relative;
-  top: 5px;
-  padding: 5px 12px;
-}
-.swipers .shop-btn02:hover {
-  background-color: #ffb524;
-  color: #fff;
-}
-
-.swipers .bottom-side2 {
-  position: relative;
-  top: 160px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 15px;
-}
-
-/* Sale Percentage Styling */
-.swipers .product-sale222 {
-  position: absolute;
-  color: red;
-  font-size: 24px;
-  font-weight: 300;
-  top: -8px;
-  left: 10px;
-}
-
-/* Sale Price Styling */
-.swipers .product-sale-price22 {
-  position: absolute;
-  color: #45595b;
-  font-size: 20px;
-  font-weight: 500;
-  top: -7px;
-  left: 80px;
-}
-
-/* Original Price Styling */
-.swipers .product-sale-original-price22 {
-  position: absolute;
-  color: #7a7a7a;
-  font-size: 14px;
-  text-decoration: line-through;
-  font-weight: 400;
-  margin-left: 3px;
-}
-.swipers .product-sale-original-price22 {
-  position: absolute;
-  color: #7a7a7a;
-  font-size: 14px;
-
-  font-weight: 400;
-  top: 20px;
-  left: 10px;
-}
 
 .swiper-main {
   width: 100%;
@@ -1359,6 +1087,7 @@
   padding-top: 20px;
   color: #343434;
 }
+
 /* CHOSEN PRODUCT */
 
 .products-page .chosen-product {

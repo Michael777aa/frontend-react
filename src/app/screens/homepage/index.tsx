@@ -32,7 +32,7 @@ export default function HomePage(props: ProductsPageProps) {
           <Shop onAdd={onAdd} />
         </Route>
       </Switch>
-      <ProductSwiper onAdd={onAdd} />
+
       <Advertisement />
       <ActiveUsers />
       <Events />
