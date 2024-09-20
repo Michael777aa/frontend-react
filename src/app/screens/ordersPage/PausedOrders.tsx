@@ -12,7 +12,7 @@ import { T } from "../../../lib/types/common";
 import { sweetErrorHandling } from "../../../lib/sweetAlert";
 import { OrderStatus } from "../../../lib/enums/order.enum";
 import { useGlobals } from "../../hooks/useGlobals";
-import OrderService from "../../services/OrderSerivce";
+import OrderService from "../../services/OrderService";
 
 const pausedOrdersRetriever = createSelector(
   retrievePausedOrders,

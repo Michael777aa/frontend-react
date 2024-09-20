@@ -14,11 +14,11 @@ class EventService {
       let url = `${this.path}/event/all`;
 
       const result = await axios.get(url);
-      console.log("getProducts: ", result);
+      console.log("getEvents: ", result);
 
       return result.data;
     } catch (err) {
-      console.log("Error, getProducts: ", err);
+      console.log("Error, getEvents: ", err);
       throw err;
     }
   }

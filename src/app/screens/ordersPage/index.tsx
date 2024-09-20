@@ -12,19 +12,24 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { Order, OrderInquiry } from "../../../lib/types/order";
 import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
 import { OrderStatus } from "../../../lib/enums/order.enum";
-import OrderService from "../../services/OrderSerivce";
+import OrderService from "../../services/OrderService";
 import { useGlobals } from "../../hooks/useGlobals";
 import { useHistory } from "react-router-dom";
 import { serverApi } from "../../../lib/config";
 import { MemberType } from "../../../lib/enums/member.enum";
+import { CartItem } from "../../../lib/types/search";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
   setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
   setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
 });
+interface ProductsProps {
+  onDeleteAll: (item: CartItem) => void;
+}
 
-export default function OrdersPage() {
+export default function OrdersPage(props: ProductsProps) {
+  const { onDeleteAll } = props;
   const history = useHistory();
   const { authMember } = useGlobals();
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
@@ -34,7 +39,7 @@ export default function OrdersPage() {
 
   const [orderInquiry, setOrderInquiry] = useState<OrderInquiry>({
     page: 1,
-    limit: 3,
+    limit: 12,
     orderStatus: OrderStatus.PAUSE,
   });
 

@@ -40,7 +40,7 @@ export default function Events() {
 
   return (
     <div className={"events-frame"}>
-      <Stack data-aos="fade-up" className={"events-main"}>
+      <Stack className={"events-main"}>
         <Box className={"events-text"}>
           <span className={"category-title"}>Events</span>
         </Box>

@@ -5,7 +5,7 @@ import HomeNavbar from "./components/headers/HomeNavbar";
 import OtherNavbar from "./components/headers/OtherNavbar";
 import HelpPage from "./screens/helpPage";
 import HomePage from "./screens/homePage";
-import OrdersPage from "./screens/ordersPage";
+
 import ProductsPage from "./screens/productsPage";
 import UserPage from "./screens/userPage";
 import useBasket from "./hooks/useBasket";
@@ -19,6 +19,7 @@ import "../css/navbar.css";
 import "../css/footer.css";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import OrdersPage from "./screens/ordersPage";
 
 // Import AOS and its styles
 
@@ -93,7 +94,7 @@ function App() {
           <ProductsPage onAdd={onAdd} />
         </Route>
         <Route path="/orders">
-          <OrdersPage />
+          <OrdersPage onDeleteAll={onDeleteAll} />
         </Route>
         <Route path="/member-page">
           <UserPage />

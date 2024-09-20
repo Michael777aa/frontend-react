@@ -14,7 +14,7 @@ import {
   sweetTopSuccessAlert,
 } from "../../../lib/sweetAlert";
 import { useGlobals } from "../../hooks/useGlobals";
-import OrderService from "../../services/OrderSerivce";
+import OrderService from "../../services/OrderService";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 
 interface BasketProps {
