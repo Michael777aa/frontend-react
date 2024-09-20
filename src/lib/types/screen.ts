@@ -2,6 +2,7 @@ import { Member } from "./member";
 import { Order } from "./order";
 import { Product } from "./product";
 import { Event } from "./event";
+import { Coupan } from "./coupan";
 
 // REACT APP STATE
 export interface AppRootState {
@@ -16,6 +17,7 @@ export interface HomePageState {
   products: Product[];
   topUsers: Member[];
   events: Event[];
+  coupons: Coupan[];
 }
 
 // PRODUCTSPAGE

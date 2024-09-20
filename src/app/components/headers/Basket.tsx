@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Box, Button, Stack } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
@@ -16,6 +16,20 @@ import {
 import { useGlobals } from "../../hooks/useGlobals";
 import OrderService from "../../services/OrderService";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
+import { Dispatch, createSelector } from "@reduxjs/toolkit";
+import { retrieveCoupons } from "../../screens/homePage/selector";
+import { setCoupons } from "../../screens/homePage/slice";
+import { Coupan } from "../../../lib/types/coupan";
+import CoupanService from "../../services/CoupanService";
+import { useDispatch, useSelector } from "react-redux";
+
+const actionDispatch = (dispatch: Dispatch) => ({
+  setCoupons: (data: Coupan[]) => dispatch(setCoupons(data)),
+});
+
+const couponRetriever = createSelector(retrieveCoupons, (coupons) => ({
+  coupons,
+}));
 
 interface BasketProps {
   cartItems: CartItem[];
@@ -26,6 +40,9 @@ interface BasketProps {
 }
 
 export default function Basket(props: BasketProps) {
+  const dispatch = useDispatch();
+  const { setCoupons } = actionDispatch(dispatch);
+  const { coupons } = useSelector(couponRetriever);
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
   const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
@@ -38,6 +55,20 @@ export default function Basket(props: BasketProps) {
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  useEffect(() => {
+    // Data fetch
+    const coupan = new CoupanService();
+    coupan
+      .getCoupons()
+      .then((data) => {
+        console.log("data: ", data);
+        setCoupons(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   /** HANDLERS **/
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {

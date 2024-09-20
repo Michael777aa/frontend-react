@@ -7,7 +7,7 @@ import EventService from "../../services/EventService";
 import { useEffect } from "react";
 import { setEvents } from "./slice";
 import { retrieveEvents } from "./selector";
-import { Event, EventStatus } from "../../../lib/types/event";
+import { Event } from "../../../lib/types/event";
 import { serverApi } from "../../../lib/config";
 
 const actionDispatch = (dispatch: Dispatch) => ({
