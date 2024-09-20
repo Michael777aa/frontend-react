@@ -514,142 +514,142 @@
 
 .basket-frame {
   position: relative;
-  padding: 10px 4px 0px 4px;
-  width: 450px;
-  height: auto;
-  display: flex;
-  flex-direction: column;
-  background: #f8f8ff;
+  padding: 16px;
+  width: 550px;
+  background: #ffffff;
   border-radius: 16px;
 }
 
-.basket-frame .all-check-box {
-  padding: 0px 6px;
-  width: 100%;
-  height: 35px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+.all-check-box {
+  padding: 10px 12px;
   background: #7edbb1;
-  border-width: 1px 0px;
-  border-style: solid;
-  border-color: #343434;
-}
-
-.basket-frame .basket-info-box {
-  position: relative;
-  margin-top: 6px;
-  width: 100%;
-  height: auto;
+  border: 1px solid #343434;
+  border-radius: 8px;
   display: flex;
-  flex-direction: row;
+  justify-content: space-between;
   align-items: center;
 }
 
-.basket-info-box .product-img {
+.basket-info-box {
+  margin-top: 8px;
+  padding: 10px;
+  background: #f8f8ff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.product-img {
   width: 60px;
   height: 60px;
-  filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.25));
-  border-radius: 29px;
+  border-radius: 50%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.15));
 }
 
-.basket-info-box .product-name {
-  margin-left: 13px;
-  width: 185px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  color: #000000;
-}
-
-.basket-info-box .product-price {
-  width: 80px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
+.product-name {
+  margin-left: 15px;
+  font-family: "Poppins", sans-serif;
   font-size: 18px;
+  font-weight: 500;
+  color: #333;
+  flex: 1; /* Allow this to take available space */
+}
+.ewrwrew {
   position: relative;
-  right: 20px;
-  letter-spacing: 2px;
+  right: 15px;
+}
+.werwe {
+  position: relative;
+}
+.hellow {
+  position: relative;
+  margin-right: 30px;
+}
+.qty-box {
+  display: flex;
+  align-items: center;
+  margin-left: 1px;
+}
+.coupan {
+  width: 400px;
+}
+.qty-btn {
+  margin-right: 30px;
+  border: none;
+  background: #747d88;
+  color: #fff;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.price-text {
+  position: relative;
+  right: 25px;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
   color: #ae0000;
 }
 
-.basket-info-box
-  .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input {
-  padding: 6.5px 14px;
-}
-
-.basket-info-box .css-ece9u5 {
-  min-width: 72px;
-}
-
-.basket-frame .cancel-btn {
-  position: absolute;
-  top: 33%;
-  right: 2%;
-  cursor: pointer;
-}
-.basket-frame .remove {
-  width: 20px;
-  height: 20px;
-}
-.basket-frame .add {
-  width: 20px;
-  height: 20px;
-}
-.basket-frame .basket-order {
-  margin-top: 10px;
-  width: 100%;
-  height: 64px;
+.apply-coupon {
   display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  border-top: 1px solid rgba(0, 0, 0, 0.5);
+  margin-top: 10px;
 }
 
-.basket-order .price {
-  width: 200px;
+.error-text {
+  color: #f44336; /* Red color for error messages */
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.total-price-area {
   display: flex;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  color: #000000;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
 }
 
-.basket-frame .orders-wrapper {
-  position: relative;
-  overflow: hidden;
+.cart-button {
   width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
+  padding: 12px;
+  background: #1976d2; /* Primary color */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  transition: background 0.3s;
 }
 
-.basket-frame .orders-wrapper::-webkit-scrollbar {
-  width: 10px;
+.cart-button:hover {
+  background: #1565c0; /* Darker shade on hover */
 }
 
-.basket-frame .orders-wrapper::-webkit-scrollbar-thumb {
+/* Scrollbar styles */
+.orders-wrapper {
+  overflow-y: auto;
+  max-height: 200px; /* Set a maximum height */
+}
+
+.orders-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+
+.orders-wrapper::-webkit-scrollbar-thumb {
   background-color: #888;
-  border-radius: 5px;
+  border-radius: 4px;
 }
 
-.basket-frame .orders-wrapper::-webkit-scrollbar-track {
+.orders-wrapper::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
 
-.basket-frame .orders-main-wrapper {
-  position: relative;
-  overflow: hidden;
+.orders-main-wrapper {
   margin-top: 10px;
   width: 100%;
-  height: 260px;
   display: flex;
   flex-direction: column;
 }

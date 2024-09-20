@@ -49,7 +49,6 @@ export default function Basket(props: BasketProps) {
   const [couponCode, setCouponCode] = useState<string>("");
   const [discount, setDiscount] = useState<number>(0);
   const [couponError, setCouponError] = useState<string>("");
-
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -58,43 +57,28 @@ export default function Basket(props: BasketProps) {
     coupan
       .getCoupons()
       .then((data) => {
-        console.log("Coupons fetched: ", data); // Log the fetched coupons
+        console.log("Coupons fetched: ", data);
         setCoupons(data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   const applyCoupon = () => {
-    console.log("Coupon code entered: ", couponCode); // Log the entered coupon code
-    console.log("Available coupons: ", coupons); // Log the coupons state for debugging
-
-    if (!couponCode) {
-      setCouponError("Please enter a valid coupon code");
-      setDiscount(0);
-      return;
-    }
-
     const foundCoupon = coupons.find(
       (e: Coupan) =>
         e?.name?.toLowerCase().trim() === couponCode.toLowerCase().trim()
     );
-
     if (foundCoupon) {
-      const discountValue = Number(foundCoupon.discount); // Ensure discount is a number
+      const discountValue = Number(foundCoupon.discount);
       if (!isNaN(discountValue) && discountValue > 0 && discountValue <= 100) {
         setDiscount(discountValue);
         setCouponError("");
-      } else {
-        setDiscount(0);
-        setCouponError("Invalid discount percentage");
       }
     } else {
       setDiscount(0);
       setCouponError("Invalid coupon");
     }
   };
-
-  // Calculating total price with discount
   const itemsPrice: number = cartItems.reduce(
     (a: number, c: CartItem) => a + c.quantity * c.price,
     0
@@ -203,7 +187,7 @@ export default function Basket(props: BasketProps) {
                   sx={{
                     ml: "5px",
                     position: "relative",
-                    left: "290px",
+                    left: "360px",
                     cursor: "pointer",
                   }}
                   color={"primary"}
@@ -219,28 +203,29 @@ export default function Basket(props: BasketProps) {
                 const imagePath = `${serverApi}/${item.image}`;
                 return (
                   <Box className={"basket-info-box"} key={item._id}>
-                    <div className={"cancel-btn"}>
-                      <CancelIcon
-                        color={"primary"}
-                        onClick={() => onDelete(item)}
-                      />
-                    </div>
+                    <div className={"cancel-btn"}></div>
                     <img src={imagePath} className={"product-img"} />
                     <span className={"product-name"}>{item.name}</span>
                     <Box className={"qty-box"}>
-                      <span>Qty</span>
                       <button
-                        className="qty-btn"
+                        className="qty-btn werwe"
                         onClick={() => onRemove(item)}
                       >
                         -
                       </button>
-                      <span>{item.quantity}</span>
-                      <button className="qty-btn" onClick={() => onAdd(item)}>
+                      <span className="hellow">{item.quantity}</span>
+                      <button
+                        className="qty-btn ewrwrew"
+                        onClick={() => onAdd(item)}
+                      >
                         +
                       </button>
                     </Box>
                     <span className={"price-text"}>${item.price}</span>
+                    <CancelIcon
+                      color={"primary"}
+                      onClick={() => onDelete(item)}
+                    />
                   </Box>
                 );
               })}
@@ -249,6 +234,7 @@ export default function Basket(props: BasketProps) {
               <>
                 <Box className={"apply-coupon"}>
                   <TextField
+                    className="coupan"
                     id="outlined-basic"
                     label="Apply coupon"
                     variant="outlined"
