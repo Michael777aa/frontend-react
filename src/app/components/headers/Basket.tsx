@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Box, Button, Stack } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { Box, Button, Stack, TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
@@ -42,35 +42,67 @@ interface BasketProps {
 export default function Basket(props: BasketProps) {
   const dispatch = useDispatch();
   const { setCoupons } = actionDispatch(dispatch);
-  const { coupons } = useSelector(couponRetriever);
+  const { coupons } = useSelector(couponRetriever); // Retrieve coupons from redux
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
   const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
-  const itemsPrice: number = cartItems.reduce(
-    (a: number, c: CartItem) => a + c.quantity * c.price,
-    0
-  );
-  const shippingCost: number = itemsPrice < 100 ? 5 : 0;
-  const totalPrice = (itemsPrice + shippingCost).toFixed(1);
+  const [couponCode, setCouponCode] = useState<string>("");
+  const [discount, setDiscount] = useState<number>(0);
+  const [couponError, setCouponError] = useState<string>("");
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   useEffect(() => {
-    // Data fetch
     const coupan = new CoupanService();
     coupan
       .getCoupons()
       .then((data) => {
-        console.log("data: ", data);
+        console.log("Coupons fetched: ", data); // Log the fetched coupons
         setCoupons(data);
       })
-      .catch((err) => {
-        console.log(err);
-      });
+      .catch((err) => console.log(err));
   }, []);
 
-  /** HANDLERS **/
+  const applyCoupon = () => {
+    console.log("Coupon code entered: ", couponCode); // Log the entered coupon code
+    console.log("Available coupons: ", coupons); // Log the coupons state for debugging
+
+    if (!couponCode) {
+      setCouponError("Please enter a valid coupon code");
+      setDiscount(0);
+      return;
+    }
+
+    const foundCoupon = coupons.find(
+      (e: Coupan) =>
+        e?.name?.toLowerCase().trim() === couponCode.toLowerCase().trim()
+    );
+
+    if (foundCoupon) {
+      const discountValue = Number(foundCoupon.discount); // Ensure discount is a number
+      if (!isNaN(discountValue) && discountValue > 0 && discountValue <= 100) {
+        setDiscount(discountValue);
+        setCouponError("");
+      } else {
+        setDiscount(0);
+        setCouponError("Invalid discount percentage");
+      }
+    } else {
+      setDiscount(0);
+      setCouponError("Invalid coupon");
+    }
+  };
+
+  // Calculating total price with discount
+  const itemsPrice: number = cartItems.reduce(
+    (a: number, c: CartItem) => a + c.quantity * c.price,
+    0
+  );
+  const shippingCost: number = itemsPrice < 100 ? 5 : 0;
+  const discountFactor = 1 - discount / 100;
+  const totalPrice: number = (itemsPrice + shippingCost) * discountFactor;
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(e.currentTarget);
   };
@@ -85,13 +117,11 @@ export default function Basket(props: BasketProps) {
       const order = new OrderService();
       await order.createOrder(cartItems);
       onDeleteAll();
-      // REFRESH VIA CONTEXT
       sweetTopSuccessAlert("Successfully added to Orders");
       setOrderBuilder(new Date());
       history.push("/orders");
     } catch (err) {
-      console.log(err);
-      sweetErrorHandling(err).then();
+      sweetErrorHandling(err);
     }
   };
 
@@ -106,8 +136,7 @@ export default function Basket(props: BasketProps) {
       }
       sweetTopSuccessAlert("All products have been removed from basket");
     } catch (err) {
-      console.log(err);
-      sweetErrorHandling(err).then();
+      sweetErrorHandling(err);
     }
   };
 
@@ -124,11 +153,7 @@ export default function Basket(props: BasketProps) {
       >
         <Badge
           badgeContent={cartItems.length}
-          style={{
-            position: "relative",
-            top: "-14px",
-            left: "27px",
-          }}
+          style={{ position: "relative", top: "-14px", left: "27px" }}
           color="secondary"
         ></Badge>
         <ShoppingBagIcon className="icon-button" />
@@ -138,7 +163,6 @@ export default function Basket(props: BasketProps) {
         id="account-menu"
         open={open}
         onClose={handleClose}
-        // onClick={handleClose}
         PaperProps={{
           elevation: 0,
           sx: {
@@ -203,43 +227,70 @@ export default function Basket(props: BasketProps) {
                     </div>
                     <img src={imagePath} className={"product-img"} />
                     <span className={"product-name"}>{item.name}</span>
-                    <p className={"product-price"}>
-                      ${item.price} x {item.quantity}
-                    </p>
-                    <Box sx={{ minWidth: 120 }}>
-                      <div className="col-2">
-                        <button
-                          className="remove"
-                          onClick={() => onRemove(item)}
-                        >
-                          -
-                        </button>{" "}
-                        <button className="add" onClick={() => onAdd(item)}>
-                          +
-                        </button>
-                      </div>
+                    <Box className={"qty-box"}>
+                      <span>Qty</span>
+                      <button
+                        className="qty-btn"
+                        onClick={() => onRemove(item)}
+                      >
+                        -
+                      </button>
+                      <span>{item.quantity}</span>
+                      <button className="qty-btn" onClick={() => onAdd(item)}>
+                        +
+                      </button>
                     </Box>
+                    <span className={"price-text"}>${item.price}</span>
                   </Box>
                 );
               })}
             </Box>
+            {cartItems.length !== 0 && (
+              <>
+                <Box className={"apply-coupon"}>
+                  <TextField
+                    id="outlined-basic"
+                    label="Apply coupon"
+                    variant="outlined"
+                    value={couponCode}
+                    size="small"
+                    onChange={(e) => setCouponCode(e.target.value)}
+                  />
+                  <Button
+                    variant={"contained"}
+                    color={"secondary"}
+                    className="coupon-btn"
+                    onClick={() => applyCoupon()}
+                  >
+                    Apply
+                  </Button>
+                </Box>
+                {couponError && <p className="error-text">{couponError}</p>}
+                <Box className={"total-price-area"}>
+                  <div>Items Price</div>
+                  <span>${itemsPrice.toFixed(2)}</span>
+                </Box>
+                <Box className={"total-price-area"}>
+                  <div>Shipping Price</div>
+                  <span>${shippingCost.toFixed(2)}</span>
+                </Box>
+                <Box className={"total-price-area"}>
+                  <div>Total Price</div>
+                  <span>${totalPrice.toFixed(2)}</span>
+                </Box>
+                <Box>
+                  <Button
+                    className={"cart-button"}
+                    variant={"contained"}
+                    color={"primary"}
+                    onClick={() => proceedOrderHandler()}
+                  >
+                    Proceed Order
+                  </Button>
+                </Box>
+              </>
+            )}
           </Box>
-          {cartItems.length !== 0 ? (
-            <Box className={"basket-order"}>
-              <span className={"price"}>
-                Total: ${totalPrice} ({itemsPrice} + {shippingCost})
-              </span>
-              <Button
-                onClick={proceedOrderHandler}
-                startIcon={<ShoppingCartIcon />}
-                variant={"contained"}
-              >
-                Order
-              </Button>
-            </Box>
-          ) : (
-            ""
-          )}
         </Stack>
       </Menu>
     </Box>
