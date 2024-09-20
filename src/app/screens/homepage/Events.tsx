@@ -38,11 +38,6 @@ export default function Events() {
       });
   }, []);
 
-  // Filter events to only include those with PROCESS status
-  const filteredEvents = events.filter(
-    (event: Event) => event.eventStatus === EventStatus.PROCESS
-  );
-
   return (
     <div className={"events-frame"}>
       <Stack data-aos="fade-up" className={"events-main"}>
@@ -50,7 +45,7 @@ export default function Events() {
           <span className={"category-title"}>Events</span>
         </Box>
 
-        {filteredEvents.length !== 0 ? (
+        {events.length !== 0 ? (
           <>
             <Swiper
               className={"events-info swiper-wrapper"}
@@ -71,11 +66,11 @@ export default function Events() {
                 disableOnInteraction: true,
               }}
             >
-              {filteredEvents.map((event: Event) => (
+              {events.map((event: Event) => (
                 <SwiperSlide key={event._id} className={"events-info-frame"}>
                   <div className={"events-img"}>
                     <img
-                      src={`${serverApi}/${event.eventImages[0]}`} // Assuming serverApi is defined and holds the base URL
+                      src={`${serverApi}/${event.eventImages[0]}`}
                       className={"events-img"}
                       alt={event.eventName}
                     />

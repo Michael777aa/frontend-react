@@ -10,8 +10,6 @@ import { Logout } from "@mui/icons-material";
 import React from "react";
 import Carousel from "../../../carousel";
 
-// Swipper
-
 interface HomeNavbarProps {
   cartItems: CartItem[];
   onAdd: (item: CartItem) => void;
