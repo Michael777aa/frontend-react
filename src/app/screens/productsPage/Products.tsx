@@ -220,8 +220,8 @@ export default function Products(props: ProductsProps) {
                       productSearch.productCollection ===
                       ProductCollection.FRUITS
                         ? "#ffb524"
-                        : "#81c408", // Text color based on the active/inactive state
-                    transition: "background-color 0.3s ease", // Smooth transition
+                        : "#81c408",
+                    transition: "background-color 0.3s ease",
                   }}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.FRUITS)
@@ -411,7 +411,7 @@ export default function Products(props: ProductsProps) {
                 </div>
               </div>
             </div>
-            <div className="right-container2">
+            <div className="right-container2 ">
               <Stack
                 className="product-wrapper2"
                 display={"flex"}

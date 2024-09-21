@@ -144,19 +144,19 @@ export default function Shop(props: ProductsProps) {
                     backgroundColor:
                       productSearch.productCollection ===
                       ProductCollection.FRUITS
-                        ? "#ffb524" // Active button color
-                        : "#f4f6f8", // Inactive button color
+                        ? "#ffb524"
+                        : "#f4f6f8",
                     color:
                       productSearch.productCollection ===
                       ProductCollection.FRUITS
-                        ? "#ffffff" // Text color for the active button
-                        : "#000000", // Text color for the inactive button
+                        ? "#ffffff"
+                        : "#000000",
                     "&:hover": {
                       backgroundColor:
                         productSearch.productCollection ===
                         ProductCollection.FRUITS
-                          ? "#e6a11f" // Darker shade on hover for active button
-                          : "#e0e3e6", // Slightly darker shade on hover for inactive button
+                          ? "#e6a11f"
+                          : "#e0e3e6",
                     },
                     borderRadius: "8px",
                     padding: "10px 20px",
@@ -322,6 +322,7 @@ export default function Shop(props: ProductsProps) {
               </StyledButton>
             </Box>
           </Stack>
+
           {/* PRODUCTS */}
           <Stack className="product-wrapper">
             {products.length !== 0 ? (
@@ -376,7 +377,6 @@ export default function Shop(props: ProductsProps) {
                           onAdd({
                             _id: product._id,
                             quantity: 1,
-
                             price: product.productSalePrice
                               ? product.productSalePrice
                               : product.productPrice,
