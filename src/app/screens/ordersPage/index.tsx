@@ -1,6 +1,6 @@
 import TabContext from "@mui/lab/TabContext";
 import TabPanel from "@mui/lab/TabPanel/TabPanel";
-import { Box, Container, Stack, Tab, Tabs } from "@mui/material";
+import { Box, Button, Container, Stack, Tab, Tabs } from "@mui/material";
 import { SyntheticEvent, useEffect, useState } from "react";
 import "../../../css/orders.css";
 import Divider from "../../components/divider";
@@ -17,19 +17,14 @@ import { useGlobals } from "../../hooks/useGlobals";
 import { useHistory } from "react-router-dom";
 import { serverApi } from "../../../lib/config";
 import { MemberType } from "../../../lib/enums/member.enum";
-import { CartItem } from "../../../lib/types/search";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setPausedOrders: (data: Order[]) => dispatch(setPausedOrders(data)),
   setProcessOrders: (data: Order[]) => dispatch(setProcessOrders(data)),
   setFinishedOrders: (data: Order[]) => dispatch(setFinishedOrders(data)),
 });
-interface ProductsProps {
-  onDeleteAll: (item: CartItem) => void;
-}
 
-export default function OrdersPage(props: ProductsProps) {
-  const { onDeleteAll } = props;
+export default function OrdersPage() {
   const history = useHistory();
   const { authMember } = useGlobals();
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =

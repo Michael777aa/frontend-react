@@ -94,7 +94,7 @@ function App() {
           <ProductsPage onAdd={onAdd} />
         </Route>
         <Route path="/orders">
-          <OrdersPage onDeleteAll={onDeleteAll} />
+          <OrdersPage />
         </Route>
         <Route path="/member-page">
           <UserPage />

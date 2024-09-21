@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import { SwiperSlide } from "swiper/react";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 import Divider from "../../components/divider";
 import Button from "@mui/material/Button";
 import Rating from "@mui/material/Rating";
