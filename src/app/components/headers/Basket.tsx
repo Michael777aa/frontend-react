@@ -22,6 +22,7 @@ import { setCoupons } from "../../screens/homePage/slice";
 import { Coupan } from "../../../lib/types/coupan";
 import CoupanService from "../../services/CoupanService";
 import { useDispatch, useSelector } from "react-redux";
+import { log } from "console";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setCoupons: (data: Coupan[]) => dispatch(setCoupons(data)),
@@ -42,7 +43,7 @@ interface BasketProps {
 export default function Basket(props: BasketProps) {
   const dispatch = useDispatch();
   const { setCoupons } = actionDispatch(dispatch);
-  const { coupons } = useSelector(couponRetriever); // Retrieve coupons from redux
+  const { coupons } = useSelector(couponRetriever);
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
   const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
@@ -117,8 +118,8 @@ export default function Basket(props: BasketProps) {
       );
       if (confirmation) {
         onDeleteAll();
+        sweetTopSuccessAlert("All products have been removed from basket");
       }
-      sweetTopSuccessAlert("All products have been removed from basket");
     } catch (err) {
       sweetErrorHandling(err);
     }

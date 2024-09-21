@@ -39,12 +39,12 @@ const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "50px",
   backgroundColor: "#81c408",
   color: "#fff",
-  padding: "0 25px", // Adjust padding to fit text
-  minWidth: "auto", // Adjust to fit content
-  height: "48px", // Match the height of the Stack
+  padding: "0 25px",
+  minWidth: "auto",
+  height: "48px",
   "&:hover": {
-    backgroundColor: "#ffb524", // Darker orange color
-    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)", // Box shadow on hover
+    backgroundColor: "#ffb524",
+    boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.2)",
   },
   display: "flex",
   alignItems: "center",
@@ -119,7 +119,7 @@ export default function Products(props: ProductsProps) {
     };
 
     fetchProducts();
-  }, [productSearch, priceRange]); // Add priceRange as a dependency
+  }, [productSearch, priceRange]);
 
   useEffect(() => {
     const productService = new ProductService();
