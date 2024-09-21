@@ -89,7 +89,7 @@ export default function Products(props: ProductsProps) {
       ProductCollection.MEAT,
       ProductCollection.OTHER,
     ],
-    search: "",
+    search: "dsfsdfsd",
   });
 
   const [searchText, setSearchText] = useState<string>("");
@@ -101,7 +101,7 @@ export default function Products(props: ProductsProps) {
       try {
         const productService = new ProductService();
         const allProducts = await productService.getProducts(productSearch);
-        // Filter products based on the selected price range
+
         const filteredProducts = allProducts.filter(
           (product: Product) =>
             product.productPrice >= priceRange[0] &&
@@ -121,20 +121,6 @@ export default function Products(props: ProductsProps) {
     fetchProducts();
   }, [productSearch, priceRange]);
 
-  useEffect(() => {
-    const productService = new ProductService();
-    productService
-      .getProducts(productSearch)
-      .then((products: Product[]) => {
-        const filteredProducts = products.filter(
-          (product) => (product as any).productSale > 0
-        );
-        setSaleProducts(filteredProducts.slice(0, 3));
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
   useEffect(() => {
     if (searchText === "") {
       productSearch.search = "";
@@ -366,7 +352,6 @@ export default function Products(props: ProductsProps) {
               </FormControl>
               <div className="featured-products">
                 <h1>Featured Products</h1>
-
                 <div className="main-feature">
                   {saleProducts.length > 0 ? (
                     saleProducts.map((product: Product) => {

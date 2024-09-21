@@ -348,7 +348,7 @@ export default function Shop(props: ProductsProps) {
                     <div className="product-size">{product.productSize}</div>
                     <Stack className={"bottom-side"}>
                       <div>
-                        {product.productSale && product.productSale > 0 ? (
+                        {product?.productSale && product.productSale > 0 ? (
                           <>
                             <span className={"product-sale2"}>
                               -{product.productSale}%
