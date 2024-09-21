@@ -15,13 +15,17 @@ class OrderService {
     this.path = serverApi;
   }
 
-  public async createOrder(input: CartItem[]): Promise<Order> {
+  public async createOrder(
+    input: CartItem[],
+    totalPrice: number
+  ): Promise<Order> {
     try {
       const orderItems: OrderItemInput[] = input.map((cartItem: CartItem) => {
         return {
           itemQuantity: cartItem.quantity,
           itemPrice: cartItem.price,
           productId: cartItem._id,
+          totalPrice: totalPrice,
         };
       });
 

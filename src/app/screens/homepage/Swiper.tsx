@@ -56,7 +56,7 @@ export default function ProductSwiper({
         >
           {products.length !== 0 ? (
             products
-              .filter((product: Product) => (product.productSale ?? 0) >= 1) // Filter products with sale > 1
+              .filter((product: Product) => (product.productSale ?? 0) >= 1)
               .map((product: Product) => {
                 const imagePath = `${serverApi}/${product.productImages[0]}`;
 

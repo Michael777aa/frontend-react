@@ -100,7 +100,7 @@ export default function Basket(props: BasketProps) {
       handleClose();
       if (!authMember) throw new Error(Messages.error2);
       const order = new OrderService();
-      await order.createOrder(cartItems);
+      await order.createOrder(cartItems, totalPrice);
       onDeleteAll();
       sweetTopSuccessAlert("Successfully added to Orders");
       setOrderBuilder(new Date());
@@ -255,15 +255,15 @@ export default function Basket(props: BasketProps) {
                 {couponError && <p className="error-text">{couponError}</p>}
                 <Box className={"total-price-area"}>
                   <div>Items Price</div>
-                  <span>${itemsPrice.toFixed(2)}</span>
+                  <span>${itemsPrice.toFixed(1)}</span>
                 </Box>
                 <Box className={"total-price-area"}>
                   <div>Shipping Price</div>
-                  <span>${shippingCost.toFixed(2)}</span>
+                  <span>${shippingCost.toFixed(1)}</span>
                 </Box>
                 <Box className={"total-price-area"}>
                   <div>Total Price</div>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <span>${totalPrice.toFixed(1)}</span>
                 </Box>
                 <Box>
                   <Button
