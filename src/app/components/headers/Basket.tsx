@@ -137,7 +137,7 @@ export default function Basket(props: BasketProps) {
       >
         <Badge
           badgeContent={cartItems.length}
-          style={{ position: "relative", top: "-14px", left: "27px" }}
+          style={{ position: "relative", top: "-14px", left: "30px" }}
           color="secondary"
         ></Badge>
         <ShoppingBagIcon className="icon-button" />
