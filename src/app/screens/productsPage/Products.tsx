@@ -12,7 +12,10 @@ import {
   styled,
 } from "@mui/material";
 import CakeIcon from "@mui/icons-material/Cake";
-
+import { GiFruitTree } from "react-icons/gi";
+import { GiWrappedSweet } from "react-icons/gi";
+import { TbMeat } from "react-icons/tb";
+import { FaCottonBureau } from "react-icons/fa";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import { retrieveProducts } from "./selector";
@@ -98,10 +101,17 @@ export default function Products(props: ProductsProps) {
       try {
         const productService = new ProductService();
         const allProducts = await productService.getProducts(productSearch);
-        const saleItems = allProducts.filter(
+        // Filter products based on the selected price range
+        const filteredProducts = allProducts.filter(
+          (product: Product) =>
+            product.productPrice >= priceRange[0] &&
+            product.productPrice <= priceRange[1]
+        );
+
+        const saleItems = filteredProducts.filter(
           (product: Product) => product.productSale && product.productSale > 0
         );
-        setProducts(allProducts);
+        setProducts(filteredProducts);
         setSaleProducts(saleItems.slice(0, 3));
       } catch (error) {
         console.log("Error fetching products:", error);
@@ -109,7 +119,7 @@ export default function Products(props: ProductsProps) {
     };
 
     fetchProducts();
-  }, [productSearch, priceRange]);
+  }, [productSearch, priceRange]); // Add priceRange as a dependency
 
   useEffect(() => {
     const productService = new ProductService();
@@ -205,50 +215,93 @@ export default function Products(props: ProductsProps) {
               <div className="category-container2">
                 <div
                   className="category-item"
+                  style={{
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.FRUITS
+                        ? "#ffb524"
+                        : "#81c408", // Text color based on the active/inactive state
+                    transition: "background-color 0.3s ease", // Smooth transition
+                  }}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.FRUITS)
                   }
                 >
                   <h3>
-                    <CakeIcon />
+                    <GiFruitTree />
                   </h3>
                   <h2>Fruits</h2>
                 </div>
+
                 <div
                   className="category-item"
+                  style={{
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.VEGETABLES
+                        ? "#ffb524"
+                        : "#81c408",
+                    transition: "background-color 0.3s ease",
+                  }}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.VEGETABLES)
                   }
                 >
                   <h3>
-                    <CakeIcon />
+                    <FaCottonBureau />
                   </h3>
                   <h2>Vegetables</h2>
                 </div>
+
                 <div
                   className="category-item"
+                  style={{
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.SWEETS
+                        ? "#ffb524"
+                        : "#81c408",
+                    transition: "background-color 0.3s ease",
+                  }}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.SWEETS)
                   }
                 >
                   <h3>
-                    <CakeIcon />
+                    <GiWrappedSweet />
                   </h3>
                   <h2>Sweets</h2>
                 </div>
+
                 <div
                   className="category-item"
+                  style={{
+                    color:
+                      productSearch.productCollection === ProductCollection.MEAT
+                        ? "#ffb524"
+                        : "#81c408",
+                    transition: "background-color 0.3s ease",
+                  }}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.MEAT)
                   }
                 >
                   <h3>
-                    <CakeIcon />
+                    <TbMeat />
                   </h3>
                   <h2>Meat</h2>
                 </div>
+
                 <div
                   className="category-item"
+                  style={{
+                    color:
+                      productSearch.productCollection ===
+                      ProductCollection.OTHER
+                        ? "#ffb524"
+                        : "#81c408",
+                    transition: "background-color 0.3s ease",
+                  }}
                   onClick={() =>
                     searchCollectionHandler(ProductCollection.OTHER)
                   }
@@ -259,6 +312,7 @@ export default function Products(props: ProductsProps) {
                   <h2>Others</h2>
                 </div>
               </div>
+
               <Box sx={{ width: 250 }} className="price">
                 <h1 className="pricw2">Price</h1>
                 <Slider
