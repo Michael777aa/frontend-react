@@ -7,6 +7,7 @@ import {
   OrderUpdateInput,
 } from "../../lib/types/order";
 import { CartItem } from "../../lib/types/search";
+import { Coupan, CoupanInput } from "../../lib/types/coupan";
 
 class OrderService {
   private readonly path: string;
@@ -17,8 +18,8 @@ class OrderService {
 
   public async createOrder(
     input: CartItem[],
-    totalPrice: number,
-    couponName: string | undefined
+    couponName: string | undefined,
+    totalPrice: number | undefined
   ): Promise<Order> {
     try {
       const orderItems: OrderItemInput[] = input.map((cartItem: CartItem) => {

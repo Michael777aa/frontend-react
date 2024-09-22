@@ -15,7 +15,3 @@ export const retrieveTopUsers = createSelector(
   selectHomePage,
   (HomePage) => HomePage.topUsers
 );
-export const retrieveCoupons = createSelector(
-  selectHomePage,
-  (HomePage) => HomePage.coupons
-);

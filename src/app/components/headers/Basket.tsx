@@ -15,20 +15,8 @@ import {
 import { useGlobals } from "../../hooks/useGlobals";
 import OrderService from "../../services/OrderService";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import { Dispatch, createSelector } from "@reduxjs/toolkit";
-import { retrieveCoupons } from "../../screens/homePage/selector";
-import { setCoupons } from "../../screens/homePage/slice";
-import { Coupan } from "../../../lib/types/coupan";
 import CoupanService from "../../services/CoupanService";
-import { useDispatch, useSelector } from "react-redux";
-
-const actionDispatch = (dispatch: Dispatch) => ({
-  setCoupons: (data: Coupan[]) => dispatch(setCoupons(data)),
-});
-
-const couponRetriever = createSelector(retrieveCoupons, (coupons) => ({
-  coupons,
-}));
+import { T } from "../../../lib/types/common";
 
 interface BasketProps {
   cartItems: CartItem[];
@@ -39,51 +27,15 @@ interface BasketProps {
 }
 
 export default function Basket(props: BasketProps) {
-  const dispatch = useDispatch();
-  const { setCoupons } = actionDispatch(dispatch);
-  const { coupons } = useSelector(couponRetriever);
   const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = props;
   const { authMember, setOrderBuilder } = useGlobals();
   const history = useHistory();
-  const [couponCode, setCouponCode] = useState<string>("");
+  const [couponValue, setCouponValue] = useState<string>("");
   const [discount, setDiscount] = useState<number>(0);
   const [couponError, setCouponError] = useState<string>("");
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  useEffect(() => {
-    const coupan = new CoupanService();
-    coupan
-      .getCoupons()
-      .then((data) => {
-        console.log("Coupons fetched: ", data);
-        setCoupons(data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-
-  const applyCoupon = () => {
-    const foundCoupon = coupons.find(
-      (e: Coupan) =>
-        e?.name?.toLowerCase().trim() === couponCode.toLowerCase().trim()
-    );
-    console.log(foundCoupon, "COUPONN>");
-
-    if (foundCoupon) {
-      const discountValue = Number(foundCoupon.discount);
-      if (!isNaN(discountValue) && discountValue > 0 && discountValue <= 100) {
-        setDiscount(discountValue);
-        setCouponError("");
-      }
-    } else {
-      setDiscount(0);
-      setCouponError("Invalid coupon");
-    }
-  };
-  const foundCoupon = coupons.find(
-    (e: Coupan) =>
-      e?.name?.toLowerCase().trim() === couponCode.toLowerCase().trim()
-  );
   const itemsPrice: number = cartItems.reduce(
     (a: number, c: CartItem) => a + c.quantity * c.price,
     0
@@ -91,7 +43,6 @@ export default function Basket(props: BasketProps) {
   const shippingCost: number = itemsPrice < 100 ? 5 : 0;
   const discountFactor = 1 - discount / 100;
   const totalPrice: number = (itemsPrice + shippingCost) * discountFactor;
-  const couponName: string | undefined = foundCoupon?.name;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(e.currentTarget);
@@ -99,13 +50,38 @@ export default function Basket(props: BasketProps) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleCoupon = (e: T) => {
+    setCouponValue(e.target.value);
+  };
+
+  const verifyCoupon = async (input: T) => {
+    try {
+      const couponService = new CoupanService();
+      const result = await couponService.verifyCoupon(input);
+      const couponName: string | undefined = result?.name;
+      console.log(couponName);
+
+      if (result) {
+        const discountValue = Number(result.discount);
+        if (discountValue && discountValue > 0 && discountValue <= 100) {
+          setDiscount(discountValue);
+          setCouponError("");
+        } else {
+          setDiscount(0);
+          setCouponError("Invalid coupon");
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const proceedOrderHandler = async () => {
     try {
       handleClose();
       if (!authMember) throw new Error(Messages.error2);
       const order = new OrderService();
-      await order.createOrder(cartItems, totalPrice, couponName);
+      await order.createOrder(cartItems, couponValue, totalPrice);
       onDeleteAll();
       sweetTopSuccessAlert("Successfully added to Orders");
       setOrderBuilder(new Date());
@@ -215,6 +191,7 @@ export default function Basket(props: BasketProps) {
                     <Box className={"qty-box"}>
                       <button
                         className="qty-btn werwe"
+                        style={{ position: "relative", left: "50px" }}
                         onClick={() => onRemove(item)}
                       >
                         -
@@ -228,7 +205,7 @@ export default function Basket(props: BasketProps) {
                       </button>
                     </Box>
                     <span className={"price-text"}>
-                      ${item.price.toFixed(1)}
+                      ${item.price.toFixed(2)}✕
                     </span>
                     <CancelIcon
                       color={"primary"}
@@ -246,16 +223,16 @@ export default function Basket(props: BasketProps) {
                     id="outlined-basic"
                     label="Apply coupon"
                     variant="outlined"
-                    value={couponCode}
+                    // value={couponCode}
                     size="small"
-                    onChange={(e) => setCouponCode(e.target.value)}
+                    onChange={handleCoupon}
                   />
                   <Button
                     variant={"contained"}
                     color={"secondary"}
                     className="coupon-btn"
+                    onClick={() => verifyCoupon({ name: couponValue })}
                     // onClick={() => applyCoupon()}
-                    onClick={() => applyCoupon()}
                   >
                     Apply
                   </Button>
@@ -267,7 +244,7 @@ export default function Basket(props: BasketProps) {
                 </Box>
                 <Box className={"total-price-area"}>
                   <div>Shipping Price</div>
-                  <span>${shippingCost.toFixed(1)}</span>
+                  <span>${shippingCost.toFixed(1)}</span>=
                 </Box>
                 <Box className={"total-price-area"}>
                   <div>Total Price</div>

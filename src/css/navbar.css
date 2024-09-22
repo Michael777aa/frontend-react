@@ -554,16 +554,13 @@
   color: #333;
   flex: 1; /* Allow this to take available space */
 }
-.ewrwrew {
-  position: relative;
-  right: 15px;
-}
-.werwe {
-  position: relative;
-}
+
 .hellow {
   position: relative;
-  margin-right: 30px;
+  font-family: "Poppins", sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: #ae0000;
 }
 .qty-box {
   display: flex;
@@ -574,7 +571,8 @@
   width: 400px;
 }
 .qty-btn {
-  margin-right: 30px;
+  position: relative;
+  left: 50px;
   border: none;
   background: #747d88;
   color: #fff;
@@ -585,7 +583,7 @@
 
 .price-text {
   position: relative;
-  right: 25px;
+  right: 125px;
   font-family: "Poppins", sans-serif;
   font-size: 18px;
   font-weight: 600;

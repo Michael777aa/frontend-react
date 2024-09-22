@@ -6,7 +6,6 @@ const initialState: HomePageState = {
   products: [],
   events: [],
   topUsers: [],
-  coupons: [],
 };
 
 const homePageSlice = createSlice({
@@ -22,14 +21,10 @@ const homePageSlice = createSlice({
     setTopUsers: (state, action) => {
       state.topUsers = action.payload;
     },
-    setCoupons: (state, action) => {
-      state.coupons = action.payload;
-    },
   },
 });
 
-export const { setEvents, setTopUsers, setCoupons, setProducts } =
-  homePageSlice.actions;
+export const { setEvents, setTopUsers, setProducts } = homePageSlice.actions;
 
 const HomePageReducer = homePageSlice.reducer;
 export default HomePageReducer;
