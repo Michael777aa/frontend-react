@@ -5,7 +5,6 @@ import Badge from "@mui/material/Badge";
 import Menu from "@mui/material/Menu";
 import CancelIcon from "@mui/icons-material/Cancel";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 import { Messages, serverApi } from "../../../lib/config";
@@ -22,7 +21,6 @@ import { setCoupons } from "../../screens/homePage/slice";
 import { Coupan } from "../../../lib/types/coupan";
 import CoupanService from "../../services/CoupanService";
 import { useDispatch, useSelector } from "react-redux";
-import { log } from "console";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setCoupons: (data: Coupan[]) => dispatch(setCoupons(data)),
@@ -69,6 +67,8 @@ export default function Basket(props: BasketProps) {
       (e: Coupan) =>
         e?.name?.toLowerCase().trim() === couponCode.toLowerCase().trim()
     );
+    console.log(foundCoupon, "COUPONN>");
+
     if (foundCoupon) {
       const discountValue = Number(foundCoupon.discount);
       if (!isNaN(discountValue) && discountValue > 0 && discountValue <= 100) {
@@ -80,6 +80,10 @@ export default function Basket(props: BasketProps) {
       setCouponError("Invalid coupon");
     }
   };
+  const foundCoupon = coupons.find(
+    (e: Coupan) =>
+      e?.name?.toLowerCase().trim() === couponCode.toLowerCase().trim()
+  );
   const itemsPrice: number = cartItems.reduce(
     (a: number, c: CartItem) => a + c.quantity * c.price,
     0
@@ -87,6 +91,7 @@ export default function Basket(props: BasketProps) {
   const shippingCost: number = itemsPrice < 100 ? 5 : 0;
   const discountFactor = 1 - discount / 100;
   const totalPrice: number = (itemsPrice + shippingCost) * discountFactor;
+  const couponName: string | undefined = foundCoupon?.name;
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(e.currentTarget);
@@ -100,7 +105,7 @@ export default function Basket(props: BasketProps) {
       handleClose();
       if (!authMember) throw new Error(Messages.error2);
       const order = new OrderService();
-      await order.createOrder(cartItems, totalPrice);
+      await order.createOrder(cartItems, totalPrice, couponName);
       onDeleteAll();
       sweetTopSuccessAlert("Successfully added to Orders");
       setOrderBuilder(new Date());
@@ -222,7 +227,9 @@ export default function Basket(props: BasketProps) {
                         +
                       </button>
                     </Box>
-                    <span className={"price-text"}>${item.price}</span>
+                    <span className={"price-text"}>
+                      ${item.price.toFixed(1)}
+                    </span>
                     <CancelIcon
                       color={"primary"}
                       onClick={() => onDelete(item)}
@@ -247,6 +254,7 @@ export default function Basket(props: BasketProps) {
                     variant={"contained"}
                     color={"secondary"}
                     className="coupon-btn"
+                    // onClick={() => applyCoupon()}
                     onClick={() => applyCoupon()}
                   >
                     Apply

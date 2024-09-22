@@ -97,7 +97,7 @@ export default function PausedOrders(props: PausedOrdersProps) {
                     />
                     <p className="title-dish">{product.productName}</p>
                     <Box className="price-box">
-                      <p>${item.itemPrice}</p>
+                      <p>${item.itemPrice.toFixed(1)}</p>
                       <img src="/icons/close.svg" alt="close.svg" />
                       <p>{item.itemQuantity}</p>
                       <img src="/icons/pause.svg" alt="pause.svg" />
@@ -120,14 +120,14 @@ export default function PausedOrders(props: PausedOrdersProps) {
                   style={{ marginLeft: "20px" }}
                 />
                 <p>Delivery cost</p>
-                <p>${order.orderDelivery}</p>
+                <p>${order.orderDelivery.toFixed(1)}</p>
                 <img
                   src="/icons/pause.svg"
                   alt="pause.svg"
                   style={{ marginLeft: "20px" }}
                 />
                 <p>Total</p>
-                <p>${order.orderTotal}</p>
+                <p>${order.orderTotal.toFixed(1)}</p>
               </Box>
 
               <Button

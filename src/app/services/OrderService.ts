@@ -17,7 +17,8 @@ class OrderService {
 
   public async createOrder(
     input: CartItem[],
-    totalPrice: number
+    totalPrice: number,
+    couponName: string | undefined
   ): Promise<Order> {
     try {
       const orderItems: OrderItemInput[] = input.map((cartItem: CartItem) => {
@@ -26,6 +27,7 @@ class OrderService {
           itemPrice: cartItem.price,
           productId: cartItem._id,
           totalPrice: totalPrice,
+          couponName: couponName,
         };
       });
 
