@@ -610,7 +610,10 @@
   font-family: "Poppins", sans-serif;
   font-weight: 500;
 }
-
+.shipping-priceee {
+  position: absolute;
+  left: 492.5px;
+}
 .cart-button {
   width: 100%;
   padding: 12px;

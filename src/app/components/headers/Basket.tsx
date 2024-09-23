@@ -242,9 +242,11 @@ export default function Basket(props: BasketProps) {
                   <div>Items Price</div>
                   <span>${itemsPrice.toFixed(1)}</span>
                 </Box>
-                <Box className={"total-price-area"}>
+                <Box className={"total-price-area "}>
                   <div>Shipping Price</div>
-                  <span>${shippingCost.toFixed(1)}</span>=
+                  <span className="shipping-priceee">
+                    ${shippingCost.toFixed(1)}
+                  </span>
                 </Box>
                 <Box className={"total-price-area"}>
                   <div>Total Price</div>
