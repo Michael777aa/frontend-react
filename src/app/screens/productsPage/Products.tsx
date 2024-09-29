@@ -369,9 +369,9 @@ export default function Products(props: ProductsProps) {
                           <div className="right-sale">
                             <h3>{product.productName}</h3>
                             <div className="right-pricing">
-                              <h4>${product.productPrice}</h4>
+                              <h4>${product.productSalePrice}</h4>
                               <h4 className="sale-color">
-                                ${product.productSalePrice}
+                                ${product.productPrice}
                               </h4>
                             </div>
                           </div>

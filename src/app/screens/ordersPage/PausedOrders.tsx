@@ -97,7 +97,7 @@ export default function PausedOrders(props: PausedOrdersProps) {
                     />
                     <p className="title-dish">{product.productName}</p>
                     <Box className="price-box">
-                      <p>${item.itemPrice.toFixed(1)}</p>
+                      <p>${item.itemPrice}</p>
                       <img src="/icons/close.svg" alt="close.svg" />
                       <p>{item.itemQuantity}</p>
                       <img src="/icons/pause.svg" alt="pause.svg" />
