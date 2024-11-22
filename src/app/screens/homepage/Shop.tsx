@@ -12,11 +12,9 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import { styled } from "@mui/system";
 import { ArrowBack, ArrowForward } from "@mui/icons-material";
-import { retrieveProducts } from "./selector";
 import { createSelector } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { serverApi } from "../../../lib/config";
-import { setProducts } from "./slice";
 import { Dispatch } from "@reduxjs/toolkit";
 import { Product, ProductInquiry } from "../../../lib/types/product";
 import ProductService from "../../services/ProductService";
@@ -27,6 +25,8 @@ import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import moment from "moment";
 //@ts-ignore
 import ProductSwiper from "./Swiper";
+import { setProducts } from "../Homepage/slice";
+import { retrieveProducts } from "./selector";
 
 const StyledButton = styled(Button)(({ theme }) => ({
   borderRadius: "20px",

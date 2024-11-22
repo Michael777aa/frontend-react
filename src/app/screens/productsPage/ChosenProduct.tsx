@@ -1,4 +1,3 @@
-import React, { useEffect } from "react";
 import { Container, Stack, Box } from "@mui/material";
 import { SwiperSlide } from "swiper/react";
 import Divider from "../../components/divider";
@@ -11,9 +10,6 @@ import { retrieveChosenProduct, retrieveRestaurant } from "./selector";
 import { setChosenProduct, setRestaurant } from "./slice";
 import { Product } from "../../../lib/types/product";
 import { Member } from "../../../lib/types/member";
-import { useParams } from "react-router-dom";
-import ProductService from "../../services/ProductService";
-import MemberService from "../../services/MemberService";
 import { serverApi } from "../../../lib/config";
 import { CartItem } from "../../../lib/types/search";
 

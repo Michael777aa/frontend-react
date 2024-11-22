@@ -3,7 +3,7 @@ import { AppRootState } from "../../../lib/types/screen";
 
 const selectHomePage = (state: AppRootState) => state.homePage;
 
-export const retrieveEvents = createSelector(
+export const retrieveeEvents = createSelector(
   selectHomePage,
   (HomePage) => HomePage.events
 );

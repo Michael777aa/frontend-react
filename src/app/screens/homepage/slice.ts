@@ -8,8 +8,8 @@ const initialState: HomePageState = {
   topUsers: [],
 };
 
-const homePageSlice = createSlice({
-  name: "homePage",
+const HomePageSlice = createSlice({
+  name: "HomePage",
   initialState,
   reducers: {
     setEvents: (state, action) => {
@@ -24,7 +24,7 @@ const homePageSlice = createSlice({
   },
 });
 
-export const { setEvents, setTopUsers, setProducts } = homePageSlice.actions;
+export const { setEvents, setTopUsers, setProducts } = HomePageSlice.actions;
 
-const HomePageReducer = homePageSlice.reducer;
+const HomePageReducer = HomePageSlice.reducer;
 export default HomePageReducer;

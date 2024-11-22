@@ -4,9 +4,9 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import { AspectRatio, CssVarsProvider, Typography } from "@mui/joy";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { retrieveTopUsers } from "./selector";
 import { serverApi } from "../../../lib/config";
 import { Member } from "../../../lib/types/member";
+import { retrieveTopUsers } from "./selector";
 
 const topUsersRetriever = createSelector(retrieveTopUsers, (activeUsers) => ({
   activeUsers,

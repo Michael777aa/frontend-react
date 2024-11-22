@@ -5,16 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Dispatch, createSelector } from "@reduxjs/toolkit";
 import EventService from "../../services/EventService";
 import { useEffect } from "react";
-import { setEvents } from "./slice";
-import { retrieveEvents } from "./selector";
 import { Event } from "../../../lib/types/event";
 import { serverApi } from "../../../lib/config";
+import { setEvents } from "./slice";
+import { retrieveeEvents } from "./selector";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setEvents: (data: Event[]) => dispatch(setEvents(data)),
 });
 
-const eventRetriever = createSelector(retrieveEvents, (events) => ({
+const eventRetriever = createSelector(retrieveeEvents, (events) => ({
   events,
 }));
 
