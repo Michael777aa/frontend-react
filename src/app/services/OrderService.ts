@@ -7,7 +7,6 @@ import {
   OrderUpdateInput,
 } from "../../lib/types/order";
 import { CartItem } from "../../lib/types/search";
-import { Coupan, CoupanInput } from "../../lib/types/coupan";
 
 class OrderService {
   private readonly path: string;
