@@ -1,13 +1,19 @@
 import React, { useEffect } from "react";
+//@ts-ignore
 import Advertisement from "./Advertisement";
+//@ts-ignore
 import Events from "./Events";
+//@ts-ignore
 import Statistics from "./Statistics";
 import "../../../css/home.css";
 import { CartItem } from "../../../lib/types/search";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
 import ChosenProduct from "../productsPage/ChosenProduct";
+//@ts-ignore
 import ActiveUsers from "./ActiveUsers";
+//@ts-ignore
 import Satisfaction from "./Satisfaction";
+//@ts-ignore
 import Shop from "./Shop";
 import { setTopUsers } from "./slice";
 import { Member } from "../../../lib/types/member";
@@ -40,7 +46,7 @@ export default function HomePage(props: ProductsPageProps) {
       .catch((err) => {
         console.log(err);
       });
-  }, [setTopUsers]);
+  }, []);
   return (
     <div className={"homepage"}>
       <Statistics />

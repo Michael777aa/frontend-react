@@ -25,6 +25,7 @@ import { useHistory } from "react-router-dom";
 import { CartItem } from "../../../lib/types/search";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
 import moment from "moment";
+//@ts-ignore
 import ProductSwiper from "./Swiper";
 
 const StyledButton = styled(Button)(({ theme }) => ({
@@ -98,14 +99,14 @@ export default function Shop(props: ProductsProps) {
       .catch((err) => {
         console.log(err);
       });
-  }, [productSearch, setProducts]);
+  }, [productSearch]);
 
   useEffect(() => {
     if (searchText === "") {
       productSearch.search = "";
       setProductSearch({ ...productSearch });
     }
-  }, [searchText, productSearch]);
+  }, [searchText]);
 
   // HANDLERS
   const searchCollectionHandler = (collection: ProductCollection) => {
