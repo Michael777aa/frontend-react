@@ -12,6 +12,10 @@ import { Product } from "../../../lib/types/product";
 import { Member } from "../../../lib/types/member";
 import { serverApi } from "../../../lib/config";
 import { CartItem } from "../../../lib/types/search";
+import { useEffect } from "react";
+import ProductService from "../../services/ProductService";
+import { useParams } from "react-router-dom";
+import MemberService from "../../services/MemberService";
 
 const actionDispatch = (dispatch: Dispatch) => ({
   setChosenProduct: (data: Product) => dispatch(setChosenProduct(data)),
@@ -33,8 +37,28 @@ interface ChosenProducteProps {
 
 export default function ChosenProduct(props: ChosenProducteProps) {
   const { onAdd } = props;
+  const { setChosenProduct, setRestaurant } = actionDispatch(useDispatch());
+
   const { chosenProduct } = useSelector(chosenProductRetriever);
   const { restaurant } = useSelector(restaurantRetriever);
+
+  const { productId } = useParams<{ productId: string }>();
+  console.log("productId: ", productId);
+
+  useEffect(() => {
+    const product = new ProductService();
+
+    product
+      .getProduct(productId)
+      .then((data) => setChosenProduct(data))
+      .catch((err) => console.log(err));
+
+    const member = new MemberService();
+    member
+      .getRestaurant()
+      .then((data) => setRestaurant(data))
+      .catch((err) => console.log(err));
+  }, []);
 
   if (!chosenProduct) return null;
   return (

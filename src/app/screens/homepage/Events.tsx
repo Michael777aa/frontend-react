@@ -36,7 +36,7 @@ export default function Events() {
       .catch((err) => {
         console.log(err);
       });
-  }, [setEvents]);
+  }, []);
 
   return (
     <div className={"events-frame"}>

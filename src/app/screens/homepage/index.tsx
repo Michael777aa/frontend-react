@@ -7,6 +7,12 @@ import MemberService from "../../services/MemberService";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setTopUsers } from "./slice";
+import Shop from "./Shop";
+import Advertisement from "./Advertisement";
+import ActiveUsers from "./ActiveUsers";
+import Events from "./Events";
+import Satisfaction from "./Satisfaction";
+import Statistics from "./Statistics";
 interface ProductsPageProps {
   onAdd: (item: CartItem) => void;
 }
@@ -33,7 +39,7 @@ export default function HomePage(props: ProductsPageProps) {
       .catch((err) => {
         console.log(err);
       });
-  }, [setTopUsers]);
+  }, []);
   return (
     <div className={"homepage"}>
       <Statistics />
