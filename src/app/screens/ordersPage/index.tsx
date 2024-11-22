@@ -1,13 +1,13 @@
 import TabContext from "@mui/lab/TabContext";
 import TabPanel from "@mui/lab/TabPanel/TabPanel";
-import { Box, Button, Container, Stack, Tab, Tabs } from "@mui/material";
+import { Box, Container, Stack, Tab, Tabs } from "@mui/material";
 import { SyntheticEvent, useEffect, useState } from "react";
 import "../../../css/orders.css";
 import Divider from "../../components/divider";
 import FinishedOrders from "./FinishedOrders";
 import PausedOrders from "./PausedOrders";
 import ProcessOrders from "./ProcessOrders";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { Order, OrderInquiry } from "../../../lib/types/order";
 import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
@@ -106,7 +106,7 @@ export default function OrdersPage() {
                       ? `${serverApi}/${authMember?.memberImage}`
                       : "/icons/default-user.svg"
                   }
-                  alt="avatar here"
+                  alt=""
                   className="order-user-avatar"
                 />
               </div>
@@ -117,7 +117,7 @@ export default function OrdersPage() {
                       ? "/icons/restaurant.svg"
                       : "/icons/user-badge.svg"
                   }
-                  alt="user badge here"
+                  alt=""
                   className="order-user-prof-img"
                 />
               </div>
@@ -125,11 +125,7 @@ export default function OrdersPage() {
               <span className="order-user-prof">{authMember?.memberType}</span>
               <Divider height="2" width="333" bg="#A1A1A1" />
               <Stack className="order-user-address">
-                <img
-                  src="/icons/location.svg"
-                  alt="location.svg"
-                  className=""
-                />
+                <img src="/icons/location.svg" alt="" className="" />
                 <span className="spec-address-txt">
                   {authMember?.memberAdress ?? "no address"}
                 </span>
@@ -166,10 +162,10 @@ export default function OrdersPage() {
               </Box>
             </Stack>
             <Stack className="card-logos" flexDirection={"row"} gap={"30px"}>
-              <img src="/icons/western-card.svg" />
-              <img src="/icons/master-card.svg" />
-              <img src="/icons/paypal-card.svg" />
-              <img src="/icons/visa-card.svg" />
+              <img src="/icons/western-card.svg" alt="" />
+              <img src="/icons/master-card.svg" alt="" />
+              <img src="/icons/paypal-card.svg" alt="" />
+              <img src="/icons/visa-card.svg" alt="" />
             </Stack>
           </Stack>
         </Stack>

@@ -1,9 +1,4 @@
-import React from "react";
 import { Box, Container, Stack } from "@mui/material";
-import LocalShippingIcon from "@mui/icons-material/LocalShipping";
-import SecuritySharpIcon from "@mui/icons-material/SecuritySharp";
-import MultipleStopSharpIcon from "@mui/icons-material/MultipleStopSharp";
-import LocalPhoneSharpIcon from "@mui/icons-material/LocalPhoneSharp";
 import GroupIcon from "@mui/icons-material/Group";
 export default function Satisfaction() {
   return (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Box, Button, Stack, TextField } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
 import Badge from "@mui/material/Badge";
@@ -186,7 +186,11 @@ export default function Basket(props: BasketProps) {
                 return (
                   <Box className={"basket-info-box"} key={item._id}>
                     <div className={"cancel-btn"}></div>
-                    <img src={imagePath} className={"product-img"} />
+                    <img
+                      src={imagePath}
+                      alt="product-image"
+                      className={"product-img"}
+                    />
                     <span className={"product-name"}>{item.name}</span>
                     <Box className={"qty-box"}>
                       <button

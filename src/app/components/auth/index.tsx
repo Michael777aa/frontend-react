@@ -12,7 +12,6 @@ import { LoginInput, MemberInput } from "../../../lib/types/member";
 import MemberService from "../../services/MemberService";
 import {
   sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
   sweetTopSuccessAlert,
 } from "../../../lib/sweetAlert";
 import { useGlobals } from "../../hooks/useGlobals";

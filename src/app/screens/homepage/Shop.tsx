@@ -98,14 +98,14 @@ export default function Shop(props: ProductsProps) {
       .catch((err) => {
         console.log(err);
       });
-  }, [productSearch]);
+  }, [productSearch, setProducts]);
 
   useEffect(() => {
     if (searchText === "") {
       productSearch.search = "";
       setProductSearch({ ...productSearch });
     }
-  }, [searchText]);
+  }, [searchText, productSearch]);
 
   // HANDLERS
   const searchCollectionHandler = (collection: ProductCollection) => {

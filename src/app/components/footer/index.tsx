@@ -33,7 +33,6 @@ const FooterInput = styled(TextField)(({ theme }) => ({
 }));
 
 export default function Footer() {
-  const authMember = null;
   return (
     <Footers>
       <Container>

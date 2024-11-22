@@ -18,7 +18,7 @@ export default function Advertisement() {
             </Box>
           </Stack>
           <Stack className={"right-container"}>
-            <img src={"/img/baner-1.png"} />
+            <img src={"/img/baner-1.png"} alt="advertisement" />
           </Stack>
         </Stack>
       </Container>

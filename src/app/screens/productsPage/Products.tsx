@@ -119,7 +119,7 @@ export default function Products(props: ProductsProps) {
     };
 
     fetchProducts();
-  }, [productSearch, priceRange]);
+  }, [productSearch, priceRange, setProducts]);
 
   useEffect(() => {
     if (searchText === "") {

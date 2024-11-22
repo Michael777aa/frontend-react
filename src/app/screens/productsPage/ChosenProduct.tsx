@@ -37,27 +37,8 @@ interface ChosenProducteProps {
 
 export default function ChosenProduct(props: ChosenProducteProps) {
   const { onAdd } = props;
-  const { setChosenProduct, setRestaurant } = actionDispatch(useDispatch());
   const { chosenProduct } = useSelector(chosenProductRetriever);
   const { restaurant } = useSelector(restaurantRetriever);
-
-  const { productId } = useParams<{ productId: string }>();
-  console.log("productId: ", productId);
-
-  useEffect(() => {
-    const product = new ProductService();
-
-    product
-      .getProduct(productId)
-      .then((data) => setChosenProduct(data))
-      .catch((err) => console.log(err));
-
-    const member = new MemberService();
-    member
-      .getRestaurant()
-      .then((data) => setRestaurant(data))
-      .catch((err) => console.log(err));
-  }, []);
 
   if (!chosenProduct) return null;
   return (

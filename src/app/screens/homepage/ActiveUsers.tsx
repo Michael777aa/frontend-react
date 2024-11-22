@@ -28,7 +28,7 @@ export default function ActiveUsers() {
                     <Card className="card" key={member._id}>
                       <CardOverflow>
                         <AspectRatio ratio={1}>
-                          <img src={imagePath} alt="image here" />
+                          <img src={imagePath} />
                         </AspectRatio>
                       </CardOverflow>
 

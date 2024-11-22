@@ -40,7 +40,7 @@ export default function HomePage(props: ProductsPageProps) {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [setTopUsers]);
   return (
     <div className={"homepage"}>
       <Statistics />
